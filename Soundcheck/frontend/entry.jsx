@@ -3,9 +3,23 @@ import ReactDOM from "react-dom";
 import Root from './components/root';
 import configureStore from './store/store';
 import * as SessionAPIUtil from "./actions/session_actions";
+import { config } from "process";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const store = configureStore();
+    let store;
+
+    if (window.currentUser) {
+        const preloadedState = {
+            entities: {
+                users: users
+            },
+            session: {id: window.currentUser.id}
+        };
+        store = configureStore(preloadedState);
+        delete window.currentUser;
+    } else {
+        store = configureStore();
+    }
 
     //test start
     window.getState = store.getState;
