@@ -6,9 +6,9 @@ class UsernameForm extends React.Component {
     }
 
     render() {
-        const errors = this.props.errors.map(error => {
-            return <p className="error-message">{error}</p>
-        });
+        // const errors = this.props.errors.map(error => {
+        //     return <p className="error-message">{error}</p>
+        // });
 
         if (this.props.stepNumber === 1) {
             return (
@@ -29,7 +29,7 @@ class UsernameForm extends React.Component {
                             placeholder="Your username"
                         />
                     </label>
-                    {errors}
+                    {/* {errors} */}
                     {this.props.continueButton}
                 </div>
             )

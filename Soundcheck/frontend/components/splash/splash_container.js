@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Splash from './splash';
 import {openModal} from '../../actions/modal_actions';
+import {logout} from '../../actions/session_actions';
 
 const mapStateToProps = state => {
     return ({
@@ -10,7 +11,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return ({
-        openModal: modal => dispatch(openModal(modal))
+        openModal: modal => dispatch(openModal(modal)),
+        logout: () => dispatch(logout())
     })
 };
 

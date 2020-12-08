@@ -20,6 +20,10 @@ class SignupForm extends React.Component {
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.demoLogin = this.demoLogin.bind(this);
+    };
+
+    componentDidMount() {
+        this.props.receiveErrors([]);
     }
 
     handleInput(field) {
@@ -41,11 +45,12 @@ class SignupForm extends React.Component {
     passwordStep(e) {
         e.preventDefault();
         this.props.clearErrors();
-        if (this.validPassword(this.state.password)) {
-            this.setState({stepNumber: 2})
-        } else {
-            this.props.receiveError("Password length at least 6 characters")
-        }
+        this.setState({stepNumber: 2})
+        // if (this.validPassword(this.state.password)) {
+        //     this.setState({stepNumber: 2})
+        // } else {
+        //     this.props.receiveError("Password length at least 6 characters")
+        // }
         
     }
 
@@ -67,17 +72,17 @@ class SignupForm extends React.Component {
         // continue button, accept & continue button, get started button
         const continueButton = this.state.stepNumber === 1 ? 
         <button className="auth-form-button" 
-            onClick={this.passwordStep}>Continue
+            onClick={() => this.passwordStep}>Continue
         </button> : "" ;
 
         const acceptContinueButton = this.state.stepNumber === 2 ?
         <button className="auth-form-button" 
-            onClick={this.displayNameDescriptionStep}>Accept & Continue
+            onClick={() => this.displayNameDescriptionStep}>Accept & Continue
         </button> : "" ;
 
         const getStartedButton = this.state.stepNumber === 3 ?
         <button className="auth-form-button" 
-            onClick={this.handleSubmit}>Accept & Continue
+            onClick={() => this.handleSubmit}>Accept & Continue
         </button> : "" ;
 
         return (
