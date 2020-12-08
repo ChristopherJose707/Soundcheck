@@ -1,13 +1,19 @@
 import React from 'react';
-import GreetingContainer from "./user_auth_testing/greeting_container";
 import ModalContainer from "./modal/modal_container";
+import {Route, Switch} from 'react-router-dom';
+import {AuthRoute, ProtectedRoute} from '../util/route_util';
 
 const App = () => {
     return (
         <div>
             <ModalContainer />
-            <h1>Soundcheck!</h1>
-            <GreetingContainer />
+            <h1>Soundcheck! React works!</h1>
+
+            <Switch>
+                <AuthRoute exact path="/" component={SplashContainer} />
+                
+            </Switch>
+            
         </div>
     )
 };

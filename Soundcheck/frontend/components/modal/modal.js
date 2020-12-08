@@ -15,10 +15,10 @@ class Modal extends React.Component {
         let component;
     
         switch(this.props.modal) {
-            case 'login':  // passed in during onClick={openModal("login")} in login form
+            case 'login':  // passed in during onClick={openModal("login")} on splash page
                 component = <LoginFormContainer />
                 break;     
-            case 'signup': // passed in during onClick={openModal("signup")} in signup form
+            case 'signup': // passed in during onClick={openModal("signup")} on splash page 
                 component = <SignUpFormContainer />
                 break;
             default: 
