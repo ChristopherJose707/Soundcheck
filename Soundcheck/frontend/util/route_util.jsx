@@ -8,7 +8,7 @@ const mapStateToProps = state => {
     });
 };
 
-const Auth = ({loggedIn, path, exact, component: Component}) => {
+const Auth = ({loggedIn, path, exact, component: Component}) => { // if loggedin redirect to discover, else render component
     return (
         <Route 
             path={path}
@@ -20,7 +20,7 @@ const Auth = ({loggedIn, path, exact, component: Component}) => {
     );
 };
 
-const Protected = ({loggedIn, path, exact, component: Component}) => {
+const Protected = ({loggedIn, path, exact, component: Component}) => { // if logged in, load component. else redirect to "/" to sign in
     return (
         <Route 
             path={path}
