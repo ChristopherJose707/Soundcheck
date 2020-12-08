@@ -6,7 +6,9 @@ class SignupPasswordForm extends React.Component {
     }
 
     render() {
-        
+        return (
+            null
+        )
     }
 }
 

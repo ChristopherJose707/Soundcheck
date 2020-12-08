@@ -1,7 +1,7 @@
-import { throws } from 'assert';
 import React from 'react';
 import SignupPasswordForm from './signup_password_form';
 import UsernameForm from './username_form';
+import DisplayNameForm from './display_name_form';
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -14,10 +14,12 @@ class SignupForm extends React.Component {
             display_name: "",
             description: ""
         };
-
-        this.emailStep = this.emailStep.bind(this);
+       
+        this.passwordStep = this.passwordStep.bind(this);
         this.displayNameDescriptionStep = this.displayNameDescriptionStep.bind(this);
         this.handleInput = this.handleInput.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.demoLogin = this.demoLogin.bind(this);
     }
 
     handleInput(field) {
@@ -30,12 +32,19 @@ class SignupForm extends React.Component {
         this.props.signup(user).then( () => this.props.closeModal());
     }
 
+    demoLogin(e) {
+        e.preventDefault();
+        let user = {username: "demo", password: "password"}
+        this.props.login(user).then( () => this.props.closeModal());
+    }
+
     passwordStep(e) {
         e.preventDefault();
-        let currentStep = this.state.stepNumber;
-
+        this.props.clearErrors();
         if (this.validPassword(this.state.password)) {
-
+            this.setState({stepNumber: 2})
+        } else {
+            this.props.receiveError("Password length at least 6 characters")
         }
         
     }
@@ -48,8 +57,10 @@ class SignupForm extends React.Component {
         }
     }
 
-    displayNameDescriptionStep() {
-
+    displayNameDescriptionStep(e) {
+        e.preventDefault();
+        this.props.clearErrors();
+        this.setState({stepNumber: 3});
     }
 
     render(){
@@ -70,20 +81,27 @@ class SignupForm extends React.Component {
         </button> : "" ;
 
         return (
-            <form className="auth-form">
+            <form className="auth-form" onSubmit={this.handleSubmit}>
 
                 <UsernameForm // render on step 1
                     continueButton={continueButton}
                     stepNumber={this.state.stepNumber}
                     handleInput={this.handleInput}
                     errors={this.props.errors}
+                    demoLogin={this.demoLogin}
                 />
-                <SignupPasswordForm // render on step 2
+                {/* <SignupPasswordForm // render on step 2
                     acceptContinueButton={acceptContinueButton}
                     stepNumber={this.state.stepNumber}
                     handleInput={this.handleInput}
                     errors={this.props.errors}
-                />
+                /> */}
+                {/* <DisplayNameForm // render on step 3
+                    getStartedButton={getStartedButton}
+                    stepNumber={this.state.stepNumber}
+                    handleInput={this.handleInput}
+                    errors={this.props.errors}
+                /> */}
             </form>
         )
     }
