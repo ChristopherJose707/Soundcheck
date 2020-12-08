@@ -6,7 +6,9 @@ class DisplayNameForm extends React.Component {
     };
 
     render(){
-        return (null)
+        return (
+            <h1>Display name and Description Form</h1>
+        )
     }
 };
 

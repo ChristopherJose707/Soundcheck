@@ -46,12 +46,7 @@ class SignupForm extends React.Component {
         e.preventDefault();
         this.props.clearErrors();
         this.setState({stepNumber: 2})
-        // if (this.validPassword(this.state.password)) {
-        //     this.setState({stepNumber: 2})
-        // } else {
-        //     this.props.receiveError("Password length at least 6 characters")
-        // }
-        
+       
     }
 
     validPassword(password) {
@@ -65,28 +60,32 @@ class SignupForm extends React.Component {
     displayNameDescriptionStep(e) {
         e.preventDefault();
         this.props.clearErrors();
-        this.setState({stepNumber: 3});
+         if (this.validPassword(this.state.password)) {
+            this.setState({stepNumber: 3})
+        } else {
+            this.props.receiveError("Password length at least 6 characters")
+        }
     }
 
     render(){
         // continue button, accept & continue button, get started button
         const continueButton = this.state.stepNumber === 1 ? 
         <button className="auth-form-button" 
-            onClick={() => this.passwordStep}>Continue
+            onClick={this.passwordStep}>Continue
         </button> : "" ;
 
         const acceptContinueButton = this.state.stepNumber === 2 ?
         <button className="auth-form-button" 
-            onClick={() => this.displayNameDescriptionStep}>Accept & Continue
+            onClick={this.displayNameDescriptionStep}>Accept & Continue
         </button> : "" ;
 
         const getStartedButton = this.state.stepNumber === 3 ?
         <button className="auth-form-button" 
-            onClick={() => this.handleSubmit}>Accept & Continue
+            onClick={this.handleSubmit}>Get Started
         </button> : "" ;
 
         return (
-            <form className="auth-form" onSubmit={this.handleSubmit}>
+            <form className="auth-form">
 
                 <UsernameForm // render on step 1
                     continueButton={continueButton}
@@ -95,12 +94,12 @@ class SignupForm extends React.Component {
                     errors={this.props.errors}
                     demoLogin={this.demoLogin}
                 />
-                {/* <SignupPasswordForm // render on step 2
+                <SignupPasswordForm // render on step 2
                     acceptContinueButton={acceptContinueButton}
                     stepNumber={this.state.stepNumber}
                     handleInput={this.handleInput}
                     errors={this.props.errors}
-                /> */}
+                />
                 {/* <DisplayNameForm // render on step 3
                     getStartedButton={getStartedButton}
                     stepNumber={this.state.stepNumber}

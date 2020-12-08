@@ -6,9 +6,14 @@ class SignupPasswordForm extends React.Component {
     }
 
     render() {
-        return (
-            null
-        )
+        if(this.props.stepNumber === 2) {
+            return (
+                <h1>Signup Password form</h1>
+            )
+
+        } else {
+            return null;
+        }
     }
 }
 
