@@ -2,31 +2,39 @@ import React from 'react';
 import LoginFormContainer from '../session/login_form_container';
 import SignUpFormContainer from '../session/signup_form_container';
 
-const Modal = ({modal, closeModal}) => {
-    if (!modal) {
-        return null;
-    }
-    let component;
+class Modal extends React.Component {
+    
+    constructor(props){
+        super(props)
+    };
 
-    switch(modal) {
-        case 'login':
-            component = <LoginFormContainer />
-            break;
-        case 'signup': 
-            component = <SignUpFormContainer />
-            break;
-        default: 
+    render() {
+        if (!this.props.modal) {
             return null;
-    }
-
-    return (
-        <div className="modal-background" onMouseDown={closeModal}>
-            <button className="modal-close-button" onClick={closeModal}>X</button>
-            <div className="modal-child" onMouseDown={e => e.stopPropagation()}>
-                {component}
+        }
+        let component;
+    
+        switch(this.props.modal) {
+            case 'login':  // passed in during onClick={openModal("login")} in login form
+                component = <LoginFormContainer />
+                break;     
+            case 'signup': // passed in during onClick={openModal("signup")} in signup form
+                component = <SignUpFormContainer />
+                break;
+            default: 
+                return null;
+        }
+    
+        return (
+            <div className="modal-background" onMouseDown={this.props.closeModal}>
+                <button className="modal-close-button" onClick={this.props.closeModal}>X</button>
+                <div className="modal-child" onMouseDown={e => e.stopPropagation()}>
+                    {component}
+                </div>
             </div>
-        </div>
-    )
-};
+        )
+    }
+} 
+
 
 export default Modal; 

@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import Root from './components/root';
 import configureStore from './store/store';
 import * as SessionAPIUtil from "./actions/session_actions";
-import { config } from "process";
 
 document.addEventListener("DOMContentLoaded", () => {
     let store;
