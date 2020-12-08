@@ -3,7 +3,9 @@ import React from 'react';
 
 class LoginForm extends React.Component {
     render() {
-        return (null)
+        return (
+            <h1>Here is the login modal!</h1>
+        )
     }
 };
 

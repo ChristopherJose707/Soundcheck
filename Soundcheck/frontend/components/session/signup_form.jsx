@@ -13,7 +13,9 @@ class SignupForm extends React.Component {
     }
 
     render(){
-        
+        return (
+            <h1>Here is the Signup modal!</h1>
+        )
     }
 }
 
