@@ -10,7 +10,6 @@ const App = () => {
     return (
         <div>
             <ModalContainer />
-            <h1>Soundcheck! React works!</h1>
 
             <Switch>
                 <AuthRoute exact path="/" component={SplashContainer} />
