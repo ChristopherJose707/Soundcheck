@@ -1,6 +1,7 @@
 import React from 'react';
 import UsernameForm from './username_form';
 import PasswordForm from './password_form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -29,8 +30,13 @@ class LoginForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         let user = this.state;
-        this.props.login(user).then( () => this.props.closeModal());
+        // this.props.login(user).then( () => this.props.closeModal());
+        this.props.login(user).then( () => {
+            this.props.closeModal()
+            this.props.history.push("/discover");
+        });
 
+        
     };
 
     demoLogin(e) {
@@ -73,8 +79,10 @@ class LoginForm extends React.Component {
 
     render() {
         const previousButton = this.state.stepNumber === 2 ?
-        <button className="auth-form-button" 
-            onClick={this.previousStep}>{this.state.username}
+        <button className="auth-prev-button" 
+            onClick={this.previousStep}>
+            <FontAwesomeIcon icon="caret-left" />
+            {this.state.username}
         </button> : "" ;
 
         const continueButton = this.state.stepNumber === 1 ? 

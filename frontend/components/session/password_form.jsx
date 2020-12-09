@@ -14,6 +14,7 @@ class PasswordForm extends React.Component {
             return (
                 <div className="login-password-form">
                     {this.props.previousButton}
+                    <br/>
                     <label>
                         <input className="auth-input"
                             type="password"

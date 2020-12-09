@@ -1,4 +1,5 @@
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import LoginForm from './login_form';
 import {login} from '../../actions/session_actions';
 import {closeModal} from '../../actions/modal_actions';
@@ -9,7 +10,8 @@ import {receiveErrors,
 
 const mapStateToProps = (state) => {
     return {
-        errors: state.errors.sessionErrors
+        errors: state.errors.sessionErrors,
+        currentUser: state.session.currentUser
     };
 };
 
@@ -23,4 +25,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginForm))
