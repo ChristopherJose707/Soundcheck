@@ -21,6 +21,11 @@ class SignupPasswordForm extends React.Component {
                             placeholder="Your password"
                         />
                     </label>
+                    <div className="disclaimer">
+                         <p>By signing up I accept the Terms of Use. I have read
+                          and understood the Privacy Policy and 
+                          Cookies Policy.</p>
+                    </div>
                     {errors}
                     {this.props.acceptContinueButton}
                 </div>
