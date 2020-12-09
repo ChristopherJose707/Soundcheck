@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Discover from './discover'
 import {logout} from '../../actions/session_actions';
+
 const mapStateToProps = state => {
     return ({
         users: state.entities.users,

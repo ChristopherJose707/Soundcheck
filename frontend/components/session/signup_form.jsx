@@ -45,7 +45,10 @@ class SignupForm extends React.Component {
     demoLogin(e) {
         e.preventDefault();
         let user = {username: "demo", password: "password"}
-        this.props.login(user).then( () => this.props.closeModal());
+        this.props.login(user).then( () => {
+            this.props.closeModal()
+            this.props.history.push("/discover");
+        });
     };
 
     previousStep(e){
