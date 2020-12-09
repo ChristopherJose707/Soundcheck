@@ -13476,16 +13476,20 @@ var Discover = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(Discover);
 
-  function Discover() {
+  function Discover(props) {
     _classCallCheck(this, Discover);
 
-    return _super.apply(this, arguments);
+    return _super.call(this, props);
   }
 
   _createClass(Discover, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, " This is the discover page");
+      console.log(this.props.currentUser);
+      var logoutButton = this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: this.props.logout
+      }, "Logout") : "";
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, " This is the discover page"), logoutButton);
     }
   }]);
 
@@ -13510,18 +13514,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _discover__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./discover */ "./frontend/components/discover/discover.jsx");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+
 
 
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
     users: state.entities.users,
-    currentUser: state.entities.users[state.session.currentUser] // songs:    uncomment once songs is added
+    currentUser: state.entities.users[state.session.id] // songs:    uncomment once songs is added
 
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps)(_discover__WEBPACK_IMPORTED_MODULE_1__.default));
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    logout: function logout() {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.logout)());
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_discover__WEBPACK_IMPORTED_MODULE_1__.default));
 
 /***/ }),
 
