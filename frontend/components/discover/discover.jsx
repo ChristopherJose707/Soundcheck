@@ -1,9 +1,22 @@
 import React from 'react';
 
 class Discover extends React.Component {
+    constructor(props) {
+        super(props)
+        
+    }
+
     render() {
+        console.log(this.props.currentUser)
+        const logoutButton = this.props.currentUser ? 
+        <button onClick={this.props.logout}>Logout</button> : ""
+        
         return (
-            <h1> This is the discover page</h1>
+            <div>
+                <h1> This is the discover page</h1>
+                {logoutButton}
+            </div>
+            
         )
     }
 };
