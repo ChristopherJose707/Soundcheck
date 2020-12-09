@@ -1,4 +1,5 @@
 import React from 'react';
+import NavbarContainer from '../navbar/navbar_container';
 
 class Discover extends React.Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class Discover extends React.Component {
         
         return (
             <div>
-                <h1> This is the discover page</h1>
+                <NavbarContainer />
                 {logoutButton}
             </div>
             
