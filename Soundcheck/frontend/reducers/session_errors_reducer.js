@@ -7,7 +7,7 @@ const sessionErrorsReducer = (oldState = [], action) => {
         case RECEIVE_ERRORS:
             return action.errors;
         case RECEIVE_ERROR:
-            let nextState = state.slice();
+            let nextState = oldState.slice();
             nextState.push(action.error);
             return nextState;
         case CLEAR_ERRORS:

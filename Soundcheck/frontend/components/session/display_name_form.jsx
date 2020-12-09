@@ -6,9 +6,31 @@ class DisplayNameForm extends React.Component {
     };
 
     render(){
-        return (
-            <h1>Display name and Description Form</h1>
-        )
+        const errors = this.props.errors.map((error,i) => {
+            return <p key={i} className="error-message">{error}</p>
+        });
+        if (this.props.stepNumber === 3) {
+            return (
+                <div>
+                    <h2>Tell us a bit about yourself</h2>
+                   <label>
+                        <input className="auth-input"
+                            type="text"
+                            onChange={this.props.handleInput("display_name")}
+                            placeholder="Your Display Name"
+                        />
+                    </label>
+                    <textarea className="auth-description" 
+                        onChange={this.props.handleInput("description")}
+                        placeholder="A short description"></textarea>
+                        {errors}
+                    {this.props.getStartedButton}
+                </div>
+            )
+
+        } else {
+            return null;
+        }
     }
 };
 

@@ -20,6 +20,7 @@ class SignupForm extends React.Component {
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.demoLogin = this.demoLogin.bind(this);
+        this.previousStep = this.previousStep.bind(this);
     };
 
     componentDidMount() {
@@ -34,18 +35,29 @@ class SignupForm extends React.Component {
         e.preventDefault();
         let user = this.state;
         this.props.signup(user).then( () => this.props.closeModal());
-    }
+
+    };
 
     demoLogin(e) {
         e.preventDefault();
         let user = {username: "demo", password: "password"}
         this.props.login(user).then( () => this.props.closeModal());
+    };
+
+    previousStep(e){
+        // let stepNumber = this.state.stepNumber;
+        this.setState({stepNumber: 1, username: ""})
     }
+
 
     passwordStep(e) {
         e.preventDefault();
         this.props.clearErrors();
-        this.setState({stepNumber: 2})
+        if (this.validUsername(this.state.username)) {
+            this.setState({stepNumber: 2})
+        } else {
+            this.props.receiveError(["Username cannot be blank."])
+        }
        
     }
 
@@ -57,18 +69,31 @@ class SignupForm extends React.Component {
         }
     }
 
+    validUsername(username) {
+        if (username.length === 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     displayNameDescriptionStep(e) {
         e.preventDefault();
         this.props.clearErrors();
-         if (this.validPassword(this.state.password)) {
+        if (this.validPassword(this.state.password)) {
             this.setState({stepNumber: 3})
         } else {
-            this.props.receiveError("Password length at least 6 characters")
+            this.props.receiveError("Password length must be at least 6 characters")
         }
     }
 
     render(){
         // continue button, accept & continue button, get started button
+        const previousButton = this.state.stepNumber === 2 ?
+        <button className="auth-form-button" 
+            onClick={this.previousStep}>{this.state.username}
+        </button> : "" ;
+
         const continueButton = this.state.stepNumber === 1 ? 
         <button className="auth-form-button" 
             onClick={this.passwordStep}>Continue
@@ -95,17 +120,18 @@ class SignupForm extends React.Component {
                     demoLogin={this.demoLogin}
                 />
                 <SignupPasswordForm // render on step 2
+                    previousButton={previousButton}
                     acceptContinueButton={acceptContinueButton}
                     stepNumber={this.state.stepNumber}
                     handleInput={this.handleInput}
                     errors={this.props.errors}
                 />
-                {/* <DisplayNameForm // render on step 3
+                <DisplayNameForm // render on step 3
                     getStartedButton={getStartedButton}
                     stepNumber={this.state.stepNumber}
                     handleInput={this.handleInput}
                     errors={this.props.errors}
-                /> */}
+                />
             </form>
         )
     }
