@@ -1223,17 +1223,19 @@ var UsernameForm = /*#__PURE__*/function (_React$Component) {
           className: "auth-form-link",
           onClick: this.props.demoLogin
         }, "Demo Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "email-or-demo"
+          className: "username-or-demo"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "EOD-line"
+          className: "EOD-line line-left"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "or"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "EOD-line"
+          className: "EOD-line line-right"
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
           className: "auth-input",
           type: "text",
           onChange: this.props.handleInput("username"),
           placeholder: "Your username"
-        })), errors, this.props.continueButton);
+        })), errors, this.props.continueButton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "disclaimer"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "We may use your email and devices for updates and tips on SoundCheck's products and services, and for activities notifications. You can unsubscribe for free at any time in your notification settings."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "We may use information you provide us in order to show you targeted ads as described in our Privacy Policy")));
       } else {
         return null;
       }
