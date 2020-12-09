@@ -1,2 +1,3 @@
-# Soundcheck
-A Soundcloud clone. 
+# README
+
+
