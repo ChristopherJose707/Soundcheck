@@ -8,13 +8,18 @@ class Splash extends React.Component {
     render() {
         return (
             <div className="splash">
-                <nav className="splash-navbar">
-                    <h1>This is the splash page!</h1>
-                    <button className="splash-login" onClick={() => this.props.openModal("login")}>Sign In</button>
-                    <br></br>
-                    <button className="splash-signup" onClick={() => this.props.openModal("signup")}>Create account</button>
-                    
-                </nav>
+                <div className="splash-banner">
+                    <nav className="splash-navbar">
+                        <div className="splash-banner-right">
+                            <button className="splash-login" onClick={() => this.props.openModal("login")}>Sign In</button>
+                            <br/>
+                            <button className="splash-signup" onClick={() => this.props.openModal("signup")}>Create account</button>
+                        </div>
+                        <div className="splash-banner-left">
+                            
+                        </div>
+                    </nav>
+                </div>
             </div>
         );
     }

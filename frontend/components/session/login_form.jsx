@@ -1,10 +1,110 @@
-
 import React from 'react';
+import UsernameForm from './username_form';
+import PasswordForm from './password_form';
 
 class LoginForm extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            stepNumber: 1,
+            username: "",
+            password: "",
+        };
+
+        this.passwordStep = this.passwordStep.bind(this);
+        this.handleInput = this.handleInput.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.demoLogin = this.demoLogin.bind(this);
+        this.previousStep = this.previousStep.bind(this);
+    }
+    componentDidMount() {
+        this.props.receiveErrors([]);
+    }
+
+    handleInput(field) {
+        return e => this.setState({[field]: e.target.value})
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        let user = this.state;
+        this.props.login(user).then( () => this.props.closeModal());
+
+    };
+
+    demoLogin(e) {
+        e.preventDefault();
+        let user = {username: "demo", password: "password"}
+        this.props.login(user).then( () => this.props.closeModal());
+    };
+
+    previousStep(e){
+        this.setState({stepNumber: 1, username: ""})
+    }
+
+
+    passwordStep(e) {
+        e.preventDefault();
+        this.props.clearErrors();
+        if (this.validUsername(this.state.username)) {
+            this.setState({stepNumber: 2})
+        } else {
+            this.props.receiveError(["Username cannot be blank."])
+        }
+       
+    }
+
+    validPassword(password) {
+        if (password.length < 6) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    validUsername(username) {
+        if (username.length === 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     render() {
+        const previousButton = this.state.stepNumber === 2 ?
+        <button className="auth-form-button" 
+            onClick={this.previousStep}>{this.state.username}
+        </button> : "" ;
+
+        const continueButton = this.state.stepNumber === 1 ? 
+        <button className="auth-form-button" 
+            onClick={this.passwordStep}>Continue
+        </button> : "" ;
+
+        const signinButton = this.state.stepNumber === 2 ?
+        <button className="auth-form-button" 
+            onClick={this.handleSubmit}>Sign In
+        </button> : "" ;
+
         return (
-            <h1>Here is the login modal!</h1>
+             <form className="auth-form">
+
+                <UsernameForm // render on step 1
+                    continueButton={continueButton}
+                    stepNumber={this.state.stepNumber}
+                    handleInput={this.handleInput}
+                    errors={this.props.errors}
+                    demoLogin={this.demoLogin}
+                />
+                <PasswordForm // render on step 2
+                    previousButton={previousButton}
+                    signinButton={signinButton}
+                    stepNumber={this.state.stepNumber}
+                    handleInput={this.handleInput}
+                    errors={this.props.errors}
+                />
+            </form>
         )
     }
 };

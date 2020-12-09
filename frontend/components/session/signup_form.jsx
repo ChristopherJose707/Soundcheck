@@ -45,7 +45,6 @@ class SignupForm extends React.Component {
     };
 
     previousStep(e){
-        // let stepNumber = this.state.stepNumber;
         this.setState({stepNumber: 1, username: ""})
     }
 
