@@ -2,6 +2,7 @@ import React from 'react';
 import SignupPasswordForm from './signup_password_form';
 import UsernameForm from './username_form';
 import DisplayNameForm from './display_name_form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -89,8 +90,10 @@ class SignupForm extends React.Component {
     render(){
         // continue button, accept & continue button, get started button
         const previousButton = this.state.stepNumber === 2 ?
-        <button className="auth-form-button" 
-            onClick={this.previousStep}>{this.state.username}
+        <button className="auth-prev-button" 
+            onClick={this.previousStep}>
+            <FontAwesomeIcon icon="caret-left" />
+            {this.state.username}
         </button> : "" ;
 
         const continueButton = this.state.stepNumber === 1 ? 

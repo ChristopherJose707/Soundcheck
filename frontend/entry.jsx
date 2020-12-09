@@ -3,6 +3,11 @@ import ReactDOM from "react-dom";
 import Root from './components/root';
 import configureStore from './store/store';
 import * as SessionAPIUtil from "./actions/session_actions";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import {faCaretLeft} from '@fortawesome/free-solid-svg-icons';
+
+library.add(fab, faCaretLeft)
 
 document.addEventListener("DOMContentLoaded", () => {
     let store;

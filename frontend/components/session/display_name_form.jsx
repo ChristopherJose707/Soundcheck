@@ -11,7 +11,7 @@ class DisplayNameForm extends React.Component {
         });
         if (this.props.stepNumber === 3) {
             return (
-                <div>
+                <div className="display-name-form">
                     <h2>Tell us a bit about yourself</h2>
                    <label>
                         <input className="auth-input"
