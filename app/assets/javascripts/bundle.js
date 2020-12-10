@@ -13724,64 +13724,95 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      showMenu: false
+      showOptionMenu: false,
+      showUserMenu: false
     };
-    _this.showMenu = _this.showMenu.bind(_assertThisInitialized(_this));
-    _this.closeMenu = _this.closeMenu.bind(_assertThisInitialized(_this));
+    _this.showOptionMenu = _this.showOptionMenu.bind(_assertThisInitialized(_this));
+    _this.closeOptionMenu = _this.closeOptionMenu.bind(_assertThisInitialized(_this));
+    _this.showUserMenu = _this.showUserMenu.bind(_assertThisInitialized(_this));
+    _this.closeUserMenu = _this.closeUserMenu.bind(_assertThisInitialized(_this));
     _this.UserLinks = _this.UserLinks.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Navbar, [{
-    key: "showMenu",
-    value: function showMenu(e) {
+    key: "showOptionMenu",
+    value: function showOptionMenu(e) {
       var _this2 = this;
 
       e.preventDefault();
       e.stopPropagation();
       this.setState({
-        showMenu: true
+        showOptionMenu: true
       }, function () {
-        document.addEventListener('click', _this2.closeMenu);
+        document.addEventListener('click', _this2.closeOptionMenu);
       });
     }
   }, {
-    key: "closeMenu",
-    value: function closeMenu(e) {
+    key: "closeOptionMenu",
+    value: function closeOptionMenu(e) {
       var _this3 = this;
 
       e.preventDefault();
 
       if (!this.dropdownMenu.contains(e.target)) {
         this.setState({
-          showMenu: false
+          showOptionMenu: false
         }, function () {
-          document.removeEventListener('click', _this3.closeMenu);
+          document.removeEventListener('click', _this3.closeOptionMenu);
+        });
+      }
+    }
+  }, {
+    key: "showUserMenu",
+    value: function showUserMenu(e) {
+      var _this4 = this;
+
+      e.preventDefault();
+      e.stopPropagation();
+      this.setState({
+        showUserMenu: true
+      }, function () {
+        document.addEventListener('click', _this4.closeUserMenu);
+      });
+    }
+  }, {
+    key: "closeUserMenu",
+    value: function closeUserMenu(e) {
+      var _this5 = this;
+
+      e.preventDefault();
+
+      if (!this.dropdownMenu.contains(e.target)) {
+        this.setState({
+          showUserMenu: false
+        }, function () {
+          document.removeEventListener('click', _this5.closeUserMenu);
         });
       }
     }
   }, {
     key: "UserLinks",
     value: function UserLinks() {
-      var _this4 = this;
+      var _this6 = this;
 
       if (!this.props.currentUser) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
           className: "navbar-signin",
           onClick: function onClick() {
-            return _this4.props.openModal("login");
+            return _this6.props.openModal("login");
           }
         }, "Sign In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
           className: "navbar-signup",
           onClick: function onClick() {
-            return _this4.props.openModal("signup");
+            return _this6.props.openModal("signup");
           }
         }, "Create Account"));
       } else {
         var userDisplayName = this.props.currentUser.display_name.length > 10 ? this.props.currentUser.display_name.slice(0, 10) : this.props.currentUser.display_name;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
           className: "navbar-user",
-          onClick: this.showMenu
+          onClick: this.showUserMenu
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "navbar-profile-pic"
         }, this.props.currentUser.profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
@@ -13790,10 +13821,10 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
           className: "navbar-display-name"
         }, " ", userDisplayName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
           icon: "angle-down"
-        }), this.state.showMenu ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        }), this.state.showUserMenu ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "user-dropdown",
           ref: function ref(element) {
-            _this4.dropdownMenu = element;
+            _this6.dropdownMenu = element;
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "navbar-user-icon"
@@ -13819,8 +13850,29 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this7 = this;
 
+      var signoutOrLinks = this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "option-dropdown",
+        ref: function ref(element) {
+          _this7.dropdownMenu = element;
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: function onClick() {
+          return _this7.props.logout();
+        }
+      }, "Sign Out")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "option-dropdown",
+        ref: function ref(element) {
+          _this7.dropdownMenu = element;
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        href: "google.com"
+      }, "Google"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        href: "facebook.com"
+      }, "Facebook"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        href: "soundcloud.com"
+      }, "SoundCloud"));
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "navbar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
@@ -13847,20 +13899,11 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         icon: "search"
       }))), this.UserLinks(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "navbar-options",
-        onClick: this.showMenu
+        onClick: this.showOptionMenu
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         className: "navbar-ellipsis",
         icon: "ellipsis-h"
-      })), this.state.showMenu ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "option-dropdown",
-        ref: function ref(element) {
-          _this5.dropdownMenu = element;
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        onClick: function onClick() {
-          return _this5.props.logout();
-        }
-      }, "Sign Out"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", null)) : null);
+      })), this.state.showOptionMenu ? signoutOrLinks : null);
     }
   }]);
 
@@ -14130,8 +14173,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
 
       e.preventDefault();
       var user = {
-        username: "aston4",
-        password: "aston4"
+        username: "demoUser",
+        password: "password"
       };
       this.props.login(user).then(function () {
         _this4.props.closeModal();
@@ -14465,8 +14508,8 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
 
       e.preventDefault();
       var user = {
-        username: "aston4",
-        password: "aston4"
+        username: "demoUser",
+        password: "password"
       };
       this.props.login(user).then(function () {
         _this4.props.closeModal();

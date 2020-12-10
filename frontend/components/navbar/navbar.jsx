@@ -8,31 +8,52 @@ class Navbar extends React.Component {
         super(props)
 
         this.state = {
-            showMenu: false
+            showOptionMenu: false,
+            showUserMenu: false
         }
 
-        this.showMenu = this.showMenu.bind(this);
-        this.closeMenu = this.closeMenu.bind(this);
+        this.showOptionMenu = this.showOptionMenu.bind(this);
+        this.closeOptionMenu = this.closeOptionMenu.bind(this);
+        this.showUserMenu = this.showUserMenu.bind(this);
+        this.closeUserMenu = this.closeUserMenu.bind(this);
         this.UserLinks = this.UserLinks.bind(this);
     };
 
     
-    showMenu(e) {
+    showOptionMenu(e) {
         e.preventDefault();
         e.stopPropagation();
-        this.setState({showMenu: true}, () => {
-            document.addEventListener('click', this.closeMenu)
+        this.setState({showOptionMenu: true}, () => {
+            document.addEventListener('click', this.closeOptionMenu)
         })
     };
-
-    closeMenu(e) {
+    
+    closeOptionMenu(e) {
         e.preventDefault();
         if (!this.dropdownMenu.contains(e.target)) {
-            this.setState({showMenu: false}, () => {
-                document.removeEventListener('click', this.closeMenu)
+            this.setState({showOptionMenu: false}, () => {
+                document.removeEventListener('click', this.closeOptionMenu)
             })
         }
     };
+
+    showUserMenu(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.setState({showUserMenu: true}, () => {
+            document.addEventListener('click', this.closeUserMenu)
+        })
+    };
+
+    closeUserMenu(e) {
+        e.preventDefault();
+        if (!this.dropdownMenu.contains(e.target)) {
+            this.setState({showUserMenu: false}, () => {
+                document.removeEventListener('click', this.closeUserMenu)
+            })
+        }
+    };
+
 
     UserLinks() {
         if (!this.props.currentUser) {
@@ -50,19 +71,19 @@ class Navbar extends React.Component {
             )
         } else {
             const userDisplayName = this.props.currentUser.display_name.length > 10 ?
-            this.props.currentUser.display_name.slice(0,10)
-            : this.props.currentUser.display_name
+                this.props.currentUser.display_name.slice(0,10)
+                : this.props.currentUser.display_name
             return (
                 
             <div>
-                <a className="navbar-user" onClick={this.showMenu}>
+                <a className="navbar-user" onClick={this.showUserMenu}>
                     <div className="navbar-profile-pic">
                         {this.props.currentUser.profilePicture ? 
                         <img src={this.props.currentUser.profilePicture} /> : null}
                     </div>
                     <p className="navbar-display-name"> {userDisplayName}</p>
                     <FontAwesomeIcon icon="angle-down" />
-                    {this.state.showMenu ? 
+                    {this.state.showUserMenu ? 
                         (<div className="user-dropdown" 
                         ref={(element) => {this.dropdownMenu = element}}>
                             <div className="navbar-user-icon">
@@ -92,9 +113,22 @@ class Navbar extends React.Component {
         }
     }
 
-    
 
     render() {
+        const signoutOrLinks = this.props.currentUser ? 
+                <div className="option-dropdown" 
+                    ref={(element) => {this.dropdownMenu = element}}>
+                    <button onClick={() => this.props.logout()}>
+                        Sign Out</button> 
+                </div> 
+        :        <div className="option-dropdown" 
+                    ref={(element) => {this.dropdownMenu = element}}>
+                    <a href="google.com">Google</a>
+                    <a href="facebook.com">Facebook</a>
+                    <a href="soundcloud.com">SoundCloud</a>
+                </div>
+
+
         return (
              <div className="navbar">
                 <Link className="navbar-logo" to="/discover"></Link>
@@ -115,20 +149,11 @@ class Navbar extends React.Component {
                     </button>
                 </div>
                 {this.UserLinks()}
-                <button className="navbar-options" onClick={this.showMenu}>
+                <button className="navbar-options" onClick={this.showOptionMenu}>
                     <FontAwesomeIcon className="navbar-ellipsis" 
                     icon="ellipsis-h" />
                 </button>
-                { this.state.showMenu ? (
-                        <div className="option-dropdown"
-                            ref={(element) => {this.dropdownMenu = element}}>
-                            <button onClick={() => this.props.logout()}>
-                                Sign Out
-                            </button> 
-                            <a></a>
-                        </div>
-                    ) : (null)
-                }
+                { this.state.showOptionMenu ? (signoutOrLinks) : (null) }
             </div>
         )
         };
