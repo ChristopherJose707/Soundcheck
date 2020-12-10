@@ -2,12 +2,23 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Root from './components/root';
 import configureStore from './store/store';
-import * as SessionAPIUtil from "./actions/session_actions";
+import {logout} from './actions/session_actions';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import {faCaretLeft} from '@fortawesome/free-solid-svg-icons';
+import {faCaretLeft,
+        faEllipsisH,
+        faUser, 
+        faAngleDown, 
+        faSearch} from '@fortawesome/free-solid-svg-icons';
 
-library.add(fab, faCaretLeft)
+library.add(
+    fab,
+    faUser, 
+    faCaretLeft,
+    faAngleDown, 
+    faSearch, 
+    faEllipsisH 
+);
 
 document.addEventListener("DOMContentLoaded", () => {
     let store;
@@ -29,9 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //test start
     window.getState = store.getState;
     window.dispatch = store.dispatch;
-    window.login = SessionAPIUtil.login;
-    window.signup = SessionAPIUtil.signup;
-    window.logout = SessionAPIUtil.logout;
+    window.logout = logout;
     //test end
     
     const root = document.getElementById("root");

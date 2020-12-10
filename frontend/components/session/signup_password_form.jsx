@@ -12,7 +12,7 @@ class SignupPasswordForm extends React.Component {
         if(this.props.stepNumber === 2) {
             return (
                 <div className="signup-password-form">
-                    <h2>Create your Soundcheck Account</h2>
+                    <h2>Create your SoundCheck Account</h2>
                     {this.props.previousButton}
                     <label>
                         <input className="auth-input"
