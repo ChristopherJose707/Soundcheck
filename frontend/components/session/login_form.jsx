@@ -82,7 +82,7 @@ class LoginForm extends React.Component {
 
     render() {
         const previousButton = this.state.stepNumber === 2 ?
-        <button className="auth-prev-button" 
+        <button className="auth-prev-button-2" 
             onClick={this.previousStep}>
             <FontAwesomeIcon icon="caret-left" />
             {this.state.username}

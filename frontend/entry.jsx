@@ -4,7 +4,10 @@ import Root from './components/root';
 import configureStore from './store/store';
 import {logout} from './actions/session_actions';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
+import { fab, 
+        faGithub, 
+        faLinkedin, 
+        faSoundcloud } from '@fortawesome/free-brands-svg-icons';
 import {faCaretLeft,
         faEllipsisH,
         faUser, 
@@ -13,6 +16,9 @@ import {faCaretLeft,
 
 library.add(
     fab,
+    faSoundcloud,
+    faLinkedin,
+    faGithub,
     faUser, 
     faCaretLeft,
     faAngleDown, 

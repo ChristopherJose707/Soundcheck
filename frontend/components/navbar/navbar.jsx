@@ -16,9 +16,7 @@ class Navbar extends React.Component {
         this.UserLinks = this.UserLinks.bind(this);
     };
 
-    componentDidMount() {
-    }
-
+    
     showMenu(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -51,12 +49,13 @@ class Navbar extends React.Component {
                 </div>
             )
         } else {
-            console.log(this.props.currentUser)
             const userDisplayName = this.props.currentUser.display_name.length > 10 ?
             this.props.currentUser.display_name.slice(0,10)
             : this.props.currentUser.display_name
             return (
-                <a className="navbar-user" >
+                
+            <div>
+                <a className="navbar-user" onClick={this.showMenu}>
                     <div className="navbar-profile-pic">
                         {this.props.currentUser.profilePicture ? 
                         <img src={this.props.currentUser.profilePicture} /> : null}
@@ -64,17 +63,36 @@ class Navbar extends React.Component {
                     <p className="navbar-display-name"> {userDisplayName}</p>
                     <FontAwesomeIcon icon="angle-down" />
                     {this.state.showMenu ? 
-                        <div classname="user-dropdown">
-                            <Link to={`/users/${this.props.currentUser.id}`}>
-                                <FontAwesomeIcon icon="user" />
-                                Profile
-                            </Link>
-                        </div>
+                        (<div className="user-dropdown" 
+                        ref={(element) => {this.dropdownMenu = element}}>
+                            <div className="navbar-user-icon">
+                                <Link to={`/users/${this.props.currentUser.id}`}>
+                                    <FontAwesomeIcon icon="user" />
+                                    Profile
+                                </Link>
+                            </div>
+                            <div className="navbar-github-icon">
+                                <a href="https://github.com/ChristopherJose707">
+                                    <FontAwesomeIcon icon={['fab', 'github']} />
+                                    Github
+                                </a>
+                            </div>
+                            <div className="navbar-linkedin-icon">
+                                <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/">
+                                    <FontAwesomeIcon icon={['fab', 'linkedin']} />
+                                    LinkedIn
+                                </a>
+                            </div>
+                        </div>) : null
                     }
                 </a>
+
+            </div>
             )
         }
     }
+
+    
 
     render() {
         return (
@@ -84,7 +102,7 @@ class Navbar extends React.Component {
                 <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"
                     className="navbar-linkedin">LinkedIn
                 </a>
-                <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"
+                <a href="https://github.com/ChristopherJose707"
                     className="navbar-github">Github
                 </a>
                 <div className="navbar-search">
@@ -107,6 +125,7 @@ class Navbar extends React.Component {
                             <button onClick={() => this.props.logout()}>
                                 Sign Out
                             </button> 
+                            <a></a>
                         </div>
                     ) : (null)
                 }
