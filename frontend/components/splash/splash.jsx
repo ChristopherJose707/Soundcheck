@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import logo from '../../../app/assets/images/cloud.png';
 class Splash extends React.Component {
     constructor(props) {
         super(props);
@@ -23,6 +24,8 @@ class Splash extends React.Component {
                             </button>
                         </div>
                         <div className="splash-banner-left">
+                            
+                            <FontAwesomeIcon className="cloud" icon={['fab', 'soundcloud']} />
                         </div>
                     </nav>
                     <div className="splash-banner-center">

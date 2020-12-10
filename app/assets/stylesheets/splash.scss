@@ -15,8 +15,15 @@
     
 }
 
-.splash-banner-left {
-  background-image: url(cloud.png);
+.cloud {
+ 
+}
+
+.splash-banner-left svg {
+  position: absolute;
+  z-index: 1;
+  font-size: 50px;
+  margin-bottom: 20px;
 }
 
 .splash-upper-orange {
