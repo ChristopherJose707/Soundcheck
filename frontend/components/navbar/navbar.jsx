@@ -75,7 +75,7 @@ class Navbar extends React.Component {
             return (
                 
             <div>
-                <a className="navbar-user" onClick={this.showUserMenu}>
+                <div className="navbar-user" onClick={this.showUserMenu}>
                     <div className="navbar-profile-pic">
                         {this.props.currentUser.profilePicture ? 
                         <img src={this.props.currentUser.profilePicture} /> : null}
@@ -105,7 +105,7 @@ class Navbar extends React.Component {
                             </div>
                         </div>) : null
                     }
-                </a>
+                </div>
 
             </div>
             )
@@ -114,10 +114,8 @@ class Navbar extends React.Component {
 
 
     render() {
-        console.log("in navbar render")
-        console.log(this.props.currentUser)
-       
-
+        
+        
         const signoutOrLinks = this.props.currentUser ? 
                 <div className="option-dropdown" 
                     ref={(element) => {this.dropdownMenu = element}}>

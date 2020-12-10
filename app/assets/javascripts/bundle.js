@@ -13520,8 +13520,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  console.log("in discover container");
-  console.log(state);
   return {
     users: state.entities.users,
     currentUser: state.entities.users[state.session.id] // songs:    uncomment once songs is added
@@ -13812,7 +13810,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         }, "Create Account"));
       } else {
         var userDisplayName = this.props.currentUser.display_name.length > 10 ? this.props.currentUser.display_name.slice(0, 10) : this.props.currentUser.display_name;
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "navbar-user",
           onClick: this.showUserMenu
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -13854,8 +13852,6 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this7 = this;
 
-      console.log("in navbar render");
-      console.log(this.props.currentUser);
       var signoutOrLinks = this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "option-dropdown",
         ref: function ref(element) {
@@ -13947,12 +13943,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  console.log("in navbar container");
-  console.log(state);
+var mapStateToProps = function mapStateToProps(state) {
   return {
-    currentUser: state.entities.users[state.session.id] // currentUser:  ownProps.currentUser
-
+    currentUser: state.entities.users[state.session.currentUser]
   };
 };
 
@@ -15050,7 +15043,7 @@ document.addEventListener("DOMContentLoaded", function () {
         users: _defineProperty({}, window.currentUser.id, window.currentUser)
       },
       session: {
-        id: window.currentUser.id
+        currentUser: window.currentUser.id
       }
     };
     store = (0,_store_store__WEBPACK_IMPORTED_MODULE_3__.default)(preloadedState);
