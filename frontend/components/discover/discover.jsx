@@ -13,7 +13,7 @@ class Discover extends React.Component {
         
         return (
             <div>
-                <NavbarContainer />
+                <NavbarContainer  />
                 {/* {logoutButton} */}
             </div>
             

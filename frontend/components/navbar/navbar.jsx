@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 class Navbar extends React.Component {
     constructor(props) {
         super(props)
-
+        
         this.state = {
             showOptionMenu: false,
             showUserMenu: false
@@ -18,7 +18,6 @@ class Navbar extends React.Component {
         this.closeUserMenu = this.closeUserMenu.bind(this);
         this.UserLinks = this.UserLinks.bind(this);
     };
-
     
     showOptionMenu(e) {
         e.preventDefault();
@@ -115,6 +114,10 @@ class Navbar extends React.Component {
 
 
     render() {
+        console.log("in navbar render")
+        console.log(this.props.currentUser)
+       
+
         const signoutOrLinks = this.props.currentUser ? 
                 <div className="option-dropdown" 
                     ref={(element) => {this.dropdownMenu = element}}>
@@ -123,9 +126,21 @@ class Navbar extends React.Component {
                 </div> 
         :        <div className="option-dropdown" 
                     ref={(element) => {this.dropdownMenu = element}}>
-                    <a href="google.com">Google</a>
-                    <a href="facebook.com">Facebook</a>
-                    <a href="soundcloud.com">SoundCloud</a>
+                    <a href="google.com">
+                        <FontAwesomeIcon className="option-dropdown-links" 
+                            icon={['fab', 'google']} />
+                        Google
+                    </a>
+                    <a href="facebook.com">
+                        <FontAwesomeIcon className="option-dropdown-links" 
+                            icon={['fab', 'facebook']} />
+                        Facebook
+                    </a>
+                    <a href="soundcloud.com">
+                        <FontAwesomeIcon className="option-dropdown-links" 
+                        icon={['fab', 'soundcloud']} />
+                        SoundCloud
+                    </a>
                 </div>
 
 

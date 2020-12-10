@@ -3,6 +3,7 @@ import UsernameForm from './username_form';
 import PasswordForm from './password_form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -22,6 +23,7 @@ class LoginForm extends React.Component {
     componentDidMount() {
         this.props.receiveErrors([]);
     }
+
 
     handleInput(field) {
         return e => this.setState({[field]: e.target.value})
@@ -43,7 +45,7 @@ class LoginForm extends React.Component {
         e.preventDefault();
         let user = {username: "demoUser", password: "password"}
         this.props.login(user).then( () => {
-            this.props.closeModal()
+            this.props.closeModal();
             this.props.history.push("/discover");
         });
     };
