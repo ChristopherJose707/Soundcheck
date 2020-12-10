@@ -16,9 +16,7 @@ class Navbar extends React.Component {
         this.UserLinks = this.UserLinks.bind(this);
     };
 
-    componentDidMount() {
-    }
-
+    
     showMenu(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -56,7 +54,9 @@ class Navbar extends React.Component {
             this.props.currentUser.display_name.slice(0,10)
             : this.props.currentUser.display_name
             return (
-                <a className="navbar-user" >
+                
+            <div>
+                <a className="navbar-user" onClick={this.showMenu}>
                     <div className="navbar-profile-pic">
                         {this.props.currentUser.profilePicture ? 
                         <img src={this.props.currentUser.profilePicture} /> : null}
@@ -64,14 +64,25 @@ class Navbar extends React.Component {
                     <p className="navbar-display-name"> {userDisplayName}</p>
                     <FontAwesomeIcon icon="angle-down" />
                     {this.state.showMenu ? 
-                        <div classname="user-dropdown">
+                        (<div className="user-dropdown" 
+                        ref={(element) => {this.dropdownMenu = element}}>
                             <Link to={`/users/${this.props.currentUser.id}`}>
                                 <FontAwesomeIcon icon="user" />
                                 Profile
                             </Link>
-                        </div>
+                            <a href="https://github.com/ChristopherJose707">
+                                <FontAwesomeIcon icon={['fab', 'github']} />
+                                Github
+                            </a>
+                            <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/">
+                                <FontAwesomeIcon icon={['fab', 'linkedin']} />
+                                LinkedIn
+                            </a>
+                        </div>) : null
                     }
                 </a>
+
+            </div>
             )
         }
     }
@@ -84,7 +95,7 @@ class Navbar extends React.Component {
                 <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"
                     className="navbar-linkedin">LinkedIn
                 </a>
-                <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"
+                <a href="https://github.com/ChristopherJose707"
                     className="navbar-github">Github
                 </a>
                 <div className="navbar-search">
