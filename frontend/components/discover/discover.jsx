@@ -8,13 +8,13 @@ class Discover extends React.Component {
     }
 
     render() {
-        const logoutButton = this.props.currentUser ? 
-            <button onClick={this.props.logout}>Logout</button> : ""
+        // const logoutButton = this.props.currentUser ? 
+        //     <button onClick={this.props.logout}>Logout</button> : ""
         
         return (
             <div>
                 <NavbarContainer />
-                {logoutButton}
+                {/* {logoutButton} */}
             </div>
             
         )

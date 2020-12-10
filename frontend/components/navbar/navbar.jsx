@@ -92,6 +92,8 @@ class Navbar extends React.Component {
         }
     }
 
+    
+
     render() {
         return (
              <div className="navbar">
@@ -123,6 +125,7 @@ class Navbar extends React.Component {
                             <button onClick={() => this.props.logout()}>
                                 Sign Out
                             </button> 
+                            <a></a>
                         </div>
                     ) : (null)
                 }

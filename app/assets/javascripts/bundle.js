@@ -13487,10 +13487,9 @@ var Discover = /*#__PURE__*/function (_React$Component) {
   _createClass(Discover, [{
     key: "render",
     value: function render() {
-      var logoutButton = this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        onClick: this.props.logout
-      }, "Logout") : "";
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), logoutButton);
+      // const logoutButton = this.props.currentUser ? 
+      //     <button onClick={this.props.logout}>Logout</button> : ""
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null));
     }
   }]);
 
@@ -13861,7 +13860,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           return _this5.props.logout();
         }
-      }, "Sign Out")) : null);
+      }, "Sign Out"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", null)) : null);
     }
   }]);
 
