@@ -49,7 +49,6 @@ class Navbar extends React.Component {
                 </div>
             )
         } else {
-            console.log(this.props.currentUser)
             const userDisplayName = this.props.currentUser.display_name.length > 10 ?
             this.props.currentUser.display_name.slice(0,10)
             : this.props.currentUser.display_name
@@ -66,18 +65,24 @@ class Navbar extends React.Component {
                     {this.state.showMenu ? 
                         (<div className="user-dropdown" 
                         ref={(element) => {this.dropdownMenu = element}}>
-                            <Link to={`/users/${this.props.currentUser.id}`}>
-                                <FontAwesomeIcon icon="user" />
-                                Profile
-                            </Link>
-                            <a href="https://github.com/ChristopherJose707">
-                                <FontAwesomeIcon icon={['fab', 'github']} />
-                                Github
-                            </a>
-                            <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/">
-                                <FontAwesomeIcon icon={['fab', 'linkedin']} />
-                                LinkedIn
-                            </a>
+                            <div className="navbar-user-icon">
+                                <Link to={`/users/${this.props.currentUser.id}`}>
+                                    <FontAwesomeIcon icon="user" />
+                                    Profile
+                                </Link>
+                            </div>
+                            <div className="navbar-github-icon">
+                                <a href="https://github.com/ChristopherJose707">
+                                    <FontAwesomeIcon icon={['fab', 'github']} />
+                                    Github
+                                </a>
+                            </div>
+                            <div className="navbar-linkedin-icon">
+                                <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/">
+                                    <FontAwesomeIcon icon={['fab', 'linkedin']} />
+                                    LinkedIn
+                                </a>
+                            </div>
                         </div>) : null
                     }
                 </a>

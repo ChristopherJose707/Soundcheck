@@ -13779,7 +13779,6 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
           }
         }, "Create Account"));
       } else {
-        console.log(this.props.currentUser);
         var userDisplayName = this.props.currentUser.display_name.length > 10 ? this.props.currentUser.display_name.slice(0, 10) : this.props.currentUser.display_name;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
           className: "navbar-user",
@@ -13797,19 +13796,25 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
           ref: function ref(element) {
             _this4.dropdownMenu = element;
           }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "navbar-user-icon"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
           to: "/users/".concat(this.props.currentUser.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
           icon: "user"
-        }), "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        }), "Profile")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "navbar-github-icon"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
           href: "https://github.com/ChristopherJose707"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
           icon: ['fab', 'github']
-        }), "Github"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        }), "Github")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "navbar-linkedin-icon"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
           href: "https://www.linkedin.com/in/christopher-jose-6361aa120/"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
           icon: ['fab', 'linkedin']
-        }), "LinkedIn")) : null));
+        }), "LinkedIn"))) : null));
       }
     }
   }, {
@@ -14884,16 +14889,19 @@ var Splash = /*#__PURE__*/function (_React$Component) {
         className: "splash-banner-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
         className: "splash-banner-header"
-      }, "Discover more with SoundCheck Go+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+      }, "Discover more with SoundCheck Go+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        className: "splash-banner-header-p"
+      }, "SoundCloud Go+ lets you listen offline, ad-free, with over 150 million tracks \u2014 and growing."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "creator-free"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        className: "creator",
         href: "https://github.com/ChristopherJose707"
       }, "Meet the creator!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "Try it for free",
+        className: "try-free",
         onClick: function onClick() {
           return _this.props.openModal("signup");
         }
-      }, "Try it for free"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-        className: "splash-banner-header-p"
-      }, "SoundCloud Go+ lets you listen offline, ad-free, with over 150 million tracks \u2014 and growing.")))));
+      }, "Try it for free"))))));
     }
   }]);
 
