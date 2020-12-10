@@ -29,7 +29,7 @@ class SignupForm extends React.Component {
     }
 
     handleInput(field) {
-        return e => this.setState({[field]: e.target.value})
+        return e => this.setState({[field]: e.currentTarget.value})
     }
 
     handleSubmit(e) {
@@ -44,7 +44,7 @@ class SignupForm extends React.Component {
 
     demoLogin(e) {
         e.preventDefault();
-        let user = {username: "demo", password: "password"}
+        let user = {username: "aston4", password: "aston4"}
         this.props.login(user).then( () => {
             this.props.closeModal()
             this.props.history.push("/discover");

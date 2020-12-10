@@ -13,15 +13,15 @@ class Navbar extends React.Component {
 
         this.showMenu = this.showMenu.bind(this);
         this.closeMenu = this.closeMenu.bind(this);
+        this.UserLinks = this.UserLinks.bind(this);
     };
 
     componentDidMount() {
     }
-        
+
     showMenu(e) {
         e.preventDefault();
         e.stopPropagation();
-        console.log("in show menu")
         this.setState({showMenu: true}, () => {
             document.addEventListener('click', this.closeMenu)
         })
@@ -29,45 +29,18 @@ class Navbar extends React.Component {
 
     closeMenu(e) {
         e.preventDefault();
-        if (this.state.showMenu) {
-            console.log("close menu")
-            this.setState({showMenu: false})
-            document.removeEventListener('click', this.closeMenu)
+        if (!this.dropdownMenu.contains(e.target)) {
+            this.setState({showMenu: false}, () => {
+                document.removeEventListener('click', this.closeMenu)
+            })
         }
     };
 
-   
-
-    render() {
-        
-        if (this.props.currentUser) {
+    UserLinks() {
+        if (!this.props.currentUser) {
             return (
-                <h1> navbar for currentUser </h1>
-                )
-                
-            } else {  // no currentuser, render login, signup links
-                console.log(this.state)
-                // debugger;
-            return (
-                <div className="navbar">
-                    <Link className="navbar-logo" to="/discover"></Link>
-                    <Link className="navbar-home" to="/discover"></Link>
-                    <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"
-                        className="navbar-linkedin">LinkedIn
-                    </a>
-                    <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"
-                        className="navbar-github">Github
-                    </a>
-                    <div className="navbar-search">
-                        <input className="navbar-search-input" 
-                            type="text" 
-                            placeholder="Search">
-                        </input>
-                        <button className="navbar-search-button">
-                            <FontAwesomeIcon icon="search" />
-                        </button>
-                    </div>
-                    <a className="navbar-signin" 
+                <div>
+                     <a className="navbar-signin" 
                         onClick={() => this.props.openModal("login")}>
                         Sign In
                     </a>
@@ -75,25 +48,71 @@ class Navbar extends React.Component {
                         onClick={() => this.props.openModal("signup")}>
                         Create Account
                     </a>
-                    <button className="navbar-options" onClick={this.showMenu}>
-                        <FontAwesomeIcon className="navbar-ellipsis" 
-                        icon="ellipsis-h" />
-                    </button>
-                    {
-                        this.state.showMenu 
-                        ? (
-                            <div className="option-dropdown">
-                                <button onClick={() => this.props.logout()}>
-                                    Sign Out
-                                </button> 
-                            </div>
-                        ) 
-                    : (null)
-                    }
                 </div>
             )
+        } else {
+            console.log(this.props.currentUser)
+            const userDisplayName = this.props.currentUser.display_name.length > 10 ?
+            this.props.currentUser.display_name.slice(0,10)
+            : this.props.currentUser.display_name
+            return (
+                <a className="navbar-user" >
+                    <div className="navbar-profile-pic">
+                        {this.props.currentUser.profilePicture ? 
+                        <img src={this.props.currentUser.profilePicture} /> : null}
+                    </div>
+                    <p className="navbar-display-name"> {userDisplayName}</p>
+                    <FontAwesomeIcon icon="angle-down" />
+                    {this.state.showMenu ? 
+                        <div classname="user-dropdown">
+                            <Link to={`/users/${this.props.currentUser.id}`}>
+                                <FontAwesomeIcon icon="user" />
+                                Profile
+                            </Link>
+                        </div>
+                    }
+                </a>
+            )
+        }
+    }
+
+    render() {
+        return (
+             <div className="navbar">
+                <Link className="navbar-logo" to="/discover"></Link>
+                <Link className="navbar-home" to="/discover"></Link>
+                <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"
+                    className="navbar-linkedin">LinkedIn
+                </a>
+                <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"
+                    className="navbar-github">Github
+                </a>
+                <div className="navbar-search">
+                    <input className="navbar-search-input" 
+                        type="text" 
+                        placeholder="Search">
+                    </input>
+                    <button className="navbar-search-button">
+                        <FontAwesomeIcon icon="search" />
+                    </button>
+                </div>
+                {this.UserLinks()}
+                <button className="navbar-options" onClick={this.showMenu}>
+                    <FontAwesomeIcon className="navbar-ellipsis" 
+                    icon="ellipsis-h" />
+                </button>
+                { this.state.showMenu ? (
+                        <div className="option-dropdown"
+                            ref={(element) => {this.dropdownMenu = element}}>
+                            <button onClick={() => this.props.logout()}>
+                                Sign Out
+                            </button> 
+                        </div>
+                    ) : (null)
+                }
+            </div>
+        )
         };
     }
-}
 
 export default Navbar;

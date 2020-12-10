@@ -13677,159 +13677,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 /*!***********************************************!*
   !*** ./frontend/components/navbar/navbar.jsx ***!
   \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-
-var Navbar = /*#__PURE__*/function (_React$Component) {
-  _inherits(Navbar, _React$Component);
-
-  var _super = _createSuper(Navbar);
-
-  function Navbar(props) {
-    var _this;
-
-    _classCallCheck(this, Navbar);
-
-    _this = _super.call(this, props);
-    _this.state = {
-      showMenu: false
-    };
-    _this.showMenu = _this.showMenu.bind(_assertThisInitialized(_this));
-    _this.closeMenu = _this.closeMenu.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(Navbar, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {}
-  }, {
-    key: "showMenu",
-    value: function showMenu(e) {
-      var _this2 = this;
-
-      e.preventDefault();
-      e.stopPropagation();
-      console.log("in show menu");
-      this.setState({
-        showMenu: true
-      }, function () {
-        document.addEventListener('click', _this2.closeMenu);
-      });
-    }
-  }, {
-    key: "closeMenu",
-    value: function closeMenu(e) {
-      e.preventDefault();
-
-      if (this.state.showMenu) {
-        console.log("close menu");
-        this.setState({
-          showMenu: false
-        });
-        document.removeEventListener('click', this.closeMenu);
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this3 = this;
-
-      if (this.props.currentUser) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, " navbar for currentUser ");
-      } else {
-        // no currentuser, render login, signup links
-        console.log(this.state); // debugger;
-
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "navbar"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-          className: "navbar-logo",
-          to: "/discover"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-          className: "navbar-home",
-          to: "/discover"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-          href: "https://www.linkedin.com/in/christopher-jose-6361aa120/",
-          className: "navbar-linkedin"
-        }, "LinkedIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-          href: "https://www.linkedin.com/in/christopher-jose-6361aa120/",
-          className: "navbar-github"
-        }, "Github"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "navbar-search"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-          className: "navbar-search-input",
-          type: "text",
-          placeholder: "Search"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          className: "navbar-search-button"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-          icon: "search"
-        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-          className: "navbar-signin",
-          onClick: function onClick() {
-            return _this3.props.openModal("login");
-          }
-        }, "Sign In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-          className: "navbar-signup",
-          onClick: function onClick() {
-            return _this3.props.openModal("signup");
-          }
-        }, "Create Account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          className: "navbar-options",
-          onClick: this.showMenu
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-          className: "navbar-ellipsis",
-          icon: "ellipsis-h"
-        })), this.state.showMenu ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "option-dropdown"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          onClick: function onClick() {
-            return _this3.props.logout();
-          }
-        }, "Sign Out")) : null);
-      }
-
-      ;
-    }
-  }]);
-
-  return Navbar;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Navbar);
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/cj/Documents/Soundcheck/frontend/components/navbar/navbar.jsx: Unexpected token (66:43)\n\n\u001b[0m \u001b[90m 64 | \u001b[39m                    \u001b[33m<\u001b[39m\u001b[33mp\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m\"navbar-display-name\"\u001b[39m\u001b[33m>\u001b[39m {userDisplayName}\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mp\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 65 | \u001b[39m                    \u001b[33m<\u001b[39m\u001b[33mFontAwesomeIcon\u001b[39m icon\u001b[33m=\u001b[39m\u001b[32m\"angle-down\"\u001b[39m \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 66 | \u001b[39m                    {\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mstate\u001b[33m.\u001b[39mshowMenu \u001b[33m?\u001b[39m }\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 67 | \u001b[39m                \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33ma\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 68 | \u001b[39m            )\u001b[0m\n\u001b[0m \u001b[90m 69 | \u001b[39m        }\u001b[0m\n    at Object._raise (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:748:17)\n    at Object.raiseWithData (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:741:17)\n    at Object.raise (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.unexpected (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:9097:16)\n    at Object.parseExprAtom (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10548:20)\n    at Object.parseExprAtom (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:4759:20)\n    at Object.parseExprSubscripts (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10122:23)\n    at Object.parseUpdate (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10102:21)\n    at Object.parseMaybeUnary (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10091:17)\n    at Object.parseExprOps (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:9961:23)");
 
 /***/ }),
 
@@ -14092,8 +13942,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
 
       e.preventDefault();
       var user = {
-        username: "demo",
-        password: "password"
+        username: "aston4",
+        password: "aston4"
       };
       this.props.login(user).then(function () {
         _this4.props.closeModal();
@@ -14404,7 +14254,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
-        return _this2.setState(_defineProperty({}, field, e.target.value));
+        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
   }, {
@@ -14427,8 +14277,8 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
 
       e.preventDefault();
       var user = {
-        username: "demo",
-        password: "password"
+        username: "aston4",
+        password: "aston4"
       };
       this.props.login(user).then(function () {
         _this4.props.closeModal();
@@ -14924,9 +14774,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
-/* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
-/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -14936,7 +14787,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_4__.library.add(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__.fab, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faCaretLeft, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faAngleDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faSearch, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faEllipsisH);
+
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_5__.library.add(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__.fab, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faUser, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faCaretLeft, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faAngleDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faSearch, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faEllipsisH);
 document.addEventListener("DOMContentLoaded", function () {
   var store;
 
@@ -14957,7 +14809,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   window.getState = store.getState;
-  window.dispatch = store.dispatch; //test end
+  window.dispatch = store.dispatch;
+  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__.logout; //test end
 
   var root = document.getElementById("root");
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_root__WEBPACK_IMPORTED_MODULE_2__.default, {
