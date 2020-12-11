@@ -15,6 +15,8 @@ class Discover extends React.Component {
             <div className="discover">
                 <NavbarContainer  />
                 {/* {logoutButton} */}
+                <h1>TOP OF discover page</h1>
+
             </div>
             
         )

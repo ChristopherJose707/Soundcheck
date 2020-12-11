@@ -13,4 +13,5 @@
 #  updated_at  :datetime         not null
 #
 class Song < ApplicationRecord
+    
 end

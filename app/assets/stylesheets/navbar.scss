@@ -44,9 +44,20 @@
     
 }
 
+.option-dropdown {
+    position: relative;
+    display: flex;
+    
+}
+
+.navbar-user {
+    cursor: pointer;
+}
+
+
 .navbar-ellipsis {
     font-size: 22px;
-    
+    cursor: pointer;
 }
 
 .navbar-signin {
