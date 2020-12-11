@@ -7,7 +7,6 @@
 #  description :text
 #  user_id     :integer          not null
 #  genre       :string           not null
-#  duration    :float            not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
