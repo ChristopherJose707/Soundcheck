@@ -12,7 +12,7 @@ class Discover extends React.Component {
         //     <button onClick={this.props.logout}>Logout</button> : ""
         
         return (
-            <div>
+            <div className="discover">
                 <NavbarContainer  />
                 {/* {logoutButton} */}
             </div>

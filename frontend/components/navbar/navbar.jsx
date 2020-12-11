@@ -146,6 +146,7 @@ class Navbar extends React.Component {
                 <div className="navbar-left">
                     <Link className="navbar-logo" to="/discover">
                         <img className="cloud" src={window.logo}/>
+                        
                     </Link>
                     <Link className="navbar-home" to="/discover"></Link>
                     <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"

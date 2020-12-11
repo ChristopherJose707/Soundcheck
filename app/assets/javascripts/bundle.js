@@ -13489,7 +13489,9 @@ var Discover = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       // const logoutButton = this.props.currentUser ? 
       //     <button onClick={this.props.logout}>Logout</button> : ""
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "discover"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null));
     }
   }]);
 
