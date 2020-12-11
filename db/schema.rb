@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_11_170433) do
+ActiveRecord::Schema.define(version: 2020_12_11_175958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 2020_12_11_170433) do
     t.integer "user_id", null: false
     t.string "genre", null: false
     t.float "duration", null: false
-    t.string "song_photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["genre"], name: "index_songs_on_genre"

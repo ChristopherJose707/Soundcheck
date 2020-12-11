@@ -4,12 +4,12 @@
 #
 #  id              :bigint           not null, primary key
 #  username        :string           not null
-#  display_name    :string           not null
 #  description     :text
 #  password_digest :string
 #  session_token   :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  display_name    :string
 #
 class User < ApplicationRecord
     attr_reader :password
@@ -20,6 +20,9 @@ class User < ApplicationRecord
     validates :password, length: { minimum: 6 }, allow_nil: true
 
     after_initialize :ensure_session_token
+
+    has_one_attached :profile_picture
+    has_one_attached :profile_banner 
 
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)

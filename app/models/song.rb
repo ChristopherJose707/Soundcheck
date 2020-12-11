@@ -8,10 +8,9 @@
 #  user_id     :integer          not null
 #  genre       :string           not null
 #  duration    :float            not null
-#  song_photo  :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 class Song < ApplicationRecord
-    
+    has_one_attached :photo
 end
