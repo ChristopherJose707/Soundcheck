@@ -1,3 +1,10 @@
+export const userSongs = (userId) => {
+    return $.ajax({
+        url: `/api/users/${userId}/songs`,
+        method: 'GET'
+    })
+}
+
 export const fetchSongs = () => {
     return $.ajax ({
         url: '/api/songs',
