@@ -24,7 +24,7 @@ class Splash extends React.Component {
                             </button>
                         </div>
                         <div className="splash-banner-left">
-                            {/* <img className="cloud" src={window.logo}/> */}
+                            <img className="cloud" src={window.logo}/>
                             {/* <FontAwesomeIcon className="cloud" icon={['fab', 'soundcloud']} /> */}
                         </div>
                     </nav>

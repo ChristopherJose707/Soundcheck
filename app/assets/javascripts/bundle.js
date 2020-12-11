@@ -13783,7 +13783,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
 
       e.preventDefault();
 
-      if (!this.dropdownMenu.contains(e.target)) {
+      if (!this.dropdownUserMenu.contains(e.target)) {
         this.setState({
           showUserMenu: false
         }, function () {
@@ -13797,7 +13797,9 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       var _this6 = this;
 
       if (!this.props.currentUser) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "navbar-right"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
           className: "navbar-signin",
           onClick: function onClick() {
             return _this6.props.openModal("login");
@@ -13824,7 +13826,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         }), this.state.showUserMenu ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "user-dropdown",
           ref: function ref(element) {
-            _this6.dropdownMenu = element;
+            _this6.dropdownUserMenu = element;
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "navbar-user-icon"
@@ -13884,10 +13886,15 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }), "SoundCloud"));
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "navbar"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "navbar-left"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         className: "navbar-logo",
         to: "/discover"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "cloud",
+        src: window.logo
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         className: "navbar-home",
         to: "/discover"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
@@ -13896,7 +13903,10 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }, "LinkedIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
         href: "https://github.com/ChristopherJose707",
         className: "navbar-github"
-      }, "Github"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, "Github"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        href: "https://developer.mozilla.org/en-US/",
+        className: "navbar-mdn"
+      }, "MDN Docs")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "navbar-search"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "navbar-search-input",
@@ -14938,7 +14948,10 @@ var Splash = /*#__PURE__*/function (_React$Component) {
         }
       }, "Create account")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "splash-banner-left"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "cloud",
+        src: window.logo
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "splash-banner-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
         className: "splash-banner-header"

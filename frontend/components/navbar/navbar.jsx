@@ -46,7 +46,7 @@ class Navbar extends React.Component {
 
     closeUserMenu(e) {
         e.preventDefault();
-        if (!this.dropdownMenu.contains(e.target)) {
+        if (!this.dropdownUserMenu.contains(e.target)) {
             this.setState({showUserMenu: false}, () => {
                 document.removeEventListener('click', this.closeUserMenu)
             })
@@ -57,7 +57,7 @@ class Navbar extends React.Component {
     UserLinks() {
         if (!this.props.currentUser) {
             return (
-                <div>
+                <div className="navbar-right">
                      <a className="navbar-signin" 
                         onClick={() => this.props.openModal("login")}>
                         Sign In
@@ -84,7 +84,7 @@ class Navbar extends React.Component {
                     <FontAwesomeIcon icon="angle-down" />
                     {this.state.showUserMenu ? 
                         (<div className="user-dropdown" 
-                        ref={(element) => {this.dropdownMenu = element}}>
+                        ref={(element) => {this.dropdownUserMenu = element}}>
                             <div className="navbar-user-icon">
                                 <Link to={`/users/${this.props.currentUser.id}`}>
                                     <FontAwesomeIcon icon="user" />
@@ -106,7 +106,6 @@ class Navbar extends React.Component {
                         </div>) : null
                     }
                 </div>
-
             </div>
             )
         }
@@ -144,14 +143,21 @@ class Navbar extends React.Component {
 
         return (
              <div className="navbar">
-                <Link className="navbar-logo" to="/discover"></Link>
-                <Link className="navbar-home" to="/discover"></Link>
-                <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"
-                    className="navbar-linkedin">LinkedIn
-                </a>
-                <a href="https://github.com/ChristopherJose707"
-                    className="navbar-github">Github
-                </a>
+                <div className="navbar-left">
+                    <Link className="navbar-logo" to="/discover">
+                        <img className="cloud" src={window.logo}/>
+                    </Link>
+                    <Link className="navbar-home" to="/discover"></Link>
+                    <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"
+                        className="navbar-linkedin">LinkedIn
+                    </a>
+                    <a href="https://github.com/ChristopherJose707"
+                        className="navbar-github">Github
+                    </a>
+                    <a href="https://developer.mozilla.org/en-US/"
+                        className="navbar-mdn">MDN Docs
+                    </a>
+                </div>
                 <div className="navbar-search">
                     <input className="navbar-search-input" 
                         type="text" 
