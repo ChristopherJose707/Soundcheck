@@ -31,7 +31,12 @@
     display: flex;
 }
 
-
+.navbar-profile-pic img {
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    position: absolute;
+}
 
 .navbar img {
     

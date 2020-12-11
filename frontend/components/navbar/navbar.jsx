@@ -78,7 +78,7 @@ class Navbar extends React.Component {
                 <div className="navbar-user" onClick={this.showUserMenu}>
                     <div className="navbar-profile-pic">
                         {this.props.currentUser.profilePicture ? 
-                        <img src={this.props.currentUser.profilePicture} /> : null}
+                        <img className="profile-pic" src={this.props.currentUser.profilePicture} /> : null}
                     </div>
                     <p className="navbar-display-name"> {userDisplayName}</p>
                     <FontAwesomeIcon icon="angle-down" />

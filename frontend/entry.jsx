@@ -16,6 +16,8 @@ import {faCaretLeft,
         faAngleDown, 
         faSearch} from '@fortawesome/free-solid-svg-icons';
 
+import {fetchSongs} from './actions/song_actions';
+
 library.add(
     fab,
     faFacebook,
@@ -36,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.currentUser) {
         const preloadedState = {
             entities: {
-                users: {[window.currentUser.id]: window.currentUser}
+                users: {[window.currentUser.id]: window.currentUser},
             },
             session: {currentUser: window.currentUser.id}
         };
@@ -48,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     //test start
+    window.fetchSongs = fetchSongs;
     window.getState = store.getState;
     window.dispatch = store.dispatch;
     window.logout = logout;
