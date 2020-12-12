@@ -8,7 +8,21 @@ class UploadDetails extends React.Component {
     }
 
     render() {
-        return (null)
+        const { stepNumber, title, handleInput, cancel, handleSubmit,
+                 handleFileClick, handlePhotoFile, photoUrl } = this.props;
+        
+        const photoPreview = this.props.photoUrl ? 
+            <img className="upload-photo-preview" src={photoUrl} /> : null;
+
+        
+        if(stepNumber === 2) {
+            return (
+                
+            )
+
+        } else {
+            return null;
+        }
     }
 };
 

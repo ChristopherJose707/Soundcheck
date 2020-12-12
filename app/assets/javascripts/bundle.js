@@ -15347,63 +15347,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 /*!*******************************************************!*
   !*** ./frontend/components/upload/upload_details.jsx ***!
   \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-var UploadDetails = /*#__PURE__*/function (_React$Component) {
-  _inherits(UploadDetails, _React$Component);
-
-  var _super = _createSuper(UploadDetails);
-
-  function UploadDetails(props) {
-    _classCallCheck(this, UploadDetails);
-
-    return _super.call(this, props);
-  }
-
-  _createClass(UploadDetails, [{
-    key: "render",
-    value: function render() {
-      return null;
-    }
-  }]);
-
-  return UploadDetails;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UploadDetails);
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/cj/Documents/Soundcheck/frontend/components/upload/upload_details.jsx: Unexpected token (21:12)\n\n\u001b[0m \u001b[90m 19 | \u001b[39m            \u001b[36mreturn\u001b[39m (\u001b[0m\n\u001b[0m \u001b[90m 20 | \u001b[39m                \u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 21 | \u001b[39m            )\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 22 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 23 | \u001b[39m        } \u001b[36melse\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 24 | \u001b[39m            \u001b[36mreturn\u001b[39m \u001b[36mnull\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n    at Object._raise (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:748:17)\n    at Object.raiseWithData (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:741:17)\n    at Object.raise (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.unexpected (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:9097:16)\n    at Object.parseParenAndDistinguishExpression (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10746:12)\n    at Object.parseExprAtom (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10443:21)\n    at Object.parseExprAtom (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:4759:20)\n    at Object.parseExprSubscripts (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10122:23)\n    at Object.parseUpdate (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10102:21)\n    at Object.parseMaybeUnary (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10091:17)");
 
 /***/ }),
 
