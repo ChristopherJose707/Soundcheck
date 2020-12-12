@@ -15325,7 +15325,30 @@ var UploadFile = /*#__PURE__*/function (_React$Component) {
           handleFileClick = _this$props.handleFileClick;
 
       if (stepNumber === 1) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "upload-file-form"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "upload-file-main"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "upload-file-content"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+          type: "file",
+          className: "file-drop",
+          onChange: handleSongFile,
+          accept: "audio/mpeg",
+          title: ""
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Drag and drop your tracks & albums here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          onClick: handleFileClick
+        }, "or choose files to upload", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+          type: "file",
+          className: "file-upload-button",
+          onClick: function onClick(e) {
+            return e.stopPropagation();
+          },
+          onChange: handleSongFile,
+          accept: "audio/mpeg",
+          title: ""
+        })))));
       } else {
         return null;
       }
