@@ -12,15 +12,17 @@ import { fab,
         faSoundcloud } from '@fortawesome/free-brands-svg-icons';
 import {faCaretLeft,
         faEllipsisH,
-        faUser, 
+        faUser,
+        faExternalLinkAlt, 
         faAngleDown, 
         faSearch} from '@fortawesome/free-solid-svg-icons';
 
-import {fetchSongs} from './actions/song_actions';
+import {fetchSongs, fetchSong, fetchUserSongs} from './actions/song_actions';
 
 library.add(
     fab,
     faFacebook,
+    faExternalLinkAlt,
     faGoogle,
     faSoundcloud,
     faLinkedin,
@@ -50,6 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     //test start
+    window.fetchUserSongs = fetchUserSongs;
+    window.fetchSong = fetchSong;
     window.fetchSongs = fetchSongs;
     window.getState = store.getState;
     window.dispatch = store.dispatch;
