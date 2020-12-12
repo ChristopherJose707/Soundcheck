@@ -72,9 +72,7 @@ class Upload extends React.Component {
         if (this.state.photoFile) {
             formData.append('song[photo]', this.state.photoFile)
         }
-        
-     
-        debugger
+    
         this.props.createSong(formData).then(song => {
             this.setState({
                 songId: song.song.id,
@@ -141,6 +139,7 @@ class Upload extends React.Component {
                         artist={this.props.currentUser.display_name}
                         title={this.state.title}
                         description={this.state.description}
+                        songUrl={this.state.songUrl}
                     />
                 </div>
             </div>

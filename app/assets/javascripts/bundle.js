@@ -13886,6 +13886,25 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
     value: function UserLinks() {
       var _this6 = this;
 
+      var dropdown = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "user-dropdown",
+        ref: function ref(element) {
+          _this6.dropdownUserMenu = element;
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        to: "/users/".concat(this.props.currentUser.id)
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+        icon: "user"
+      }), "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        href: "https://github.com/ChristopherJose707"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+        icon: ['fab', 'github']
+      }), "Github"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        href: "https://www.linkedin.com/in/christopher-jose-6361aa120/"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+        icon: ['fab', 'linkedin']
+      }), "LinkedIn"));
+
       if (!this.props.currentUser) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "navbar-right"
@@ -13902,42 +13921,51 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         }, "Create Account"));
       } else {
         var userDisplayName = this.props.currentUser.display_name.length > 10 ? this.props.currentUser.display_name.slice(0, 10) : this.props.currentUser.display_name;
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "navbar-user",
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           onClick: this.showUserMenu
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "navbar-profile-pic"
         }, this.props.currentUser.profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
           className: "profile-pic",
           src: this.props.currentUser.profilePicture
-        }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-          className: "navbar-display-name"
-        }, " ", userDisplayName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+        }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+          className: "navbar-display-name",
+          onClick: this.showUserMenu
+        }, " ", userDisplayName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
           icon: "angle-down"
-        }), this.state.showUserMenu ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "user-dropdown",
-          ref: function ref(element) {
-            _this6.dropdownUserMenu = element;
-          }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "navbar-user-icon"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-          to: "/users/".concat(this.props.currentUser.id)
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-          icon: "user"
-        }), "Profile")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "navbar-github-icon"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-          href: "https://github.com/ChristopherJose707"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-          icon: ['fab', 'github']
-        }), "Github")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "navbar-linkedin-icon"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-          href: "https://www.linkedin.com/in/christopher-jose-6361aa120/"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-          icon: ['fab', 'linkedin']
-        }), "LinkedIn"))) : null));
+        })), this.state.showUserMenu ? dropdown : null) // <div className="navbar-right">
+        // <div className="navbar-user" onClick={this.showUserMenu}>
+        // <div className="navbar-profile-pic">
+        // {this.props.currentUser.profilePicture ? 
+        // <img className="profile-pic" src={this.props.currentUser.profilePicture} /> : null}
+        // </div>
+        // <p className="navbar-display-name"> {userDisplayName}</p>
+        // <FontAwesomeIcon icon="angle-down" />
+        //     {this.state.showUserMenu ? 
+        //         (
+        //         <div className="user-dropdown" ref={(element) => {this.dropdownUserMenu = element}}>
+        //             <div className="navbar-user-icon">
+        //                 <Link to={`/users/${this.props.currentUser.id}`}>
+        //                     <FontAwesomeIcon icon="user" />
+        //                     Profile
+        //                 </Link>
+        //             </div>
+        //             <div className="navbar-github-icon">
+        //                 <a href="https://github.com/ChristopherJose707">
+        //                     <FontAwesomeIcon icon={['fab', 'github']} />
+        //                     Github
+        //                 </a>
+        //             </div>
+        //             <div className="navbar-linkedin-icon">
+        //                 <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/">
+        //                     <FontAwesomeIcon icon={['fab', 'linkedin']} />
+        //                     LinkedIn
+        //                 </a>
+        //             </div>
+        //         </div>
+        //         ) : null
+        //     }
+        // </div>
+        // // </div>
+        ;
       }
     }
   }, {
@@ -14007,13 +14035,18 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         className: "navbar-search-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         icon: "search"
-      }))), this.UserLinks(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "navbar-right-links"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        className: "navbar-upload-link",
+        to: "/upload"
+      }, "Upload"), this.UserLinks(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "navbar-options",
         onClick: this.showOptionMenu
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         className: "navbar-ellipsis",
         icon: "ellipsis-h"
-      })), this.state.showOptionMenu ? signoutOrLinks : null);
+      })), this.state.showOptionMenu ? signoutOrLinks : null));
     }
   }]);
 
@@ -15246,7 +15279,6 @@ var Upload = /*#__PURE__*/function (_React$Component) {
         formData.append('song[photo]', this.state.photoFile);
       }
 
-      debugger;
       this.props.createSong(formData).then(function (song) {
         _this3.setState({
           songId: song.song.id,
@@ -15304,7 +15336,8 @@ var Upload = /*#__PURE__*/function (_React$Component) {
         songId: this.state.songId,
         artist: this.props.currentUser.display_name,
         title: this.state.title,
-        description: this.state.description
+        description: this.state.description,
+        songUrl: this.state.songUrl
       })));
     }
   }]);
@@ -15706,14 +15739,19 @@ var UploadSuccess = /*#__PURE__*/function (_React$Component) {
           songId = _this$props.songId,
           artist = _this$props.artist,
           title = _this$props.title,
-          description = _this$props.description;
+          description = _this$props.description,
+          photoUrl = _this$props.photoUrl;
+      var photoPreview = this.props.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "upload-photo-preview",
+        src: photoUrl
+      }) : null;
 
       if (stepNumber === 3) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "upload-success"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "success-song-detais"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        }, photoPreview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
           className: "success-song-artist"
         }, artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
           className: "success-song-title"
@@ -15786,6 +15824,7 @@ document.addEventListener("DOMContentLoaded", function () {
   } //test start
 
 
+  window.removeSong = _actions_song_actions__WEBPACK_IMPORTED_MODULE_6__.removeSong;
   window.fetchUserSongs = _actions_song_actions__WEBPACK_IMPORTED_MODULE_6__.fetchUserSongs;
   window.fetchSong = _actions_song_actions__WEBPACK_IMPORTED_MODULE_6__.fetchSong;
   window.fetchSongs = _actions_song_actions__WEBPACK_IMPORTED_MODULE_6__.fetchSongs;

@@ -18,7 +18,7 @@ import {faCaretLeft,
         faAngleDown, 
         faSearch} from '@fortawesome/free-solid-svg-icons';
 
-import {fetchSongs, fetchSong, fetchUserSongs} from './actions/song_actions';
+import {fetchSongs, fetchSong, fetchUserSongs, removeSong} from './actions/song_actions';
 
 library.add(
     fab,
@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     //test start
+    window.removeSong = removeSong;
     window.fetchUserSongs = fetchUserSongs;
     window.fetchSong = fetchSong;
     window.fetchSongs = fetchSongs;

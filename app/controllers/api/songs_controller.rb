@@ -29,7 +29,7 @@ class Api::SongsController < ApplicationController
         @song = current_user.songs.find_by(id: params[:id])
 
         if @song 
-            song.destroy
+            @song.destroy
         end
     end
 
