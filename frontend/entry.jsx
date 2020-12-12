@@ -12,6 +12,7 @@ import { fab,
         faSoundcloud } from '@fortawesome/free-brands-svg-icons';
 import {faCaretLeft,
         faEllipsisH,
+        faCamera,
         faUser,
         faExternalLinkAlt, 
         faAngleDown, 
@@ -22,6 +23,7 @@ import {fetchSongs, fetchSong, fetchUserSongs} from './actions/song_actions';
 library.add(
     fab,
     faFacebook,
+    faCamera,
     faExternalLinkAlt,
     faGoogle,
     faSoundcloud,

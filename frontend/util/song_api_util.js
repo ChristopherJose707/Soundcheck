@@ -23,7 +23,7 @@ export const createSong = (songData) => {
     return $.ajax ({
         url: '/api/songs',
         method: 'POST',
-        data: {songData},
+        data: songData,
         contentType: false,
         processData: false
     })
@@ -33,7 +33,7 @@ export const updateSong = (songData, songId) => {
     return $.ajax ({
         url: `/api/songs/${songId}`,
         method: 'PATCH',
-        data: {songData},
+        data: songData,
         contentType: false,
         processData: false
     })

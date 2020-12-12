@@ -3,6 +3,7 @@ import NavbarContainer from '../navbar/navbar_container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import UploadFile from './upload_file';
 import UploadDetails from './upload_details';
+import UploadSuccess from './upload_success';
 
 
 class Upload extends React.Component {
@@ -12,7 +13,7 @@ class Upload extends React.Component {
         const { currentUser } = this.props;
         this.state = {
             stepNumber: 1,
-            userId: currentUser,
+            userId: currentUser.id,
             title: "",
             description: "",
             photoFile: null,
@@ -25,6 +26,7 @@ class Upload extends React.Component {
         this.handleInput = this.handleInput.bind(this);
         this.cancel = this.cancel.bind(this);
         this.handlePhotoFile = this.handlePhotoFile.bind(this);
+        this.handleSubmit= this.handleSubmit.bind(this);
     }
 
     handleSongFile(e) {
@@ -67,10 +69,12 @@ class Upload extends React.Component {
         formData.append('song[description]', this.state.description);
         formData.append('song[genre]', this.state.genre);
         formData.append('song[song]', this.state.songFile);
-        if (photoFile) {
+        if (this.state.photoFile) {
             formData.append('song[photo]', this.state.photoFile)
         }
-
+        
+     
+        debugger
         this.props.createSong(formData).then(song => {
             this.setState({
                 songId: song.song.id,
@@ -129,6 +133,14 @@ class Upload extends React.Component {
                         handleFileClick={this.handleFileClick}
                         handlePhotoFile={this.handlePhotoFile}
                         photoUrl={this.state.photoUrl}
+                    />
+
+                    <UploadSuccess 
+                        stepNumber={this.state.stepNumber}
+                        songId={this.state.songId}
+                        artist={this.props.currentUser.display_name}
+                        title={this.state.title}
+                        description={this.state.description}
                     />
                 </div>
             </div>
