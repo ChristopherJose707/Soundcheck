@@ -2,6 +2,8 @@ import React from 'react';
 import NavbarContainer from '../navbar/navbar_container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import UploadFile from './upload_file';
+import UploadDetails from './upload_details';
+
 
 class Upload extends React.Component {
     constructor(props) {
@@ -17,9 +19,12 @@ class Upload extends React.Component {
             songFile: null,
             photoUrl: "" 
         }
-        
+
         this.handleFileClick = this.handleFileClick.bind(this);
         this.handleSongFile = this.handleSongFile.bind(this);
+        this.handleInput = this.handleInput.bind(this);
+        this.cancel = this.cancel.bind(this);
+        this.handlePhotoFile = this.handlePhotoFile.bind(this);
     }
 
     handleSongFile(e) {
@@ -34,14 +39,61 @@ class Upload extends React.Component {
         }
     };
 
+    cancel() {
+        this.setState({
+            stepNumber: 1,
+            title: "",
+            genre: "",
+            description: "",
+            songFile: null,
+            songUrl: ""
+        })
+    }
+
     handleFileClick() {
         document.getElementById("file").click();
-    }
+    };
+
+    handleInput(field) {
+        return e => this.setState({[field]: e.target.value})
+    };
 
     handleSubmit(e) {
         e.preventDefault();
         const formData = new FormData();
 
+        formData.append('song[user_id]', this.state.userId);
+        formData.append('song[title]', this.state.title);
+        formData.append('song[description]', this.state.description);
+        formData.append('song[genre]', this.state.genre);
+        formData.append('song[song]', this.state.songFile);
+        if (photoFile) {
+            formData.append('song[photo]', this.state.photoFile)
+        }
+
+        this.props.createSong(formData).then(song => {
+            this.setState({
+                songId: song.song.id,
+                stepNumber: 3
+            });
+        });
+
+    };
+
+    handlePhotoFile(e) {
+        e.preventDefault();
+        const file = e.target.files[0];
+
+        if (file) {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onloadend = () => {
+                this.setState({
+                    photoFile: file,
+                    photoUrl: fileReader.result
+                })
+            }
+        }
     }
 
     render() {
@@ -67,6 +119,16 @@ class Upload extends React.Component {
                         stepNumber={this.state.stepNumber} 
                         handleSongFile={this.handleSongFile}
                         handleFileClick={this.handleFileClick}
+                    />
+
+                    <UploadDetails 
+                        stepNumber={this.state.stepNumber}
+                        title={this.state.title}
+                        handleInput={this.handleInput}
+                        handleSubmit={this.handleSubmit}
+                        handleFileClick={this.handleFileClick}
+                        handlePhotoFile={this.handlePhotoFile}
+                        photoUrl={this.state.photoUrl}
                     />
                 </div>
             </div>

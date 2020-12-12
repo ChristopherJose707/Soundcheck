@@ -10452,3 +10452,31 @@ Processing by StaticPagesController#root as HTML
 Completed 200 OK in 36ms (Views: 32.0ms | ActiveRecord: 1.3ms)
 
 
+Started GET "/" for ::1 at 2020-12-12 09:00:01 -0800
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "xLRwpCsUbqgIv7nMVMSszw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "songs"."id" FROM "songs" WHERE "songs"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/users/_user.json.jbuilder:2
+  [1m[36mActiveStorage::Attachment Load (1.6ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_picture"], ["LIMIT", 1]]
+  ↳ app/views/api/users/_user.json.jbuilder:4
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/api/users/_user.json.jbuilder:4
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT  "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = $1 AND "active_storage_attachments"."record_type" = $2 AND "active_storage_attachments"."name" = $3 LIMIT $4[0m  [["record_id", 1], ["record_type", "User"], ["name", "profile_banner"], ["LIMIT", 1]]
+  ↳ app/views/api/users/_user.json.jbuilder:5
+  Rendered api/users/_user.json.jbuilder (29.1ms)
+  Rendered static_pages/root.html.erb within layouts/application (46.0ms)
+Completed 200 OK in 993ms (Views: 980.4ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c8a420e2b9624691d535223ab2ab3782b4b10827/demo_pic.jpg" for ::1 at 2020-12-12 09:00:02 -0800
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c8a420e2b9624691d535223ab2ab3782b4b10827", "filename"=>"demo_pic"}
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT  "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ /Users/cj/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.4/lib/active_record/log_subscriber.rb:98
+[36m  S3 Storage (3.7ms) [0m[34mGenerated URL for file at key: hEmt39uX5SUDNUEKac8bNVeS (https://active-storage-soundcheck-dev.s3.us-west-1.amazonaws.com/hEmt39uX5SUDNUEKac8bNVeS?response-content-disposition=inline%3B%20filename%3D%22demo_pic.jpg%22%3B%20filename%2A%3DUTF-8%27%27demo_pic.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZLJASQPEIP7LUOF6%2F20201212%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20201212T170002Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=906e81fd453ade2baa880ff5b20d33241e931df6de409f9d77ee7f410c3c8068)[0m
+Redirected to https://active-storage-soundcheck-dev.s3.us-west-1.amazonaws.com/hEmt39uX5SUDNUEKac8bNVeS?response-content-disposition=inline%3B%20filename%3D%22demo_pic.jpg%22%3B%20filename%2A%3DUTF-8%27%27demo_pic.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZLJASQPEIP7LUOF6%2F20201212%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20201212T170002Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=906e81fd453ade2baa880ff5b20d33241e931df6de409f9d77ee7f410c3c8068
+Completed 302 Found in 7ms (ActiveRecord: 0.6ms)
+
+
