@@ -1,24 +1,33 @@
-.navbar {
+.navbar-parent {
     position: fixed;
+    top: 0;
+    left: 0;
+    margin: auto;
+    width: 100%
+}
+
+.navbar {
     display: flex;
     justify-content: center;
-    justify-content: space-evenly;
     top: 0;
-    height: 43px;
     width: 100%;
+    height: 46px;
     min-width: 1240px;
     background-color: #333;
     color: #cccccc;
     font-family: sans-serif;
     font-size: 14px;
-    overflow: hidden;
 }
 
-.navbar a {
-    float: left;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    display: inline;
 }
 
 .navbar-upload-link {
@@ -30,26 +39,42 @@
     color: rgb(247, 243, 243)
 }
 
-.navbar-logo {
-    padding: 14px 16px;
+.navbar-logo-li {
+    padding: 11px 11px;
     background-color: #ff5500;
-    // align-content: center;
-    align-items: flex-start;
-    display: flex;
 }
 
-.navbar img {
+.upgrade {
+    color: #ff5500;
+    cursor: pointer;
+}
+
+.upgrade:hover{
+    color:#ff8041
+}
+
+.navbar-display-name {
+    word-spacing: 9px;
+    cursor: pointer;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    margin-right: 26px;
+}
+
+.profile-pic {
     height: 26px;
     width: 26px;
     border-radius: 50%;
-    // position: absolute;
 }
 
 .navbar-options{
     width: 46px;
     background: transparent;
     color: #cccccc;
-    
+    border: transparent;
 }
 
 .option-dropdown {
@@ -81,12 +106,13 @@
 
 .navbar-search {
     width: 430px;
+    margin-top: 7px;
     position: relative;
 }
 
 .navbar-search-input {
     width: 430px;
-    height: 28px;
+    height: 26px;
     outline: none;
     border: none;
     border-radius: 4px;
@@ -105,21 +131,21 @@
     border: transparent;
 }
 
-.navbar-signup {
-    width: 100px;
-    padding: 4px 11px 4px 10px;
-    background: #ff5500;
-    border: 1px solid #ff5500;
-    border-radius: 3px;
-    font-size: 16px;
-    font-weight: inherit;
-    color: white;
-    cursor: pointer;
-    margin-left: 5px;
-}
+// .navbar-signup {
+//     width: 100px;
+//     padding: 4px 11px 4px 10px;
+//     background: #ff5500;
+//     border: 1px solid #ff5500;
+//     border-radius: 3px;
+//     font-size: 16px;
+//     font-weight: inherit;
+//     color: white;
+//     cursor: pointer;
+//     margin-left: 5px;
+// }
 
 .navbar-left a {
-    color: rgb(201, 201, 201)
+    color: rgb(201, 201, 201);
 }
 
 .navbar-left a:hover {
@@ -139,11 +165,55 @@
 }
 
 .navbar-linkedin, .navbar-github, .navbar-mdn {
-    color: white;
-    padding: 14px 16px;
+    display: block;
+    padding: 12px 0;
+    width: 104px;
+    height: 46px;
+    border-right: 1px solid #111;
+    box-sizing: border-box;
+    text-align: center;
+    
+}
+
+.navbar-linkedin {
+    width: 104px;
+}
+
+.navbar-github {
+    width: 104px;
 }
 
 .navbar-right-links {
     display: flex;
     align-items: center;
+    width: 400px;
+    justify-content: space-around;
+}
+
+.user-dropdown {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-dropdown-content {
+    position: absolute;
+    top: 23px;
+    background: white;
+    right: 20px;
+    font-size: 14px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width: 140px;
+    flex-direction: column;
+}
+
+.user-dropdown-content a {
+    color: gray;
+}
+
+.user-dropdown-li {
+    background: black;
 }

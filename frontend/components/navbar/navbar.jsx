@@ -16,7 +16,7 @@ class Navbar extends React.Component {
         this.closeOptionMenu = this.closeOptionMenu.bind(this);
         this.showUserMenu = this.showUserMenu.bind(this);
         this.closeUserMenu = this.closeUserMenu.bind(this);
-        this.UserLinks = this.UserLinks.bind(this);
+        
     };
     
     showOptionMenu(e) {
@@ -53,81 +53,20 @@ class Navbar extends React.Component {
         }
     };
 
-    UserLinks() {
-        const dropdown =    
-                <div className="user-dropdown" ref={(element) => {this.dropdownUserMenu = element}}>
-                    <Link to={`/users/${this.props.currentUser.id}`}><FontAwesomeIcon icon="user" />Profile</Link>
-                    <a href="https://github.com/ChristopherJose707"><FontAwesomeIcon icon={['fab', 'github']} />Github</a>
-                    <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"><FontAwesomeIcon icon={['fab', 'linkedin']} />LinkedIn</a>
-                </div>
-
-        if (!this.props.currentUser) {
-            return (
-                <div className="navbar-right">
-                     <a className="navbar-signin" 
-                        onClick={() => this.props.openModal("login")}>
-                        Sign In
-                    </a>
-                    <a className="navbar-signup" 
-                        onClick={() => this.props.openModal("signup")}>
-                        Create Account
-                    </a>
-                </div>
-            )
-        } else {
-            const userDisplayName = this.props.currentUser.display_name.length > 10 ?
-                this.props.currentUser.display_name.slice(0,10)
-                : this.props.currentUser.display_name
-            return (
-
-                <div onClick={this.showUserMenu}>
-                    {this.props.currentUser.profilePicture ? 
-                    <img className="profile-pic" src={this.props.currentUser.profilePicture} /> : null}
-                    <p className="navbar-display-name" onClick={this.showUserMenu}> {userDisplayName}<FontAwesomeIcon icon="angle-down" /></p>
-                    {this.state.showUserMenu ? dropdown : null}
-                </div>
-                
-                // <div className="navbar-right">
-                    // <div className="navbar-user" onClick={this.showUserMenu}>
-                        // <div className="navbar-profile-pic">
-                            // {this.props.currentUser.profilePicture ? 
-                            // <img className="profile-pic" src={this.props.currentUser.profilePicture} /> : null}
-                        // </div>
-                        // <p className="navbar-display-name"> {userDisplayName}</p>
-                        // <FontAwesomeIcon icon="angle-down" />
-                    //     {this.state.showUserMenu ? 
-                    //         (
-                    //         <div className="user-dropdown" ref={(element) => {this.dropdownUserMenu = element}}>
-                    //             <div className="navbar-user-icon">
-                    //                 <Link to={`/users/${this.props.currentUser.id}`}>
-                    //                     <FontAwesomeIcon icon="user" />
-                    //                     Profile
-                    //                 </Link>
-                    //             </div>
-                    //             <div className="navbar-github-icon">
-                    //                 <a href="https://github.com/ChristopherJose707">
-                    //                     <FontAwesomeIcon icon={['fab', 'github']} />
-                    //                     Github
-                    //                 </a>
-                    //             </div>
-                    //             <div className="navbar-linkedin-icon">
-                    //                 <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/">
-                    //                     <FontAwesomeIcon icon={['fab', 'linkedin']} />
-                    //                     LinkedIn
-                    //                 </a>
-                    //             </div>
-                    //         </div>
-                    //         ) : null
-                    //     }
-                    // </div>
-                // // </div>
-            )
-        }
-    }
-
-
     render() {
         
+        const dropdown =   
+                <div className="user-dropdown" ref={(element) => {this.dropdownUserMenu = element}}>
+                    <div className="user-dropdown-content">
+                        <Link to={`/users/${this.props.currentUser.id}`}><FontAwesomeIcon icon="user" />Profile</Link>
+                        <a href="https://github.com/ChristopherJose707"><FontAwesomeIcon icon={['fab', 'github']} />Github</a>
+                        <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"><FontAwesomeIcon icon={['fab', 'linkedin']} />LinkedIn</a>
+                    </div>
+                </div> 
+
+        const userDisplayName = this.props.currentUser.display_name.length > 10 ?
+                this.props.currentUser.display_name.slice(0,10)
+                : this.props.currentUser.display_name
         
         const signoutOrLinks = this.props.currentUser ? 
                 <div className="option-dropdown" 
@@ -135,7 +74,7 @@ class Navbar extends React.Component {
                     <button onClick={() => this.props.logout()}>
                         Sign Out</button> 
                 </div> 
-        :        <div className="option-dropdown" 
+        :        <span className="option-dropdown" 
                     ref={(element) => {this.dropdownMenu = element}}>
                     <a href="google.com">
                         <FontAwesomeIcon className="option-dropdown-links" 
@@ -152,33 +91,39 @@ class Navbar extends React.Component {
                         icon={['fab', 'soundcloud']} />
                         SoundCloud
                     </a>
-                </div>
+                </span>
 
 
         return (
-             <div className="navbar">
-                <div className="navbar-left">
-                    <Link className="navbar-logo" to="/discover">
-                        <img className="cloud" src={window.logo}/>
-                    </Link>
-                    <Link className="navbar-home" to="/discover"></Link>
-                    <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"className="navbar-linkedin">LinkedIn</a>
-                    <a href="https://github.com/ChristopherJose707"className="navbar-github">Github</a>
-                    <a href="https://developer.mozilla.org/en-US/"className="navbar-mdn">MDN Docs</a>
+            <nav className="navbar-parent">
+                <div className="navbar">
+                    <ul className="navbar-left">
+                        <li className="navbar-logo-li"><Link className="navbar-logo" to="/discover">
+                            <img className="cloud" src={window.logo}/></Link></li>
+                        <li><Link className="navbar-home" to="/discover"></Link></li>
+                        <li><a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"className="navbar-linkedin">LinkedIn</a></li>
+                        <li><a href="https://github.com/ChristopherJose707"className="navbar-github">Github</a></li>
+                        <li><a href="https://developer.mozilla.org/en-US/"className="navbar-mdn">MDN Docs</a></li>
+                    </ul>
+                    <div className="navbar-search">
+                        <input className="navbar-search-input" type="text" placeholder="Search"></input>
+                        <button className="navbar-search-button"><FontAwesomeIcon icon="search" /></button>
+                    </div>
+                    <ul className="navbar-right-links">
+                        <li className="upgrade">Upgrade</li>
+                        <li><Link className="navbar-upload-link" to="/upload">Upload</Link></li>
+                        <li>{this.props.currentUser.profilePicture ? 
+                        <img className="profile-pic" src={this.props.currentUser.profilePicture} /> : null}</li>
+                        <li><p className="navbar-display-name" onClick={this.showUserMenu}> {userDisplayName} <FontAwesomeIcon icon="angle-down" /></p></li>
+                        <li className="user-dropdown-li" tabIndex="1">{this.state.showUserMenu ? dropdown : null}</li>
+                        <li><button className="navbar-options" onClick={this.showOptionMenu}>
+                            <FontAwesomeIcon className="navbar-ellipsis" icon="ellipsis-h" />
+                        </button></li>
+                        <li>{ this.state.showOptionMenu ? (signoutOrLinks) : (null) }</li>
+                    </ul>
                 </div>
-                <div className="navbar-search">
-                    <input className="navbar-search-input" type="text" placeholder="Search"></input>
-                    <button className="navbar-search-button"><FontAwesomeIcon icon="search" /></button>
-                </div>
-                <div className="navbar-right-links">
-                    <Link className="navbar-upload-link" to="/upload">Upload</Link>
-                    {this.UserLinks()}
-                    <button className="navbar-options" onClick={this.showOptionMenu}>
-                        <FontAwesomeIcon className="navbar-ellipsis" icon="ellipsis-h" />
-                    </button>
-                    { this.state.showOptionMenu ? (signoutOrLinks) : (null) }
-                </div>
-            </div>
+            </nav>
+
         )
         };
     }

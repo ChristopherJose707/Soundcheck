@@ -13508,7 +13508,7 @@ var App = function App() {
     exact: true,
     path: "/",
     component: _splash_splash_container__WEBPACK_IMPORTED_MODULE_3__.default
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__.ProtectedRoute, {
     exact: true,
     path: "/discover",
     component: _discover_discover_container__WEBPACK_IMPORTED_MODULE_4__.default
@@ -13821,7 +13821,6 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
     _this.closeOptionMenu = _this.closeOptionMenu.bind(_assertThisInitialized(_this));
     _this.showUserMenu = _this.showUserMenu.bind(_assertThisInitialized(_this));
     _this.closeUserMenu = _this.closeUserMenu.bind(_assertThisInitialized(_this));
-    _this.UserLinks = _this.UserLinks.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -13882,8 +13881,8 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "UserLinks",
-    value: function UserLinks() {
+    key: "render",
+    value: function render() {
       var _this6 = this;
 
       var dropdown = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -13891,6 +13890,8 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         ref: function ref(element) {
           _this6.dropdownUserMenu = element;
         }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "user-dropdown-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/users/".concat(this.props.currentUser.id)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
@@ -13903,89 +13904,21 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         href: "https://www.linkedin.com/in/christopher-jose-6361aa120/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         icon: ['fab', 'linkedin']
-      }), "LinkedIn"));
-
-      if (!this.props.currentUser) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "navbar-right"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-          className: "navbar-signin",
-          onClick: function onClick() {
-            return _this6.props.openModal("login");
-          }
-        }, "Sign In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-          className: "navbar-signup",
-          onClick: function onClick() {
-            return _this6.props.openModal("signup");
-          }
-        }, "Create Account"));
-      } else {
-        var userDisplayName = this.props.currentUser.display_name.length > 10 ? this.props.currentUser.display_name.slice(0, 10) : this.props.currentUser.display_name;
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          onClick: this.showUserMenu
-        }, this.props.currentUser.profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-          className: "profile-pic",
-          src: this.props.currentUser.profilePicture
-        }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-          className: "navbar-display-name",
-          onClick: this.showUserMenu
-        }, " ", userDisplayName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-          icon: "angle-down"
-        })), this.state.showUserMenu ? dropdown : null) // <div className="navbar-right">
-        // <div className="navbar-user" onClick={this.showUserMenu}>
-        // <div className="navbar-profile-pic">
-        // {this.props.currentUser.profilePicture ? 
-        // <img className="profile-pic" src={this.props.currentUser.profilePicture} /> : null}
-        // </div>
-        // <p className="navbar-display-name"> {userDisplayName}</p>
-        // <FontAwesomeIcon icon="angle-down" />
-        //     {this.state.showUserMenu ? 
-        //         (
-        //         <div className="user-dropdown" ref={(element) => {this.dropdownUserMenu = element}}>
-        //             <div className="navbar-user-icon">
-        //                 <Link to={`/users/${this.props.currentUser.id}`}>
-        //                     <FontAwesomeIcon icon="user" />
-        //                     Profile
-        //                 </Link>
-        //             </div>
-        //             <div className="navbar-github-icon">
-        //                 <a href="https://github.com/ChristopherJose707">
-        //                     <FontAwesomeIcon icon={['fab', 'github']} />
-        //                     Github
-        //                 </a>
-        //             </div>
-        //             <div className="navbar-linkedin-icon">
-        //                 <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/">
-        //                     <FontAwesomeIcon icon={['fab', 'linkedin']} />
-        //                     LinkedIn
-        //                 </a>
-        //             </div>
-        //         </div>
-        //         ) : null
-        //     }
-        // </div>
-        // // </div>
-        ;
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this7 = this;
-
+      }), "LinkedIn")));
+      var userDisplayName = this.props.currentUser.display_name.length > 10 ? this.props.currentUser.display_name.slice(0, 10) : this.props.currentUser.display_name;
       var signoutOrLinks = this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "option-dropdown",
         ref: function ref(element) {
-          _this7.dropdownMenu = element;
+          _this6.dropdownMenu = element;
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: function onClick() {
-          return _this7.props.logout();
+          return _this6.props.logout();
         }
-      }, "Sign Out")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, "Sign Out")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "option-dropdown",
         ref: function ref(element) {
-          _this7.dropdownMenu = element;
+          _this6.dropdownMenu = element;
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
         href: "google.com"
@@ -14003,29 +13936,33 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         className: "option-dropdown-links",
         icon: ['fab', 'soundcloud']
       }), "SoundCloud"));
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "navbar"
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
+        className: "navbar-parent"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "navbar"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         className: "navbar-left"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        className: "navbar-logo-li"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         className: "navbar-logo",
         to: "/discover"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         className: "cloud",
         src: window.logo
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         className: "navbar-home",
         to: "/discover"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
         href: "https://www.linkedin.com/in/christopher-jose-6361aa120/",
         className: "navbar-linkedin"
-      }, "LinkedIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+      }, "LinkedIn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
         href: "https://github.com/ChristopherJose707",
         className: "navbar-github"
-      }, "Github"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+      }, "Github")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
         href: "https://developer.mozilla.org/en-US/",
         className: "navbar-mdn"
-      }, "MDN Docs")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, "MDN Docs"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "navbar-search"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "navbar-search-input",
@@ -14035,18 +13972,31 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         className: "navbar-search-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         icon: "search"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         className: "navbar-right-links"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        className: "upgrade"
+      }, "Upgrade"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         className: "navbar-upload-link",
         to: "/upload"
-      }, "Upload"), this.UserLinks(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }, "Upload")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, this.props.currentUser.profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "profile-pic",
+        src: this.props.currentUser.profilePicture
+      }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        className: "navbar-display-name",
+        onClick: this.showUserMenu
+      }, " ", userDisplayName, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+        icon: "angle-down"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        className: "user-dropdown-li",
+        tabIndex: "1"
+      }, this.state.showUserMenu ? dropdown : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "navbar-options",
         onClick: this.showOptionMenu
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         className: "navbar-ellipsis",
         icon: "ellipsis-h"
-      })), this.state.showOptionMenu ? signoutOrLinks : null));
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, this.state.showOptionMenu ? signoutOrLinks : null))));
     }
   }]);
 
