@@ -4,11 +4,11 @@ import { removeSong, fetchSong, updateSong, fetchSongs} from '../../actions/song
 
 const mapStateToProps = (state, ownProps) => {
     const song = state.entities.songs[ownProps.match.params.songId]
-    debugger
+    debugger;
     return ({
-        users: state.entities.users,
-        song: song,
-        artist: state.entities.users[song.user_id],
+        users: state.entities.users, 
+        song: song,   
+        // artist: state.entities.users[song.user_id],
         currentUser: state.entities.users[state.session.currentUser]
     })
 };

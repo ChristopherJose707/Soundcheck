@@ -13371,8 +13371,8 @@ var signup = function signup(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.signup(user).then(function (user) {
       return dispatch(receiveCurrentUser(user));
-    }, function (error) {
-      return dispatch((0,_error_actions__WEBPACK_IMPORTED_MODULE_1__.receiveErrors)(error.responseJSON));
+    }, function (errors) {
+      return dispatch((0,_error_actions__WEBPACK_IMPORTED_MODULE_1__.receiveErrors)(errors.responseJSON));
     });
   };
 };
@@ -13380,8 +13380,8 @@ var login = function login(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.login(user).then(function (user) {
       return dispatch(receiveCurrentUser(user));
-    }, function (error) {
-      return dispatch((0,_error_actions__WEBPACK_IMPORTED_MODULE_1__.receiveErrors)(error.responseJSON));
+    }, function (errors) {
+      return dispatch((0,_error_actions__WEBPACK_IMPORTED_MODULE_1__.receiveErrors)(errors.responseJSON));
     });
   };
 };
@@ -13548,8 +13548,7 @@ var App = /*#__PURE__*/function (_React$Component) {
 
   _createClass(App, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchSongs();
+    value: function componentDidMount() {//    this.props.fetchSongs();
     }
   }, {
     key: "render",
@@ -14068,18 +14067,19 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }, "Upgrade"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         className: "navbar-upload-link",
         to: "/upload"
-      }, "Upload")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, this.props.currentUser.profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      }, "Upload")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "navbar-right-user ".concat(this.state.showUserMenu ? "black" : "")
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, this.props.currentUser.profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         className: "profile-pic",
         src: this.props.currentUser.profilePicture
       }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-        className: "navbar-display-name",
+        className: "navbar-display-name ".concat(this.state.showUserMenu ? "black" : ""),
         onClick: this.showUserMenu
       }, " ", userDisplayName, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         icon: "angle-down"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-        className: "user-dropdown-li",
-        tabIndex: "1"
-      }, this.state.showUserMenu ? dropdown : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Icon1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Icon2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "user-dropdown-li"
+      }, this.state.showUserMenu ? dropdown : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Icon1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Icon2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "navbar-options",
         onClick: this.showOptionMenu
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
@@ -15048,7 +15048,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../navbar/navbar_container */ "./frontend/components/navbar/navbar_container.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _util_upload_time_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/upload_time_util */ "./frontend/util/upload_time_util.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -15101,7 +15100,8 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
   _createClass(SongShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchSong(this.props.match.params.songId);
+      // this.props.fetchSong(this.props.match.params.songId);
+      this.props.fetchSongs();
       scrollTo(0, 0);
     }
   }, {
@@ -15125,54 +15125,33 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          users = _this$props.users,
-          song = _this$props.song,
-          artist = _this$props.artist,
-          currentUser = _this$props.currentUser;
-      var songPhoto = song.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        className: "song-show-photo",
-        src: song.photoUrl
-      }) : null; // Conditional Buttons
-
-      var uploadPhotoButton = artist !== currentUser ? null : !song.songPhoto && artist === currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "upload-photo",
-        onClick: this.handleFileClick
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-        icon: "camera"
-      }), "Upload Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        type: "file",
-        id: "file",
-        accept: "image/*",
-        onChange: this.handlePhotoFile
-      })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "upload-photo",
-        onClick: this.handleFileClick
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-        icon: "camera"
-      }), "Update Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        type: "file",
-        id: "file",
-        accept: "image/*",
-        onChange: this.handlePhotoFile
-      }));
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "song-show-page"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "song-banner"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
-        className: "song-banner-artist"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
-        to: "users/".concat(artist.id)
-      }, artist.display_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
-        className: "song-banner-created-at"
-      }, (0,_util_upload_time_util__WEBPACK_IMPORTED_MODULE_2__.default)(song.created_at)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
-        className: "song-banner-title"
-      }, song.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
-        className: "song-banner-genre"
-      }, "#", song.genre), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "song-banner-photo"
-      }, songPhoto, uploadPhotoButton)));
+      // const {users, song, artist, currentUser} = this.props;
+      // const songPhoto = song.photoUrl ? 
+      //     <img className="song-show-photo" src={song.photoUrl} /> : null
+      // // Conditional Buttons
+      // const uploadPhotoButton = artist !== currentUser ? 
+      //     null : !song.songPhoto && artist === currentUser ? 
+      //     <button className="upload-photo" onClick={this.handleFileClick}>
+      //         <FontAwesomeIcon icon="camera"/>Upload Image
+      //         <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFile}></input>
+      //     </button> 
+      //     : 
+      //      <button className="upload-photo" onClick={this.handleFileClick}>
+      //         <FontAwesomeIcon icon="camera"/>Update Image
+      //         <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFile}></input>
+      //     </button> 
+      return null // <div className="song-show-page">
+      //     <NavbarContainer />
+      //     <div className="song-banner">
+      //         {/*  INSERT PLAY BUTTON HERE */}
+      //         <h2 className="song-banner-artist"><Link to={`users/${artist.id}`}>{artist.display_name}</Link></h2>
+      //         <h3 className="song-banner-created-at">{this.uploadTime(song.created_at)}</h3>
+      //         <h1 className="song-banner-title">{song.title}</h1>
+      //         <h3 className="song-banner-genre">#{song.genre}</h3>
+      //         <div className="song-banner-photo">{songPhoto}{uploadPhotoButton}</div>
+      //     </div>
+      // </div>
+      ;
     }
   }]);
 
@@ -15207,7 +15186,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     users: state.entities.users,
     song: song,
-    artist: state.entities.users[song.user_id],
+    // artist: state.entities.users[song.user_id],
     currentUser: state.entities.users[state.session.currentUser]
   };
 };
