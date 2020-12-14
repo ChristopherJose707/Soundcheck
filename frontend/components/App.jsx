@@ -5,6 +5,7 @@ import {AuthRoute, ProtectedRoute} from '../util/route_util';
 import SplashContainer from './splash/splash_container';
 import DiscoverContainer from './discover/discover_container';
 import UploadContainer from './upload/upload_container';
+import SongShowContainer from './song/song_show_container';
 
 const App = () => {
     return (
@@ -15,6 +16,8 @@ const App = () => {
                 <AuthRoute exact path="/" component={SplashContainer} />
                 <ProtectedRoute exact path="/discover" component={DiscoverContainer} />
                 <ProtectedRoute exact path="/upload" component={UploadContainer}/>
+                <ProtectedRoute exact path="/song/:songId" component={SongShowContainer} />
+
             </Switch>
             
         </div>

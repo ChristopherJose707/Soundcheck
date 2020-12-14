@@ -46,6 +46,13 @@ export const createSong = (songData) => dispatch => {
     )
 };
 
+export const updateSong = (songData, songId) => dispatch => {
+    return (
+        SongAPIUtil.updateSong(songData, songId)
+            .then(song => dispatch(receiveSong(song)))
+    )
+};
+
 export const removeSong = (songId) => dispatch => {
     return (
         SongAPIUtil.deleteSong(songId)
