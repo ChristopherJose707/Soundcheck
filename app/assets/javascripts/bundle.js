@@ -15048,6 +15048,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../navbar/navbar_container */ "./frontend/components/navbar/navbar_container.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _util_upload_time_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/upload_time_util */ "./frontend/util/upload_time_util.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -15094,15 +15095,15 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       followed: "Follow"
     };
     _this.handleFileClick = _this.handleFileClick.bind(_assertThisInitialized(_this));
+    _this.handlePhotoFile = _this.handlePhotoFile.bind(_assertThisInitialized(_this));
+    _this.handleDropdown = _this.handleDropdown.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(SongShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // this.props.fetchSong(this.props.match.params.songId);
-      this.props.fetchSongs();
-      scrollTo(0, 0);
+      this.props.fetchSong(this.props.match.params.songId);
     }
   }, {
     key: "handleFileClick",
@@ -15123,35 +15124,95 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "handleDropdown",
+    value: function handleDropdown() {
+      document.getElementById("show-dropdown-id").classList.toggle("show");
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete() {
+      this.props.removeSong(this.props.match.params.songId);
+      this.props.history.push("/discover");
+    }
+  }, {
     key: "render",
     value: function render() {
-      // const {users, song, artist, currentUser} = this.props;
-      // const songPhoto = song.photoUrl ? 
-      //     <img className="song-show-photo" src={song.photoUrl} /> : null
-      // // Conditional Buttons
-      // const uploadPhotoButton = artist !== currentUser ? 
-      //     null : !song.songPhoto && artist === currentUser ? 
-      //     <button className="upload-photo" onClick={this.handleFileClick}>
-      //         <FontAwesomeIcon icon="camera"/>Upload Image
-      //         <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFile}></input>
-      //     </button> 
-      //     : 
-      //      <button className="upload-photo" onClick={this.handleFileClick}>
-      //         <FontAwesomeIcon icon="camera"/>Update Image
-      //         <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFile}></input>
-      //     </button> 
-      return null // <div className="song-show-page">
-      //     <NavbarContainer />
-      //     <div className="song-banner">
-      //         {/*  INSERT PLAY BUTTON HERE */}
-      //         <h2 className="song-banner-artist"><Link to={`users/${artist.id}`}>{artist.display_name}</Link></h2>
-      //         <h3 className="song-banner-created-at">{this.uploadTime(song.created_at)}</h3>
-      //         <h1 className="song-banner-title">{song.title}</h1>
-      //         <h3 className="song-banner-genre">#{song.genre}</h3>
-      //         <div className="song-banner-photo">{songPhoto}{uploadPhotoButton}</div>
-      //     </div>
-      // </div>
+      var _this2 = this;
+
+      var _this$props = this.props,
+          users = _this$props.users,
+          song = _this$props.song,
+          currentUser = _this$props.currentUser;
+
+      if (!this.props.song) {
+        return null;
+      }
+
       ;
+      var songPhoto = song.songPhoto ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "song-show-photo",
+        src: song.songPhoto
+      }) : null; // Conditional Buttons
+
+      var uploadPhotoButton = song.artist !== currentUser.display_name ? null : !song.songPhoto && song.artist === currentUser.display_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "upload-photo",
+        onClick: this.handleFileClick
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+        icon: "camera"
+      }), "Upload Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "file",
+        id: "file",
+        accept: "image/*",
+        onChange: this.handlePhotoFile
+      })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "upload-photo",
+        onClick: this.handleFileClick
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+        icon: "camera"
+      }), "Update Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "file",
+        id: "file",
+        accept: "image/*",
+        onChange: this.handlePhotoFile
+      }));
+      var deleteButton = song.artist !== currentUser.display_name ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "song-delete",
+        onClick: function onClick() {
+          return handleDelete();
+        }
+      }, "Delete Track");
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "song-show-page"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "song-banner"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+        className: "song-banner-artist"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+        to: "users/".concat(song.user_id)
+      }, song.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+        className: "song-banner-created-at"
+      }, (0,_util_upload_time_util__WEBPACK_IMPORTED_MODULE_2__.uploadTime)(song.created_at)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+        className: "song-banner-title"
+      }, song.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+        className: "song-banner-genre"
+      }, "#", song.genre), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "song-banner-photo"
+      }, songPhoto, uploadPhotoButton)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "song-show-buttons"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Like"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Repost"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: "show-dropdown"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: function onClick() {
+          return _this2.handleDropdown();
+        },
+        className: "dropbtn"
+      }, "More", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+        className: "song-show-ellipsis",
+        icon: "ellipsis-h"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+        id: "show-dropdown-id",
+        className: "show-dropdown-content"
+      }, deleteButton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Nothing here yet!")))));
     }
   }]);
 
@@ -15182,11 +15243,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var song = state.entities.songs[ownProps.match.params.songId];
-  debugger;
   return {
     users: state.entities.users,
     song: song,
-    // artist: state.entities.users[song.user_id],
     currentUser: state.entities.users[state.session.currentUser]
   };
 };

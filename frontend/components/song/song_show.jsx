@@ -13,13 +13,13 @@ class SongShow extends React.Component {
             followed: "Follow"
         }
         this.handleFileClick = this.handleFileClick.bind(this);
-
+        this.handlePhotoFile = this.handlePhotoFile.bind(this);
+        this.handleDropdown = this.handleDropdown.bind(this);
     }
 
     componentDidMount() {
-        // this.props.fetchSong(this.props.match.params.songId);
-        this.props.fetchSongs();
-        scrollTo(0, 0);
+        this.props.fetchSong(this.props.match.params.songId);
+            
     }
 
     handleFileClick() {
@@ -36,42 +36,66 @@ class SongShow extends React.Component {
             formData.append('song[photo]', file);
             this.props.updateSong(formData, song.id)
         }
-  }
+    };
+
+    handleDropdown() {
+        document.getElementById("show-dropdown-id").classList.toggle("show")
+    }
+
+    handleDelete() {
+        this.props.removeSong(this.props.match.params.songId);
+        this.props.history.push("/discover");
+    }
 
     render () {
+        const {users, song, currentUser} = this.props;
         
-        // const {users, song, artist, currentUser} = this.props;
-        
-        // const songPhoto = song.photoUrl ? 
-        //     <img className="song-show-photo" src={song.photoUrl} /> : null
+        if (!this.props.song) {
+            return null
+        };
 
-        // // Conditional Buttons
-        // const uploadPhotoButton = artist !== currentUser ? 
-        //     null : !song.songPhoto && artist === currentUser ? 
-        //     <button className="upload-photo" onClick={this.handleFileClick}>
-        //         <FontAwesomeIcon icon="camera"/>Upload Image
-        //         <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFile}></input>
-        //     </button> 
-        //     : 
-        //      <button className="upload-photo" onClick={this.handleFileClick}>
-        //         <FontAwesomeIcon icon="camera"/>Update Image
-        //         <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFile}></input>
-        //     </button> 
+        const songPhoto = song.songPhoto ? 
+            <img className="song-show-photo" src={song.songPhoto} /> : null
+
+        // Conditional Buttons
+        const uploadPhotoButton = (song.artist !== currentUser.display_name) ? 
+            null : !song.songPhoto && song.artist === currentUser.display_name ? 
+            <button className="upload-photo" onClick={this.handleFileClick}>
+                <FontAwesomeIcon icon="camera"/>Upload Image
+                <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFile}></input>
+            </button> 
+            : 
+             <button className="upload-photo" onClick={this.handleFileClick}>
+                <FontAwesomeIcon icon="camera"/>Update Image
+                <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFile}></input>
+            </button> ;
+
+        const deleteButton = (song.artist !== currentUser.display_name) ? null 
+            : <button className="song-delete" onClick={() => handleDelete()}>Delete Track</button>
 
         return (
-            null
-            // <div className="song-show-page">
-            //     <NavbarContainer />
-            //     <div className="song-banner">
-            //         {/*  INSERT PLAY BUTTON HERE */}
-            //         <h2 className="song-banner-artist"><Link to={`users/${artist.id}`}>{artist.display_name}</Link></h2>
-            //         <h3 className="song-banner-created-at">{this.uploadTime(song.created_at)}</h3>
-            //         <h1 className="song-banner-title">{song.title}</h1>
-            //         <h3 className="song-banner-genre">#{song.genre}</h3>
-            //         <div className="song-banner-photo">{songPhoto}{uploadPhotoButton}</div>
-            //     </div>
-            // </div>
-
+            <div className="song-show-page">
+                <NavbarContainer />
+                <div className="song-banner">
+                    {/*  INSERT PLAY BUTTON HERE */}
+                    <h2 className="song-banner-artist"><Link to={`users/${song.user_id}`}>{song.artist}</Link></h2>
+                    <h3 className="song-banner-created-at">{uploadTime(song.created_at)}</h3>
+                    <h1 className="song-banner-title">{song.title}</h1>
+                    <h3 className="song-banner-genre">#{song.genre}</h3>
+                    <div className="song-banner-photo">{songPhoto}{uploadPhotoButton}</div>
+                </div>
+                <div className="song-show-buttons">
+                    <button>Like</button>
+                    <button>Repost</button>
+                    <span className="show-dropdown">
+                        <button onClick={() => this.handleDropdown()} className="dropbtn">More<FontAwesomeIcon className="song-show-ellipsis" icon="ellipsis-h" /></button>
+                        <ul id="show-dropdown-id" className="show-dropdown-content">
+                            {deleteButton}
+                            <li>Nothing here yet!</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
             
         )
     }
