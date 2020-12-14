@@ -12,13 +12,19 @@ import { fab,
         faSoundcloud } from '@fortawesome/free-brands-svg-icons';
 import {faCaretLeft,
         faEllipsisH,
-        faUser, 
+        faCamera,
+        faUser,
+        faExternalLinkAlt, 
         faAngleDown, 
         faSearch} from '@fortawesome/free-solid-svg-icons';
+
+import {fetchSongs, fetchSong, fetchUserSongs, removeSong} from './actions/song_actions';
 
 library.add(
     fab,
     faFacebook,
+    faCamera,
+    faExternalLinkAlt,
     faGoogle,
     faSoundcloud,
     faLinkedin,
@@ -36,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.currentUser) {
         const preloadedState = {
             entities: {
-                users: {[window.currentUser.id]: window.currentUser}
+                users: {[window.currentUser.id]: window.currentUser},
             },
             session: {currentUser: window.currentUser.id}
         };
@@ -48,6 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     //test start
+    window.removeSong = removeSong;
+    window.fetchUserSongs = fetchUserSongs;
+    window.fetchSong = fetchSong;
+    window.fetchSongs = fetchSongs;
     window.getState = store.getState;
     window.dispatch = store.dispatch;
     window.logout = logout;
