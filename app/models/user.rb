@@ -21,6 +21,11 @@ class User < ApplicationRecord
 
     after_initialize :ensure_session_token
 
+    has_many :songs,
+        foreign_key: :user_id,
+        class_name: :Song,
+        dependent: :destroy
+
     has_one_attached :profile_picture
     has_one_attached :profile_banner 
 

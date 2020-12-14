@@ -8,5 +8,9 @@
 
 User.destroy_all
 
-demo = User.create!(username: "demoUser", password: "password", 
+demo = User.create!(id: 1, username: "demoUser", password: "password", 
         display_name: "DemoUser", description: "I'm the demo user!")
+
+Song.destroy_all
+
+songdemo = Song.create!(title: "Levels", description: "Untz untz", user_id: 1, genre: "EDM")
