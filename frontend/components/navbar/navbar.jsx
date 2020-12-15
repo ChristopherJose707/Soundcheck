@@ -76,8 +76,7 @@ class Navbar extends React.Component {
         const signoutOrLinks = this.props.currentUser ? 
                 <div className="option-dropdown" 
                     ref={(element) => {this.dropdownMenu = element}}>
-                    <button onClick={() => this.props.logout()}>
-                        Sign Out</button> 
+                    <button onClick={() => this.props.logout()}>Sign Out</button> 
                 </div> 
         :        <span className="option-dropdown" 
                     ref={(element) => {this.dropdownMenu = element}}>
@@ -132,11 +131,12 @@ class Navbar extends React.Component {
                             <button className="navbar-options nav-dropbtn" onClick={() => this.handleDropdown()}>
                                 <FontAwesomeIcon className="navbar-ellipsis" icon="ellipsis-h" />
                             </button>
-                            <ul id="navbar-ellipsis-id"className="navbar-ellipsis-content">
+                            <ul id="navbar-ellipsis-id" className="navbar-ellipsis-content">
                                 {signOutButton}
-                                <a href="google.com"><FontAwesomeIcon className="option-dropdown-links" icon={['fab', 'google']} />Google</a>
-                                <a href="facebook.com"><FontAwesomeIcon className="option-dropdown-links" icon={['fab', 'facebook']} />Facebook</a>
-                                <a href="soundcloud.com"><FontAwesomeIcon className="option-dropdown-links" icon={['fab', 'soundcloud']} />SoundCloud</a>
+                                {/* <a href="soundcloud.com">SoundCloud</a>
+                                <a href="soundcloud.com">Google</a>
+                                <a href="soundcloud.com">Facebook</a> */}
+
                             </ul>
                         </div>
                         {/* <li className="navbar-ellipsis"><button className="navbar-options" onClick={this.showOptionMenu}>

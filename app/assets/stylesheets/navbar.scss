@@ -209,12 +209,12 @@ ul {
     position: absolute;
     top: 23px;
     background: white;
-    right: 20px;
+    right: 2px;
     font-size: 14px;
     font-weight: 900;
     display: flex;
     align-items: center;
-    height: 30px;
+    height: auto;
     width: 140px;
     flex-direction: column;
 }
@@ -246,5 +246,19 @@ ul {
 .navbar-ellipsis-content {
     display:none;
     position: absolute;
+    background-color: white;
+    height: auto;
+}
+
+navbar-ellipsis-content button {
+    padding: 0;
+}
+.navbar-ellipsis-content * {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background: transparent;
+    border: none;
+    color: gray;
 }
 
