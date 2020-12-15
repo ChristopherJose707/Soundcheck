@@ -46,8 +46,10 @@
   width: 800px;
   height: 800px;
   display: flex;
+  flex-direction: column;
+  align-items:center;
   margin: auto;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .upload-background {

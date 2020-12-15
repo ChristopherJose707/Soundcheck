@@ -4,7 +4,7 @@ class UploadFile extends React.Component {
     constructor(props) {
         super(props)
     }
-    
+    // <button onClick={handleFileClick}></button>
    render() {
        const {stepNumber, handleSongFile, handleFileClick} = this.props;
 
@@ -20,7 +20,7 @@ class UploadFile extends React.Component {
                                 title=""
                             />
                             <h2>Drag and drop your tracks & albums here</h2>
-                            <button onClick={handleFileClick}>
+                            <button >
                                 or choose files to upload 
                                 <input type="file" 
                                     className="file-upload-button"

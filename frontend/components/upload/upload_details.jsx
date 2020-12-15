@@ -23,16 +23,17 @@ class UploadDetails extends React.Component {
        
         const { stepNumber, title, handleInput, cancel, handleSubmit,
                  handleFileClick, handlePhotoFile, photoUrl } = this.props;
+
         const photoPreview = this.props.photoUrl ? 
             <img className="upload-photo-preview" src={photoUrl} /> : null;
 
         const uploadPhotoButton = !this.props.photoUrl ? 
-        <button className="upload-photo" onClick={handleFileClick}>
+        <button className="upload-photo">
             <FontAwesomeIcon icon="camera" />
             Upload Image
             <input type="file" id="file" accept="image/*" onChange={handlePhotoFile}/>
         </button> 
-        : <button className="upload-photo" onClick={handleFileClick}>
+        : <button className="upload-photo">
             <FontAwesomeIcon icon="camera" />
             Update Image
             <input type="file" id="file" accept="image/*" onChange={handlePhotoFile}/>
@@ -41,6 +42,7 @@ class UploadDetails extends React.Component {
         const newTitle = title.split(".")[0];
 
         if(stepNumber === 2) {
+
             return (
                 <div className="upload-details-main">
                     <div className="upload-details-header">

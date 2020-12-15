@@ -21,7 +21,7 @@ class Upload extends React.Component {
             photoUrl: "" 
         }
 
-        this.handleFileClick = this.handleFileClick.bind(this);
+        // this.handleFileClick = this.handleFileClick.bind(this);
         this.handleSongFile = this.handleSongFile.bind(this);
         this.handleInput = this.handleInput.bind(this);
         this.cancel = this.cancel.bind(this);
@@ -52,9 +52,9 @@ class Upload extends React.Component {
         })
     }
 
-    handleFileClick() {
-        document.getElementById("file").click();
-    };
+    // handleFileClick() {
+    //     document.getElementById("file").click();
+    // };
 
     handleInput(field) {
         return e => this.setState({[field]: e.target.value})
@@ -102,8 +102,8 @@ class Upload extends React.Component {
     
 
     render() {
-            const photoPreview = this.props.photoUrl ? 
-            <img className="upload-photo-preview" src={photoUrl} /> : null;
+            // const photoPreview = this.props.photoUrl ? 
+            // <img className="upload-photo-preview" src={photoUrl} /> : null;
         return (
             <div>
                 <NavbarContainer/>
@@ -120,7 +120,8 @@ class Upload extends React.Component {
                         </ul>
                     </div>
                     <div className="upload-main">
-                        <div className="upload-backround"></div>
+                        <div className="upload-background"></div>
+                        {/* {photoPreview} */}
                         <UploadFile 
                             stepNumber={this.state.stepNumber} 
                             handleSongFile={this.handleSongFile}

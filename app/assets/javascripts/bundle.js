@@ -15475,8 +15475,8 @@ var Upload = /*#__PURE__*/function (_React$Component) {
       photoFile: null,
       songFile: null,
       photoUrl: ""
-    };
-    _this.handleFileClick = _this.handleFileClick.bind(_assertThisInitialized(_this));
+    }; // this.handleFileClick = this.handleFileClick.bind(this);
+
     _this.handleSongFile = _this.handleSongFile.bind(_assertThisInitialized(_this));
     _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
     _this.cancel = _this.cancel.bind(_assertThisInitialized(_this));
@@ -15510,12 +15510,10 @@ var Upload = /*#__PURE__*/function (_React$Component) {
         songFile: null,
         songUrl: ""
       });
-    }
-  }, {
-    key: "handleFileClick",
-    value: function handleFileClick() {
-      document.getElementById("file").click();
-    }
+    } // handleFileClick() {
+    //     document.getElementById("file").click();
+    // };
+
   }, {
     key: "handleInput",
     value: function handleInput(field) {
@@ -15572,10 +15570,8 @@ var Upload = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var photoPreview = this.props.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        className: "upload-photo-preview",
-        src: photoUrl
-      }) : null;
+      // const photoPreview = this.props.photoUrl ? 
+      // <img className="upload-photo-preview" src={photoUrl} /> : null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "upload-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -15596,7 +15592,7 @@ var Upload = /*#__PURE__*/function (_React$Component) {
       }), "Creators on SoundCheck"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "upload-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "upload-backround"
+        className: "upload-background"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_upload_file__WEBPACK_IMPORTED_MODULE_3__.default, {
         stepNumber: this.state.stepNumber,
         handleSongFile: this.handleSongFile,
@@ -15738,8 +15734,7 @@ var UploadDetails = /*#__PURE__*/function (_React$Component) {
         src: photoUrl
       }) : null;
       var uploadPhotoButton = !this.props.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "upload-photo",
-        onClick: handleFileClick
+        className: "upload-photo"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         icon: "camera"
       }), "Upload Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
@@ -15748,8 +15743,7 @@ var UploadDetails = /*#__PURE__*/function (_React$Component) {
         accept: "image/*",
         onChange: handlePhotoFile
       })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "upload-photo",
-        onClick: handleFileClick
+        className: "upload-photo"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         icon: "camera"
       }), "Update Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
@@ -15920,7 +15914,8 @@ var UploadFile = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, UploadFile);
 
     return _super.call(this, props);
-  }
+  } // <button onClick={handleFileClick}></button>
+
 
   _createClass(UploadFile, [{
     key: "render",
@@ -15943,9 +15938,7 @@ var UploadFile = /*#__PURE__*/function (_React$Component) {
           onChange: handleSongFile,
           accept: "audio/mpeg",
           title: ""
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Drag and drop your tracks & albums here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          onClick: handleFileClick
-        }, "or choose files to upload", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Drag and drop your tracks & albums here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "or choose files to upload", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
           type: "file",
           className: "file-upload-button",
           onClick: function onClick(e) {
