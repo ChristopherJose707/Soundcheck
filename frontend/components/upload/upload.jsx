@@ -84,21 +84,26 @@ class Upload extends React.Component {
 
     handlePhotoFile(e) {
         e.preventDefault();
-        const file = e.target.files[0];
+        const file = e.currentTarget.files[0];
+        const fileReader = new FileReader();
+        
+        fileReader.onloadend = () => {
+            this.setState({
+                photoFile: file,
+                photoUrl: fileReader.result
+            })
+        }
 
-        if (file) {
-            const fileReader = new FileReader();
+        if(file) {
             fileReader.readAsDataURL(file);
-            fileReader.onloadend = () => {
-                this.setState({
-                    photoFile: file,
-                    photoUrl: fileReader.result
-                })
-            }
         }
     }
 
+    
+
     render() {
+            const photoPreview = this.props.photoUrl ? 
+            <img className="upload-photo-preview" src={photoUrl} /> : null;
         return (
             <div>
                 <NavbarContainer/>
@@ -116,7 +121,6 @@ class Upload extends React.Component {
                             Creators on SoundCheck</li>
                         </div>
                     </div>
-
                     <UploadFile 
                         stepNumber={this.state.stepNumber} 
                         handleSongFile={this.handleSongFile}

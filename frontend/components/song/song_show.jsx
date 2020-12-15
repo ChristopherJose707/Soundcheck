@@ -15,6 +15,7 @@ class SongShow extends React.Component {
         this.handleFileClick = this.handleFileClick.bind(this);
         this.handlePhotoFile = this.handlePhotoFile.bind(this);
         this.handleDropdown = this.handleDropdown.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount() {
@@ -71,7 +72,7 @@ class SongShow extends React.Component {
             </button> ;
 
         const deleteButton = (song.artist !== currentUser.display_name) ? null 
-            : <button className="song-delete" onClick={() => handleDelete()}>Delete Track</button>
+            : <button className="song-delete" onClick={() => this.handleDelete()}>Delete Track</button>
 
         return (
             <div className="song-show-page">

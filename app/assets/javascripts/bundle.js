@@ -13969,6 +13969,11 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "handleDropdown",
+    value: function handleDropdown() {
+      document.getElementById("navbar-ellipsis-id").classList.toggle("show");
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this6 = this;
@@ -14024,6 +14029,11 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         className: "option-dropdown-links",
         icon: ['fab', 'soundcloud']
       }), "SoundCloud"));
+      var signOutButton = this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: function onClick() {
+          return _this6.props.logout();
+        }
+      }, "Sign Out") : null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
         className: "navbar-parent"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -14068,7 +14078,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         className: "navbar-upload-link",
         to: "/upload"
       }, "Upload")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "navbar-right-user ".concat(this.state.showUserMenu ? "black" : "")
+        className: "navbar-right-user navbar-user-dropdown ".concat(this.state.showUserMenu ? "black" : "")
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, this.props.currentUser.profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         className: "profile-pic",
         src: this.props.currentUser.profilePicture
@@ -14079,13 +14089,35 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         icon: "angle-down"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         className: "user-dropdown-li"
-      }, this.state.showUserMenu ? dropdown : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Icon1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Icon2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "navbar-options",
-        onClick: this.showOptionMenu
+      }, this.state.showUserMenu ? dropdown : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Icon1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Icon2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "navbar-ellipsis-dropdown"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "navbar-options nav-dropbtn",
+        onClick: function onClick() {
+          return _this6.handleDropdown();
+        }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         className: "navbar-ellipsis",
         icon: "ellipsis-h"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, this.state.showOptionMenu ? signoutOrLinks : null))));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+        id: "navbar-ellipsis-id",
+        className: "navbar-ellipsis-content"
+      }, signOutButton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        href: "google.com"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+        className: "option-dropdown-links",
+        icon: ['fab', 'google']
+      }), "Google"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        href: "facebook.com"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+        className: "option-dropdown-links",
+        icon: ['fab', 'facebook']
+      }), "Facebook"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        href: "soundcloud.com"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+        className: "option-dropdown-links",
+        icon: ['fab', 'soundcloud']
+      }), "SoundCloud"))))));
     }
   }]);
 
@@ -15097,6 +15129,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
     _this.handleFileClick = _this.handleFileClick.bind(_assertThisInitialized(_this));
     _this.handlePhotoFile = _this.handlePhotoFile.bind(_assertThisInitialized(_this));
     _this.handleDropdown = _this.handleDropdown.bind(_assertThisInitialized(_this));
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -15178,7 +15211,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       var deleteButton = song.artist !== currentUser.display_name ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "song-delete",
         onClick: function onClick() {
-          return handleDelete();
+          return _this2.handleDelete();
         }
       }, "Delete Track");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -15567,23 +15600,27 @@ var Upload = /*#__PURE__*/function (_React$Component) {
       var _this4 = this;
 
       e.preventDefault();
-      var file = e.target.files[0];
+      var file = e.currentTarget.files[0];
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        _this4.setState({
+          photoFile: file,
+          photoUrl: fileReader.result
+        });
+      };
 
       if (file) {
-        var fileReader = new FileReader();
         fileReader.readAsDataURL(file);
-
-        fileReader.onloadend = function () {
-          _this4.setState({
-            photoFile: file,
-            photoUrl: fileReader.result
-          });
-        };
       }
     }
   }, {
     key: "render",
     value: function render() {
+      var photoPreview = this.props.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "upload-photo-preview",
+        src: photoUrl
+      }) : null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "upload-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -15708,7 +15745,15 @@ var UploadDetails = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, UploadDetails);
 
     return _super.call(this, props);
-  }
+  } // handlePreview() {
+  //     const file = e.currentTarget.files[0];
+  //     const fileReader = new FileReader();
+  //     fileReader.onloadend = () => {
+  //         this.setState({fileReader.result})
+  //     };
+  //     fileReader.readAsDataURL();
+  // }
+
 
   _createClass(UploadDetails, [{
     key: "render",

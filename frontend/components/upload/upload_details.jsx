@@ -5,12 +5,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 class UploadDetails extends React.Component {
     constructor(props) {
         super(props)
+
     }
 
+    // handlePreview() {
+    //     const file = e.currentTarget.files[0];
+    //     const fileReader = new FileReader();
+
+    //     fileReader.onloadend = () => {
+    //         this.setState({fileReader.result})
+    //     };
+
+    //     fileReader.readAsDataURL();
+    // }
+
     render() {
+       
         const { stepNumber, title, handleInput, cancel, handleSubmit,
                  handleFileClick, handlePhotoFile, photoUrl } = this.props;
-        
         const photoPreview = this.props.photoUrl ? 
             <img className="upload-photo-preview" src={photoUrl} /> : null;
 
