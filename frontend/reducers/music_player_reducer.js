@@ -27,6 +27,7 @@ const musicPlayerReducer = (oldState = defaultState, action) => {
             songs.forEach(song => {
                 nextState.randomSongs.push(song.id)
             })
+            return nextState;
         case PLAY_SONG:
             nextState.playing = true;
             return nextState;

@@ -11,7 +11,7 @@ import {fetchSongs} from '../../actions/song_actions';
 const mapStateToProps = state => {
     return ({
         songs: state.entities.songs,
-        currentSong: null,
+        currentSong: state.entities.songs[state.ui.musicPlayer.currentSongId],
         playing: state.ui.musicPlayer.playing,
         randomSongs: state.ui.musicPlayer.randomSongs
     })
