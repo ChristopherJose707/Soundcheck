@@ -1,6 +1,59 @@
 .upload-page {
-  min-width: 1240px;
-  width: 1180px;
-  height: 1140px;
-  margin-top: 46px; 
+  width: 1080px;
+  height: 1141px;
+  margin-right: auto;
+  margin-left: auto;
+  font-family: 'Open Sans', sans-serif;
+  background: rgb(255, 255, 255)
 }
+
+.upload-top-div {
+  display:block;
+  padding-top:50px;
+}
+.upload-header {
+  width: 1080px;
+  height: 49px;
+}
+
+.upload-header-content{
+  border-bottom: 1px solid #cacaca;
+  list-style-type: none;
+  height: 48px;
+  font-size: 14px;
+}
+
+.upload-header-li {
+  float: left;
+  // display: flex;
+  cursor: pointer;
+  padding-top: 15px;
+  margin: 0 12px -1px;
+}
+
+.upload-header-content li:last-child {
+  float: right;
+  padding-top: 15px;
+  padding-right: 25px;
+}
+
+.upload-header-logo {
+  padding-right: 6px;
+
+}
+
+.upload-main {
+  width: 800px;
+  height: 800px;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
+
+.upload-background {
+  display: block;
+  width: 800px;
+  height: 90px;
+}
+
+

@@ -53,6 +53,11 @@ class Navbar extends React.Component {
         }
     };
 
+    handleDropdown() {
+        document.getElementById("navbar-ellipsis-id").classList.toggle("show")
+    }
+
+
     render() {
         
         const dropdown =   
@@ -71,8 +76,7 @@ class Navbar extends React.Component {
         const signoutOrLinks = this.props.currentUser ? 
                 <div className="option-dropdown" 
                     ref={(element) => {this.dropdownMenu = element}}>
-                    <button onClick={() => this.props.logout()}>
-                        Sign Out</button> 
+                    <button onClick={() => this.props.logout()}>Sign Out</button> 
                 </div> 
         :        <span className="option-dropdown" 
                     ref={(element) => {this.dropdownMenu = element}}>
@@ -93,6 +97,8 @@ class Navbar extends React.Component {
                     </a>
                 </span>
 
+        const signOutButton = this.props.currentUser ?  
+        <button onClick={() => this.props.logout()}>Sign Out</button> : null;
 
         return (
             <nav className="navbar-parent">
@@ -112,22 +118,40 @@ class Navbar extends React.Component {
                     <ul className="navbar-right-links">
                         <li className="upgrade">Upgrade</li>
                         <li><Link className="navbar-upload-link" to="/upload">Upload</Link></li>
-                        <li>{this.props.currentUser.profilePicture ? 
-                        <img className="profile-pic" src={this.props.currentUser.profilePicture} /> : null}</li>
-                        <li><p className="navbar-display-name" onClick={this.showUserMenu}> {userDisplayName} <FontAwesomeIcon icon="angle-down" /></p></li>
-                        <li className="user-dropdown-li" tabIndex="1">{this.state.showUserMenu ? dropdown : null}</li>
+                        <div className={`navbar-right-user navbar-user-dropdown ${this.state.showUserMenu ? "black" : "" }`}>
+                            <li>{this.props.currentUser.profilePicture ? 
+                                <img className="profile-pic" src={this.props.currentUser.profilePicture} /> : null}
+                            </li>
+                            <li><p className={`navbar-display-name ${this.state.showUserMenu ? "black" : "" }`} onClick={this.showUserMenu}> {userDisplayName} <FontAwesomeIcon icon="angle-down" /></p></li>
+                            <li className="user-dropdown-li" >{this.state.showUserMenu ? dropdown : null}</li>
+                        </div>
                         <li>Icon1</li>
                         <li>Icon2</li>
-                        <li><button className="navbar-options" onClick={this.showOptionMenu}>
+                        <div className="navbar-ellipsis-dropdown">
+                            <button className="navbar-options nav-dropbtn" onClick={() => this.handleDropdown()}>
+                                <FontAwesomeIcon className="navbar-ellipsis" icon="ellipsis-h" />
+                            </button>
+                            <ul id="navbar-ellipsis-id" className="navbar-ellipsis-content">
+                                {signOutButton}
+                                {/* <a href="soundcloud.com">SoundCloud</a>
+                                <a href="soundcloud.com">Google</a>
+                                <a href="soundcloud.com">Facebook</a> */}
+
+                            </ul>
+                        </div>
+                        {/* <li className="navbar-ellipsis"><button className="navbar-options" onClick={this.showOptionMenu}>
                             <FontAwesomeIcon className="navbar-ellipsis" icon="ellipsis-h" />
-                        </button></li>
-                        <li>{ this.state.showOptionMenu ? (signoutOrLinks) : (null) }</li>
+                        </button></li> */}
+                        {/* <li>{ this.state.showOptionMenu ? (signoutOrLinks) : (null) }</li> */}
                     </ul>
                 </div>
             </nav>
 
         )
         };
+
+        
     }
 
 export default Navbar;
+

@@ -84,63 +84,68 @@ class Upload extends React.Component {
 
     handlePhotoFile(e) {
         e.preventDefault();
-        const file = e.target.files[0];
+        const file = e.currentTarget.files[0];
+        const fileReader = new FileReader();
+        
+        fileReader.onloadend = () => {
+            this.setState({
+                photoFile: file,
+                photoUrl: fileReader.result
+            })
+        }
 
-        if (file) {
-            const fileReader = new FileReader();
+        if(file) {
             fileReader.readAsDataURL(file);
-            fileReader.onloadend = () => {
-                this.setState({
-                    photoFile: file,
-                    photoUrl: fileReader.result
-                })
-            }
         }
     }
 
+    
+
     render() {
+            const photoPreview = this.props.photoUrl ? 
+            <img className="upload-photo-preview" src={photoUrl} /> : null;
         return (
             <div>
                 <NavbarContainer/>
-                
                 <div className="upload-page">
+                <div className="upload-top-div"></div>
                     <div className="upload-header">
-                        <div className="upload-header-left">
-                            <li>Upload</li>
-                            <li>Mastering</li>
-                            <li>Pro Plans</li>
-                        </div>
-                        <div className="uploader-header-right">
+                        <ul className="upload-header-content">
+                            <li className="upload-header-li">Upload</li>
+                            <li className="upload-header-li">Mastering</li>
+                            <li className="upload-header-li">Pro Plans</li>
                             <li>
-                            <FontAwesomeIcon icon='external-link-alt' />
+                            <FontAwesomeIcon className="upload-header-logo" icon='external-link-alt' />
                             Creators on SoundCheck</li>
-                        </div>
+                        </ul>
                     </div>
+                    <div className="upload-main">
+                        <div className="upload-backround"></div>
+                        <UploadFile 
+                            stepNumber={this.state.stepNumber} 
+                            handleSongFile={this.handleSongFile}
+                            handleFileClick={this.handleFileClick}
+                        />
 
-                    <UploadFile 
-                        stepNumber={this.state.stepNumber} 
-                        handleSongFile={this.handleSongFile}
-                        handleFileClick={this.handleFileClick}
-                    />
+                        <UploadDetails 
+                            stepNumber={this.state.stepNumber}
+                            title={this.state.title}
+                            handleInput={this.handleInput}
+                            handleSubmit={this.handleSubmit}
+                            handleFileClick={this.handleFileClick}
+                            handlePhotoFile={this.handlePhotoFile}
+                            photoUrl={this.state.photoUrl}
+                        />
 
-                    <UploadDetails 
-                        stepNumber={this.state.stepNumber}
-                        title={this.state.title}
-                        handleInput={this.handleInput}
-                        handleSubmit={this.handleSubmit}
-                        handleFileClick={this.handleFileClick}
-                        handlePhotoFile={this.handlePhotoFile}
-                        photoUrl={this.state.photoUrl}
-                    />
-
-                    <UploadSuccess 
-                        stepNumber={this.state.stepNumber}
-                        songId={this.state.songId}
-                        artist={this.props.currentUser.display_name}
-                        title={this.state.title}
-                        description={this.state.description}
-                        songUrl={this.state.songUrl}
-                    />
+                        <UploadSuccess 
+                            stepNumber={this.state.stepNumber}
+                            songId={this.state.songId}
+                            artist={this.props.currentUser.display_name}
+                            title={this.state.title}
+                            description={this.state.description}
+                            songUrl={this.state.songUrl}
+                        />
+                    </div>
                 </div>
             </div>
         

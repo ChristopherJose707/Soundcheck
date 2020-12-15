@@ -6,6 +6,10 @@ class UploadSuccess extends React.Component {
         super(props)
     }
 
+    componentDidMount(){
+        scrollTo(0, 0);
+    }
+
     render() {
         const { stepNumber, songId, artist, title, description, photoUrl } = this.props;
         const photoPreview = this.props.photoUrl ? 
