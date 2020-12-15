@@ -1,0 +1,10 @@
+.music-player {
+    position: fixed;
+    bottom: 0;
+    height: 49px;
+    width: 100%;
+    border-top: 1px solid gray;
+    background-color: lightgray;
+    font-family: sans-serif;
+    z-index: 100
+}

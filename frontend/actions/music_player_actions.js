@@ -26,7 +26,8 @@ export const receiveCurrentSong = (songId) => {
 
 export const receivePreviousSong = (songId) => {
     return ({
-        
+        type: RECEIVE_PREVIOUS_SONG,
+        songId
     })
 }
 

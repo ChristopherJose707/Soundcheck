@@ -9,23 +9,41 @@ import {
 
 const defaultState = {
     playing: false,
-    currentSongId: null,
-    randomSongs: [],
-    previousPlayed: []
+    currentSongId: null, 
+    randomSongs: [], // songId
+    previousPlayed: [] // songId
 }
 
 const musicPlayerReducer = (oldState = defaultState, action) => {
     Object.freeze(oldState);
-    nextState = Object.assign({}. oldState)
+    let nextState = Object.assign({}, oldState);
     switch(action.type) {
+        case RECEIVE_RANDOM_SONGS: 
+            const songs = Object.values(action.songs);
+            for(let i = 0; i < songs.length - 1; i++) {
+                let ranNum = Math.floor(Math.random() * songs.length);
+                [songs[i], songs[ranNum]] = [songs[ranNum], songs[i]]
+            };
+            songs.forEach(song => {
+                nextState.randomSongs.push(song.id)
+            })
         case PLAY_SONG:
-            return newState.playing = true;
+            nextState.playing = true;
+            return nextState;
         case PAUSE_SONG:
-            return newState.playing = false;
+            nextState.playing = false;
+            return nextState;
         case RECEIVE_CURRENT_SONG:
-            return nextState.currentSongId = action.songId;
+            nextState.currentSongId = action.songId;
+            return nextState;
         case RECEIVE_PREVIOUS_SONG:
-            return 
+            if (!nextState.previousPlayed.includes(action.songId)) {
+                nextState.previousPlayed.push(action.songId)
+            };
+            return nextState;
+        case RECEIVE_NEXT_SONG: 
+            nextState.previousPlayed.unshift(action.songId);
+            return nextState;
         default:
             return oldState;
     }

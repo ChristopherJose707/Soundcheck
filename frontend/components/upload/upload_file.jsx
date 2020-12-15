@@ -4,7 +4,7 @@ class UploadFile extends React.Component {
     constructor(props) {
         super(props)
     }
-    // <button onClick={handleFileClick}></button>
+
    render() {
        const {stepNumber, handleSongFile, handleFileClick} = this.props;
 
@@ -13,15 +13,8 @@ class UploadFile extends React.Component {
                <div className="upload-file-form">
                     <div className="upload-file-main">
                         <div className="upload-file-content">
-                            <input type="file"
-                                className="file-drop"
-                                onChange={handleSongFile}
-                                accept="audio/mpeg"
-                                title=""
-                            />
-                            <h2>Drag and drop your tracks & albums here</h2>
+                                <h1>What files would you like to upload?</h1>
                             <button >
-                                or choose files to upload 
                                 <input type="file" 
                                     className="file-upload-button"
                                     onClick={e => e.stopPropagation()}
