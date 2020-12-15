@@ -8,13 +8,12 @@ class Discover extends React.Component {
     }
 
     render() {
-        // const logoutButton = this.props.currentUser ? 
-        //     <button onClick={this.props.logout}>Logout</button> : ""
+        
         
         return (
             <div className="discover">
                 <NavbarContainer  />
-                {/* {logoutButton} */}
+                <div className="discover-top"></div>
                 <h1>TOP OF discover page</h1>
                
             </div>

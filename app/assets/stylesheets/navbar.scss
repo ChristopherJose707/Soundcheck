@@ -217,6 +217,9 @@ ul {
     height: auto;
     width: 140px;
     flex-direction: column;
+    border-right: 1px solid gray;
+    border-left: 1px solid gray;
+    border-bottom: 1px solid gray;
 }
 
 .user-dropdown-content a {
@@ -260,5 +263,8 @@ navbar-ellipsis-content button {
     background: transparent;
     border: none;
     color: gray;
+    border-right: 1px solid gray;
+    border-left: 1px solid gray;
+    border-bottom: 1px solid gray;
 }
 
