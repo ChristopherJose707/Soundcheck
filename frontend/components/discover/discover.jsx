@@ -9,10 +9,9 @@ class Discover extends React.Component {
 
     render() {
         
-        
         return (
             <div className="discover">
-                <NavbarContainer  />
+                <NavbarContainer path={this.props.path} />
                 <div className="discover-top"></div>
                 <h1>TOP OF discover page</h1>
                

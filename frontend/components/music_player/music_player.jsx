@@ -52,18 +52,18 @@ class MusicPlayer extends React.Component {
         this.setState({elapsedTime: 0})
     }
 
-    handleSkip(e) {
+    handleSkip(e) { // Song skimming on song scrollbar
         const player = document.getElementById("audio");
         player.currentTime = e.target.value;
         this.setState({elapsedTime: e.target.value})
     }
 
-    handleMetaData() { 
+    handleMetaData() { // Set duration once song loads
         const player = document.getElementById("audio");
         this.setState({songDuration: player.duration})
     }
 
-    handleTimeElapsed() {
+    handleTimeElapsed() { 
         const player = document.getElementById("audio");
         const scroll = document.getElementById("scrollbar")
         
@@ -90,7 +90,7 @@ class MusicPlayer extends React.Component {
         }
     }
 
-    handleBack(){
+    handleBack(){ // Play previous played or start song at 0seconds
         const player = document.getElementById("audio");
         if(player.currentTime < 6 && this.props.played.length > 0) {
             this.props.receiveNextSong(this.props.currentSong.id);
@@ -148,50 +148,51 @@ class MusicPlayer extends React.Component {
         }
        
         const musicPlayer =  currentSong ?
-
-        <div className="music-player">
-            <div className="player-buttons">
-                <button className="player-back" onClick={this.handleBack}><FontAwesomeIcon icon="step-backward"/></button>
-                <button className="player-play" onClick={this.handlePlay}>{ playing ? <FontAwesomeIcon icon="pause" /> : <FontAwesomeIcon icon="play"/>}</button>
-                <button className="player-next" onClick={this.handleNext}><FontAwesomeIcon icon="step-forward"/></button>
-            </div>
-            <div className="time-scroll">
-                <p className="current-song-time">{formatTime(this.state.elapsedTime)} </p>
-                <input id="scrollbar" 
-                    className="scrollbar" 
-                    type="range" 
-                    min="0" 
-                    max={this.state.songDuration}
-                    onInput={this.handleSkip}
-                    />
-                <p className="total-song-time">{formatTime(this.state.songDuration)}</p>
-            </div>
-            <div className="volume"
-                onMouseEnter={() => this.setState({hoverVolume: true})}
-                onMouseLeave={() => this.setState({hoverVolume: false})}>
-                <button>
-                    {this.state.hoverVolume ?
-                        <div className="volume-slider" onMouseEnter={() => this.setState({hoverVolume: true})}>
-                            <input type="range"
-                                id="volume"
-                                className="volume-slider-input"
-                                min="0.0"
-                                defaultValue={this.state.volume * 1000}
-                                max="1000.0"
-                                onChange={this.handleVolume}
-                            />
-                        </div> : null
-                    }
-                    {volumeIcon}
-                </button>
-            </div>
-            <div className="player-right">
-                <Link className="player-art" to={`/song/${currentSong.id}`}>
-                    {currentSong.songPhoto ? <img src={currentSong.songPhoto}/> : null}
-                </Link>
-                <div className="player-title-artist">
-                    <Link className="player-artist" to={`/users/${currentSong.user_id}`}>{currentSong.artist}</Link>
-                    <Link className="player-title" to={`/song/${currentSong.id}`}>{currentSong.title}</Link>
+        <div className="music-player-parent">
+            <div className="music-player">
+                <div className="player-buttons">
+                    <button className="player-back" onClick={this.handleBack}><FontAwesomeIcon icon="step-backward"/></button>
+                    <button className="player-play" onClick={this.handlePlay}>{ playing ? <FontAwesomeIcon icon="pause" /> : <FontAwesomeIcon icon="play"/>}</button>
+                    <button className="player-next" onClick={this.handleNext}><FontAwesomeIcon icon="step-forward"/></button>
+                </div>
+                <div className="time-scroll">
+                    <p className="current-song-time">{formatTime(this.state.elapsedTime)} </p>
+                    <input id="scrollbar" 
+                        className="scrollbar" 
+                        type="range" 
+                        min="0" 
+                        max={this.state.songDuration}
+                        onInput={this.handleSkip}
+                        />
+                    <p className="total-song-time">{formatTime(this.state.songDuration)}</p>
+                </div>
+                <div className="volume"
+                    onMouseEnter={() => this.setState({hoverVolume: true})}
+                    onMouseLeave={() => this.setState({hoverVolume: false})}>
+                    <button>
+                        {this.state.hoverVolume ?
+                            <div className="volume-slider" onMouseEnter={() => this.setState({hoverVolume: true})}>
+                                <input type="range"
+                                    id="volume"
+                                    className="volume-slider-input"
+                                    min="0.0"
+                                    defaultValue={this.state.volume * 1000}
+                                    max="1000.0"
+                                    onChange={this.handleVolume}
+                                />
+                            </div> : null
+                        }
+                        {volumeIcon}
+                    </button>
+                </div>
+                <div className="player-right">
+                    <Link className="player-art" to={`/song/${currentSong.id}`}>
+                        {currentSong.songPhoto ? <img src={currentSong.songPhoto}/> : null}
+                    </Link>
+                    <div className="player-title-artist">
+                        <Link className="player-artist" to={`/users/${currentSong.user_id}`}>{currentSong.artist}</Link>
+                        <Link className="player-title" to={`/song/${currentSong.id}`}>{currentSong.title}</Link>
+                    </div>
                 </div>
             </div>
         </div>

@@ -105,9 +105,9 @@ class Upload extends React.Component {
                 <div className="upload-top-div"></div>
                     <div className="upload-header">
                         <ul className="upload-header-content">
-                            <li className="upload-header-li">Upload</li>
-                            <li className="upload-header-li">Mastering</li>
-                            <li className="upload-header-li">Pro Plans</li>
+                            <li id="upload-header-text" className="upload-header-li">Upload</li>
+                            <li id="strike" className="upload-header-li">Mastering</li>
+                            <li id="strike" className="upload-header-li">Pro Plans</li>
                             <li>
                             <FontAwesomeIcon className="upload-header-logo" icon='external-link-alt' />
                             Creators on SoundCheck</li>

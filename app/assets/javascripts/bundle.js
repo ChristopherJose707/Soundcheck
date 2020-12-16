@@ -13698,7 +13698,9 @@ var Discover = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "discover"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, {
+        path: this.props.path
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "discover-top"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "TOP OF discover page"));
     }
@@ -13730,7 +13732,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     users: state.entities.users,
     currentUser: state.entities.users[state.session.id] // songs:    uncomment once songs is added
@@ -13994,6 +13996,7 @@ var MusicPlayer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSkip",
     value: function handleSkip(e) {
+      // Song skimming on song scrollbar
       var player = document.getElementById("audio");
       player.currentTime = e.target.value;
       this.setState({
@@ -14003,6 +14006,7 @@ var MusicPlayer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleMetaData",
     value: function handleMetaData() {
+      // Set duration once song loads
       var player = document.getElementById("audio");
       this.setState({
         songDuration: player.duration
@@ -14053,6 +14057,7 @@ var MusicPlayer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleBack",
     value: function handleBack() {
+      // Play previous played or start song at 0seconds
       var player = document.getElementById("audio");
 
       if (player.currentTime < 6 && this.props.played.length > 0) {
@@ -14140,6 +14145,8 @@ var MusicPlayer = /*#__PURE__*/function (_React$Component) {
       }
 
       var musicPlayer = currentSong ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+        className: "music-player-parent"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         className: "music-player"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         className: "player-buttons"
@@ -14215,7 +14222,7 @@ var MusicPlayer = /*#__PURE__*/function (_React$Component) {
       }, currentSong.artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         className: "player-title",
         to: "/song/".concat(currentSong.id)
-      }, currentSong.title)))) : null;
+      }, currentSong.title))))) : null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("audio", {
         id: "audio",
         src: songUrl,
@@ -14478,6 +14485,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
           return _this6.props.logout();
         }
       }, "Sign Out") : null;
+      console.log(this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
         className: "navbar-parent"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -14495,10 +14503,10 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         className: "navbar-home",
         to: "/discover"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "https://www.linkedin.com/in/christopher-jose-6361aa120/",
-        className: "navbar-linkedin"
-      }, "LinkedIn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        className: "navbar-linkedin ".concat(this.props.match.path === "/discover" ? "black" : ""),
+        to: "/discover"
+      }, "Home")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
         href: "https://github.com/ChristopherJose707",
         className: "navbar-github"
       }, "Github")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
@@ -14518,10 +14526,12 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         className: "navbar-right-links"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         className: "upgrade"
-      }, "Upgrade"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-        className: "navbar-upload-link",
+      }, "Upgrade"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "navbar-upload-div ".concat(this.props.match.path === "/upload" ? "black" : "")
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        className: "navbar-upload-link ".concat(this.props.match.path === "/upload" ? "black" : ""),
         to: "/upload"
-      }, "Upload")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, "Upload"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "navbar-right-user navbar-user-dropdown ".concat(this.state.showUserMenu ? "black" : "")
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, this.props.currentUser.profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         className: "profile-pic",
@@ -14533,7 +14543,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         icon: "angle-down"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         className: "user-dropdown-li"
-      }, this.state.showUserMenu ? dropdown : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Icon1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Icon2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, this.state.showUserMenu ? dropdown : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "navbar-ellipsis-dropdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "navbar-options nav-dropbtn",
@@ -14572,6 +14582,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navbar */ "./frontend/components/navbar/navbar.jsx");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+
 
 
 
@@ -14594,7 +14606,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_navbar__WEBPACK_IMPORTED_MODULE_1__.default));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_navbar__WEBPACK_IMPORTED_MODULE_1__.default)));
 
 /***/ }),
 
@@ -16049,10 +16061,13 @@ var Upload = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         className: "upload-header-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        id: "upload-header-text",
         className: "upload-header-li"
       }, "Upload"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        id: "strike",
         className: "upload-header-li"
       }, "Mastering"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        id: "strike",
         className: "upload-header-li"
       }, "Pro Plans"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
         className: "upload-header-logo",
@@ -16397,16 +16412,18 @@ var UploadFile = /*#__PURE__*/function (_React$Component) {
           className: "upload-file-main"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "upload-file-content"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "What files would you like to upload?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "What song would you like to upload?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+          "class": "custom-upload"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
           type: "file",
-          className: "file-upload-button",
+          className: "file-upload-input",
           onClick: function onClick(e) {
             return e.stopPropagation();
           },
           onChange: handleSongFile,
           accept: "audio/mpeg",
           title: ""
-        })))));
+        }), "Choose a file"))));
       } else {
         return null;
       }

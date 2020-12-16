@@ -48,7 +48,7 @@ ul {
 }
 
 .navbar-upload-link {
-    color: rgb(201, 201, 201)
+    color: rgb(201, 201, 201);
     
 }
 
@@ -64,6 +64,7 @@ ul {
 .upgrade {
     color: #ff5500;
     cursor: pointer;
+    text-decoration: line-through;
 }
 
 .upgrade:hover{
@@ -266,5 +267,17 @@ navbar-ellipsis-content button {
     border-right: 1px solid gray;
     border-left: 1px solid gray;
     border-bottom: 1px solid gray;
+}
+
+.navbar button:focus {
+    outline: 0;
+}
+ 
+.navbar-upload-div {
+    height: 46px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
 }
 
