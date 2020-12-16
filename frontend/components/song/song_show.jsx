@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 import {uploadTime} from '../../util/upload_time_util';
 import PlayContainer from '../music_player/play_container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Play from '../music_player/play';
 
 class SongShow extends React.Component {
     constructor(props) {
@@ -22,7 +21,7 @@ class SongShow extends React.Component {
 
     componentDidMount() {
         this.props.fetchSong(this.props.match.params.songId);
-            
+        scrollTo(0, 0)
     }
 
     handleFileClick() {
@@ -60,6 +59,10 @@ class SongShow extends React.Component {
         const songPhoto = song.songPhoto ? 
             <img className="song-show-photo" src={song.songPhoto} /> : null
 
+        const artistPhoto = users[song.user_id].profilePicture ?
+            <img className="song-show-photo-artist" src={users[song.user_id].profilePicture} /> : null
+
+
         // Conditional Buttons
         const uploadPhotoButton = (song.artist !== currentUser.display_name) ? 
             null : !song.songPhoto && song.artist === currentUser.display_name ? 
@@ -75,7 +78,7 @@ class SongShow extends React.Component {
 
         const deleteButton = (song.artist !== currentUser.display_name) ? null 
             : <button className="song-delete" onClick={() => this.handleDelete()}>Delete Track</button>
-
+        console.log(this.props)
         return (
             <div className="song-show-page">
                 <NavbarContainer />
@@ -98,6 +101,7 @@ class SongShow extends React.Component {
                         </ul>
                     </span>
                 </div>
+                {artistPhoto}
             </div>
             
         )
