@@ -90,13 +90,11 @@ class MusicPlayer extends React.Component {
 
     handleBack(){
         const player = document.getElementById("audio");
-
         if(player.currentTime < 6 && this.props.played.length > 0) {
             this.props.receiveNextSong(this.props.currentSong.id);
-            this.props.receiveCurrentSong(this.props.played.pop().id);
-            this.props.playSong();
+            this.props.receiveCurrentSong(this.props.played.pop());
             setTimeout(() => {player.play(), 100})
-            this.setState({elapsedTime: 0})
+            this.setState({elapsedTime: 0});
         } else {
             player.currentTime = 0;
             this.props.playSong();
@@ -118,7 +116,7 @@ class MusicPlayer extends React.Component {
 
     handleNext(){ // Play next song on button click
         const player = document.getElementById("audio");
-        this.props.receivePreviousSong(this.props.currentSong);
+        this.props.receivePreviousSong(this.props.currentSong.id);
         this.props.receiveCurrentSong(this.props.randomSongs.shift());
         player.currentTime = 0;
         this.props.playSong();
@@ -130,7 +128,7 @@ class MusicPlayer extends React.Component {
         if(!this.props.songs || !this.props.randomSongs) {
             return null
         }
-
+        
         const {currentSong, playing} = this.props;
         let songUrl;
         let volumeIcon;
@@ -197,6 +195,8 @@ class MusicPlayer extends React.Component {
         </div>
 
         : null ;
+
+        
         return (
             <div>
                 <audio id="audio" 

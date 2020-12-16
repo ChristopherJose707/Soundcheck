@@ -21,7 +21,7 @@ const musicPlayerReducer = (oldState = defaultState, action) => {
         case RECEIVE_RANDOM_SONGS: 
             const songs = Object.values(action.songs);
             for(let i = 0; i < songs.length - 1; i++) {
-                let ranNum = Math.floor(Math.random() * songs.length);
+                let ranNum = Math.floor(Math.random() * (i + 1));
                 [songs[i], songs[ranNum]] = [songs[ranNum], songs[i]]
             };
             songs.forEach(song => {
@@ -43,7 +43,7 @@ const musicPlayerReducer = (oldState = defaultState, action) => {
             };
             return nextState;
         case RECEIVE_NEXT_SONG: 
-            nextState.previousPlayed.unshift(action.songId);
+            nextState.randomSongs.unshift(action.songId);
             return nextState;
         default:
             return oldState;

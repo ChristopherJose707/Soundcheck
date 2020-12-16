@@ -14051,8 +14051,7 @@ var MusicPlayer = /*#__PURE__*/function (_React$Component) {
 
       if (player.currentTime < 6 && this.props.played.length > 0) {
         this.props.receiveNextSong(this.props.currentSong.id);
-        this.props.receiveCurrentSong(this.props.played.pop().id);
-        this.props.playSong();
+        this.props.receiveCurrentSong(this.props.played.pop());
         setTimeout(function () {
           player.play(), 100;
         });
@@ -14086,7 +14085,7 @@ var MusicPlayer = /*#__PURE__*/function (_React$Component) {
     value: function handleNext() {
       // Play next song on button click
       var player = document.getElementById("audio");
-      this.props.receivePreviousSong(this.props.currentSong);
+      this.props.receivePreviousSong(this.props.currentSong.id);
       this.props.receiveCurrentSong(this.props.randomSongs.shift());
       player.currentTime = 0;
       this.props.playSong();
@@ -16692,7 +16691,7 @@ var musicPlayerReducer = function musicPlayerReducer() {
       var songs = Object.values(action.songs);
 
       for (var i = 0; i < songs.length - 1; i++) {
-        var ranNum = Math.floor(Math.random() * songs.length);
+        var ranNum = Math.floor(Math.random() * (i + 1));
         var _ref = [songs[ranNum], songs[i]];
         songs[i] = _ref[0];
         songs[ranNum] = _ref[1];
@@ -16725,7 +16724,7 @@ var musicPlayerReducer = function musicPlayerReducer() {
       return nextState;
 
     case _actions_music_player_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_NEXT_SONG:
-      nextState.previousPlayed.unshift(action.songId);
+      nextState.randomSongs.unshift(action.songId);
       return nextState;
 
     default:
