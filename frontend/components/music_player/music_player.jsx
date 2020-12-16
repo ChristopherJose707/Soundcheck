@@ -52,8 +52,10 @@ class MusicPlayer extends React.Component {
         this.setState({elapsedTime: 0})
     }
 
-    handleSkip() {
-
+    handleSkip(e) {
+        const player = document.getElementById("audio");
+        player.currentTime = e.target.value;
+        this.setState({elapsedTime: e.target.value})
     }
 
     handleMetaData() { 

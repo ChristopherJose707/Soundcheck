@@ -13993,7 +13993,13 @@ var MusicPlayer = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleSkip",
-    value: function handleSkip() {}
+    value: function handleSkip(e) {
+      var player = document.getElementById("audio");
+      player.currentTime = e.target.value;
+      this.setState({
+        elapsedTime: e.target.value
+      });
+    }
   }, {
     key: "handleMetaData",
     value: function handleMetaData() {
