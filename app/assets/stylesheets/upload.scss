@@ -17,7 +17,7 @@
 }
 
 .upload-header-content{
-  border-bottom: 1px solid #cacaca;
+  border-bottom: 1px solid #f0efef;
   list-style-type: none;
   height: 48px;
   font-size: 14px;
@@ -30,6 +30,8 @@
   padding-top: 15px;
   margin: 0 12px -1px;
 }
+
+
 
 .upload-header-content li:last-child {
   float: right;
@@ -46,8 +48,10 @@
   width: 800px;
   height: 800px;
   display: flex;
+  flex-direction: column;
+  align-items:center;
   margin: auto;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .upload-background {
@@ -56,4 +60,193 @@
   height: 90px;
 }
 
+#strike {
+  text-decoration: line-through;
+}
 
+#upload-header-text {
+  color: #ff5500;
+  height: 33px;
+  border-bottom: 1px solid #ff5500;
+}
+
+.upload-file-form {
+  width: 800px;
+  height: 800px;
+   -webkit-box-shadow: 0px 0px 5px 1px rgba(235,235,235,1);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(235,235,235,1);
+  box-shadow: 0px 0px 5px 1px rgba(235,235,235,1);
+}
+
+.upload-file-main {
+  display: flex;
+  justify-content: center;
+  height: 300px;
+}
+
+.upload-file-content h1 {
+  font-size: 20px;
+}
+
+.upload-file-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 200px; 
+}
+
+.custom-upload input[type="file"] {
+  display: none;
+}
+
+.custom-upload {
+  border: 1px solid black;
+  display: flex;
+  margin-left: 40px;
+  width: 200px;
+  cursor: pointer;
+  padding: 6px 12px;
+  background: rgb(172,77,0);
+  background: linear-gradient(90deg, rgba(172,77,0,1) 27%, rgba(196,79,0,1) 50%, rgba(221,90,0,1) 73%, rgba(255,85,0,1) 90%);
+  color: white;
+  border-radius: 5px;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.upload-strike {
+  text-decoration: line-through;
+}
+
+.upload-details-main {
+  height: 800px;
+  width: 800px;
+  
+  padding-left: 20px;
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(235,235,235,1);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(235,235,235,1);
+  box-shadow: 0px 0px 5px 1px rgba(235,235,235,1);
+}
+
+.upload-details-header {
+  width: 780px;
+  height: 40px;
+  display: flex;
+  font-size: 24px;
+  align-items: center;
+  font-weight: 400;
+  border-bottom: 1px solid #f0efef;
+}
+
+.upload-details-header li {
+  padding-right: 10px;
+  color: #ff5500;
+}
+
+.song-photo {
+  height: 260px;
+  width: 260px;
+  position: relative;
+  margin: 0;
+  background: rgb(172,77,0);
+  background: linear-gradient(90deg, rgba(172,77,0,1) 27%, rgba(196,79,0,1) 50%, rgba(221,90,0,1) 73%, rgba(255,85,0,1) 90%);
+}
+
+.upload-photo-label {
+  // position: absolute;
+  border: 1px solid black;
+  // display: flex;
+  margin-left: 55px;
+  width: 120px;
+  cursor: pointer;
+  padding: 6px 11px 6px 11px;
+  background: #ff5500;
+  color: white;
+  border-radius: 5px;
+  justify-content: center;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.5); 
+  color: black;
+}
+
+.upload-photo-label:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.upload-photo-label input[type="file"] {
+  display: none;
+}
+
+.upload-photo-preview {
+  height: 260px;
+  width: 260px;
+  z-index: -1;
+}
+
+.upload-details-form {
+  padding-top: 25px;
+  display:flex;
+}
+
+.song-details {
+  padding-left: 20px;
+  padding-top: 10px;
+  font-size: 14px;
+  width: 500px;
+  height: 550px;
+}
+
+.song-details * {
+  display: flex;
+}
+
+.song-title {
+  padding-bottom: 5px;
+}
+
+.song-details input {
+  width: 480px;
+  margin: 0;
+  height: 26px;
+}
+
+.song-details textarea {
+  width: 480px;
+  height: 227px;
+  resize: none;
+  font-family: sans-serif;
+}
+
+.genre {
+  padding-top: 15px;
+  padding-bottom: 4px;
+}
+
+.song-title::after {
+  content: "*";
+  color: #ff5500;
+}
+
+.details-description {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+
+
+.upload-details-footer {
+  display: flex;
+  font-size: 14px;
+  height: 70px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.save-button {
+  margin-right: 10px;
+  margin-left: 10px;
+  padding: 4px 10px;
+  color:white;
+  border-radius: 5px;
+  background-color: #ff5500;
+}

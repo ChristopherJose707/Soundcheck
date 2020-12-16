@@ -99,7 +99,7 @@ class Navbar extends React.Component {
 
         const signOutButton = this.props.currentUser ?  
         <button onClick={() => this.props.logout()}>Sign Out</button> : null;
-
+        console.log(this.props)
         return (
             <nav className="navbar-parent">
                 <div className="navbar">
@@ -107,7 +107,9 @@ class Navbar extends React.Component {
                         <li className="navbar-logo-li"><Link className="navbar-logo" to="/discover">
                             <img className="cloud" src={window.logo}/></Link></li>
                         <li><Link className="navbar-home" to="/discover"></Link></li>
-                        <li><a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"className="navbar-linkedin">LinkedIn</a></li>
+                        <li><Link className={`navbar-linkedin ${this.props.match.path === "/discover" ? "black" : ""}`} to="/discover">Home</Link></li>
+
+                        {/* <li><a href="https://www.linkedin.com/in/christopher-jose-6361aa120/" className="navbar-linkedin">Home</a></li> */}
                         <li><a href="https://github.com/ChristopherJose707"className="navbar-github">Github</a></li>
                         <li><a href="https://developer.mozilla.org/en-US/"className="navbar-mdn">MDN Docs</a></li>
                     </ul>
@@ -117,7 +119,10 @@ class Navbar extends React.Component {
                     </div>
                     <ul className="navbar-right-links">
                         <li className="upgrade">Upgrade</li>
-                        <li><Link className="navbar-upload-link" to="/upload">Upload</Link></li>
+                        <div className={`navbar-upload-div ${this.props.match.path === "/upload" ? "black" : ""}`}>
+                            <li><Link className={`navbar-upload-link ${this.props.match.path === "/upload" ? "black" : ""}`} to="/upload">Upload</Link></li>
+
+                        </div>
                         <div className={`navbar-right-user navbar-user-dropdown ${this.state.showUserMenu ? "black" : "" }`}>
                             <li>{this.props.currentUser.profilePicture ? 
                                 <img className="profile-pic" src={this.props.currentUser.profilePicture} /> : null}
@@ -125,8 +130,6 @@ class Navbar extends React.Component {
                             <li><p className={`navbar-display-name ${this.state.showUserMenu ? "black" : "" }`} onClick={this.showUserMenu}> {userDisplayName} <FontAwesomeIcon icon="angle-down" /></p></li>
                             <li className="user-dropdown-li" >{this.state.showUserMenu ? dropdown : null}</li>
                         </div>
-                        <li>Icon1</li>
-                        <li>Icon2</li>
                         <div className="navbar-ellipsis-dropdown">
                             <button className="navbar-options nav-dropbtn" onClick={() => this.handleDropdown()}>
                                 <FontAwesomeIcon className="navbar-ellipsis" icon="ellipsis-h" />

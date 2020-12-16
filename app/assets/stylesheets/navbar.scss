@@ -48,7 +48,7 @@ ul {
 }
 
 .navbar-upload-link {
-    color: rgb(201, 201, 201)
+    color: rgb(201, 201, 201);
     
 }
 
@@ -58,12 +58,14 @@ ul {
 
 .navbar-logo-li {
     padding: 11px 11px;
-    background-color: #ff5500;
+    background: rgb(167,75,0);
+    background: linear-gradient(45deg, rgba(167,75,0,1) 16%, rgba(196,79,0,1) 35%, rgba(221,90,0,1) 60%, rgba(255,85,0,1) 95%);
 }
 
 .upgrade {
     color: #ff5500;
     cursor: pointer;
+    text-decoration: line-through;
 }
 
 .upgrade:hover{
@@ -266,5 +268,17 @@ navbar-ellipsis-content button {
     border-right: 1px solid gray;
     border-left: 1px solid gray;
     border-bottom: 1px solid gray;
+}
+
+.navbar button:focus {
+    outline: 0;
+}
+ 
+.navbar-upload-div {
+    height: 46px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
 }
 

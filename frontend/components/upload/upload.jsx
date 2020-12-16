@@ -21,12 +21,15 @@ class Upload extends React.Component {
             photoUrl: "" 
         }
 
-        this.handleFileClick = this.handleFileClick.bind(this);
         this.handleSongFile = this.handleSongFile.bind(this);
         this.handleInput = this.handleInput.bind(this);
         this.cancel = this.cancel.bind(this);
         this.handlePhotoFile = this.handlePhotoFile.bind(this);
         this.handleSubmit= this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        scrollTo(0,0)
     }
 
     handleSongFile(e) {
@@ -51,10 +54,6 @@ class Upload extends React.Component {
             songUrl: ""
         })
     }
-
-    handleFileClick() {
-        document.getElementById("file").click();
-    };
 
     handleInput(field) {
         return e => this.setState({[field]: e.target.value})
@@ -102,8 +101,7 @@ class Upload extends React.Component {
     
 
     render() {
-            const photoPreview = this.props.photoUrl ? 
-            <img className="upload-photo-preview" src={photoUrl} /> : null;
+
         return (
             <div>
                 <NavbarContainer/>
@@ -111,20 +109,19 @@ class Upload extends React.Component {
                 <div className="upload-top-div"></div>
                     <div className="upload-header">
                         <ul className="upload-header-content">
-                            <li className="upload-header-li">Upload</li>
-                            <li className="upload-header-li">Mastering</li>
-                            <li className="upload-header-li">Pro Plans</li>
+                            <li id="upload-header-text" className="upload-header-li">Upload</li>
+                            <li id="strike" className="upload-header-li">Mastering</li>
+                            <li id="strike" className="upload-header-li">Pro Plans</li>
                             <li>
                             <FontAwesomeIcon className="upload-header-logo" icon='external-link-alt' />
                             Creators on SoundCheck</li>
                         </ul>
                     </div>
                     <div className="upload-main">
-                        <div className="upload-backround"></div>
+                        <div className="upload-background"></div>
                         <UploadFile 
                             stepNumber={this.state.stepNumber} 
                             handleSongFile={this.handleSongFile}
-                            handleFileClick={this.handleFileClick}
                         />
 
                         <UploadDetails 
@@ -132,7 +129,6 @@ class Upload extends React.Component {
                             title={this.state.title}
                             handleInput={this.handleInput}
                             handleSubmit={this.handleSubmit}
-                            handleFileClick={this.handleFileClick}
                             handlePhotoFile={this.handlePhotoFile}
                             photoUrl={this.state.photoUrl}
                         />
