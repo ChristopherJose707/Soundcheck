@@ -13550,6 +13550,64 @@ var fetchUserSongs = function fetchUserSongs(userId) {
 
 /***/ }),
 
+/***/ "./frontend/actions/user_actions.js":
+/*!******************************************!*
+  !*** ./frontend/actions/user_actions.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_USERS": () => /* binding */ RECEIVE_USERS,
+/* harmony export */   "RECEIVE_USER": () => /* binding */ RECEIVE_USER,
+/* harmony export */   "fetchUsers": () => /* binding */ fetchUsers,
+/* harmony export */   "fetchUser": () => /* binding */ fetchUser,
+/* harmony export */   "updateUser": () => /* binding */ updateUser
+/* harmony export */ });
+/* harmony import */ var _util_user_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user_api */ "./frontend/util/user_api.js");
+
+var RECEIVE_USERS = "RECEIVE_USERS";
+var RECEIVE_USER = "RECEIVE_USER";
+
+var receiveUsers = function receiveUsers(users) {
+  return {
+    type: RECEIVE_USERS,
+    users: users
+  };
+};
+
+var receiveUser = function receiveUser(user) {
+  return {
+    type: RECEIVE_USER,
+    user: user
+  };
+};
+
+var fetchUsers = function fetchUsers() {
+  return function (dispatch) {
+    return _util_user_api__WEBPACK_IMPORTED_MODULE_0__.fetchUsers().then(function (users) {
+      return dispatch(receiveUsers(users));
+    });
+  };
+};
+var fetchUser = function fetchUser(userId) {
+  return function (dispatch) {
+    return _util_user_api__WEBPACK_IMPORTED_MODULE_0__.fetchUser(userId).then(function (user) {
+      return dispatch(receiveUser(user));
+    });
+  };
+};
+var updateUser = function updateUser(userData, id) {
+  return function (dispatch) {
+    return _util_user_api__WEBPACK_IMPORTED_MODULE_0__.updateUser(userData, id).then(function (user) {
+      return dispatch(receiveUser(user));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/components/App.jsx":
 /*!*************************************!*
   !*** ./frontend/components/App.jsx ***!
@@ -13563,13 +13621,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _modal_modal_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal/modal_container */ "./frontend/components/modal/modal_container.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 /* harmony import */ var _splash_splash_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./splash/splash_container */ "./frontend/components/splash/splash_container.js");
 /* harmony import */ var _discover_discover_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./discover/discover_container */ "./frontend/components/discover/discover_container.js");
 /* harmony import */ var _upload_upload_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./upload/upload_container */ "./frontend/components/upload/upload_container.js");
 /* harmony import */ var _song_song_show_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./song/song_show_container */ "./frontend/components/song/song_show_container.js");
 /* harmony import */ var _music_player_music_player_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./music_player/music_player_container */ "./frontend/components/music_player/music_player_container.js");
+/* harmony import */ var _user_show_user_show_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./user_show/user_show_container */ "./frontend/components/user_show/user_show_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -13602,6 +13661,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var App = /*#__PURE__*/function (_React$Component) {
   _inherits(App, _React$Component);
 
@@ -13616,7 +13676,7 @@ var App = /*#__PURE__*/function (_React$Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__.AuthRoute, {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__.AuthRoute, {
         exact: true,
         path: "/",
         component: _splash_splash_container__WEBPACK_IMPORTED_MODULE_3__.default
@@ -13632,6 +13692,10 @@ var App = /*#__PURE__*/function (_React$Component) {
         exact: true,
         path: "/song/:songId",
         component: _song_song_show_container__WEBPACK_IMPORTED_MODULE_6__.default
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__.ProtectedRoute, {
+        exact: true,
+        path: "/user/:userId",
+        component: _user_show_user_show_container__WEBPACK_IMPORTED_MODULE_8__.default
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_music_player_music_player_container__WEBPACK_IMPORTED_MODULE_7__.default, null));
     }
   }]);
@@ -16702,6 +16766,62 @@ var UploadSuccess = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
+/***/ "./frontend/components/user_show/user_show.jsx":
+/*!*****************************************************!*
+  !*** ./frontend/components/user_show/user_show.jsx ***!
+  \*****************************************************/
+/***/ (() => {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/cj/Documents/Soundcheck/frontend/components/user_show/user_show.jsx: Unexpected token (11:8)\n\n\u001b[0m \u001b[90m  9 | \u001b[39m        \u001b[36mreturn\u001b[39m(\u001b[0m\n\u001b[0m \u001b[90m 10 | \u001b[39m            \u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 | \u001b[39m        )\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m    }\u001b[0m\n\u001b[0m \u001b[90m 13 | \u001b[39m}\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 14 | \u001b[39m\u001b[0m\n    at Object._raise (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:748:17)\n    at Object.raiseWithData (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:741:17)\n    at Object.raise (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.unexpected (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:9097:16)\n    at Object.parseParenAndDistinguishExpression (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10746:12)\n    at Object.parseExprAtom (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10443:21)\n    at Object.parseExprAtom (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:4759:20)\n    at Object.parseExprSubscripts (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10122:23)\n    at Object.parseUpdate (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10102:21)\n    at Object.parseMaybeUnary (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10091:17)");
+
+/***/ }),
+
+/***/ "./frontend/components/user_show/user_show_container.js":
+/*!**************************************************************!*
+  !*** ./frontend/components/user_show/user_show_container.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _user_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user_show */ "./frontend/components/user_show/user_show.jsx");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var user = state.entities.users[ownProps.match.params.userId];
+  return {
+    user: user,
+    userSongs: state.entities.songs
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    updateUser: function updateUser(userData, userId) {
+      return dispatch((0,_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__.updateUser)(userData, userId));
+    },
+    fetchUser: function fetchUser(userId) {
+      return dispatch((0,_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__.fetchUser)(userId));
+    },
+    fetchUserSongs: function fetchUserSongs(userId) {
+      return dispatch((0,_actions_song_actions__WEBPACK_IMPORTED_MODULE_3__.fetchUserSongs)(userId));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_user_show__WEBPACK_IMPORTED_MODULE_1__.default));
+
+/***/ }),
+
 /***/ "./frontend/entry.jsx":
 /*!****************************!*
   !*** ./frontend/entry.jsx ***!
@@ -16716,9 +16836,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
-/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 /* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./actions/song_actions */ "./frontend/actions/song_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./actions/user_actions */ "./frontend/actions/user_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -16730,7 +16851,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_5__.library.add(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_7__.fab, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faPlay, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faPause, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faStepForward, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faStepBackward, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faFacebook, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faCamera, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faVolumeUp, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faVolumeDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faVolumeMute, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faExternalLinkAlt, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faGoogle, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faSoundcloud, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faLinkedin, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faGithub, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faUser, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faCaretLeft, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faAngleDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faSearch, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faEllipsisH);
+
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_5__.library.add(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.fab, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faPlay, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faPause, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faStepForward, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faStepBackward, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faFacebook, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faCamera, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faVolumeUp, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faVolumeDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faVolumeMute, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faExternalLinkAlt, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faGoogle, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faSoundcloud, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faLinkedin, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faGithub, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faUser, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faCaretLeft, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faAngleDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faSearch, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faEllipsisH);
 document.addEventListener("DOMContentLoaded", function () {
   var store;
 
@@ -16750,10 +16872,13 @@ document.addEventListener("DOMContentLoaded", function () {
   } //test start
 
 
-  window.removeSong = _actions_song_actions__WEBPACK_IMPORTED_MODULE_6__.removeSong;
-  window.fetchUserSongs = _actions_song_actions__WEBPACK_IMPORTED_MODULE_6__.fetchUserSongs;
-  window.fetchSong = _actions_song_actions__WEBPACK_IMPORTED_MODULE_6__.fetchSong;
-  window.fetchSongs = _actions_song_actions__WEBPACK_IMPORTED_MODULE_6__.fetchSongs;
+  window.fetchUsers = _actions_user_actions__WEBPACK_IMPORTED_MODULE_7__.fetchUsers;
+  window.fetchUser = _actions_user_actions__WEBPACK_IMPORTED_MODULE_7__.fetchUser;
+  window.updateUser = _actions_user_actions__WEBPACK_IMPORTED_MODULE_7__.updateUser; // window.removeSong = removeSong;
+
+  window.fetchUserSongs = _actions_song_actions__WEBPACK_IMPORTED_MODULE_6__.fetchUserSongs; // window.fetchSong = fetchSong;
+  // window.fetchSongs = fetchSongs;
+
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__.logout; //test end
@@ -17121,7 +17246,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -17133,6 +17260,12 @@ var usersReducer = function usersReducer() {
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:
       return Object.assign({}, oldState, _defineProperty({}, action.currentUser.id, action.currentUser));
+
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_USERS:
+      return action.users;
+
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_USER:
+      return Object.assign({}, oldState, _defineProperty({}, action.user.id, action.user));
 
     default:
       return oldState;
@@ -17416,6 +17549,43 @@ var uploadTime = function uploadTime(time) {
   } else {
     return "".concat(secondsAgo, " second ago");
   }
+};
+
+/***/ }),
+
+/***/ "./frontend/util/user_api.js":
+/*!***********************************!*
+  !*** ./frontend/util/user_api.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchUsers": () => /* binding */ fetchUsers,
+/* harmony export */   "fetchUser": () => /* binding */ fetchUser,
+/* harmony export */   "updateUser": () => /* binding */ updateUser
+/* harmony export */ });
+var fetchUsers = function fetchUsers() {
+  return $.ajax({
+    url: "/api/users",
+    method: "GET"
+  });
+};
+var fetchUser = function fetchUser(userId) {
+  return $.ajax({
+    url: "/api/users/".concat(userId),
+    method: "GET"
+  });
+};
+var updateUser = function updateUser(userData, userId) {
+  return $.ajax({
+    url: "/api/users/".concat(userId),
+    method: "PATCH",
+    data: userData // contentType: false,
+    // processData: false
+
+  });
 };
 
 /***/ }),

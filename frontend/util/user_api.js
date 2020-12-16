@@ -1,4 +1,3 @@
-import { $CombinedState } from "redux"
 
 export const fetchUsers = () => {
     return $.ajax({
@@ -14,12 +13,12 @@ export const fetchUser = userId => {
     })
 };
 
-export const updateUser = (userData, id) => {
+export const updateUser = (userData, userId) => {
     return $.ajax({
         url: `/api/users/${userId}`,
         method: "PATCH",
-        data: userData,
-        contentType: false,
-        processData: false
+        data: userData
+        // contentType: false,
+        // processData: false
     })
 }
