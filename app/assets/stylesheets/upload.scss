@@ -92,7 +92,7 @@
   height: 200px; 
 }
 
-input[type="file"] {
+.custom-upload input[type="file"] {
   display: none;
 }
 
@@ -103,11 +103,89 @@ input[type="file"] {
   width: 200px;
   cursor: pointer;
   padding: 6px 12px;
-  background: #ff5500;
+  background: rgb(172,77,0);
+  background: linear-gradient(90deg, rgba(172,77,0,1) 27%, rgba(196,79,0,1) 50%, rgba(221,90,0,1) 73%, rgba(255,85,0,1) 90%);
   color: white;
   border-radius: 5px;
   justify-content: center;
   font-size: 16px;
 }
 
+.upload-strike {
+  text-decoration: line-through;
+}
 
+.upload-details-main {
+  height: 800px;
+  width: 800px;
+  padding-left: 20px;
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(186,186,186,1);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(186,186,186,1);
+  box-shadow: 0px 0px 5px 1px rgba(186,186,186,1);
+}
+
+.upload-details-header {
+  width: 800px;
+  height: 40px;
+  display: flex;
+  font-size: 24px;
+  align-items: center;
+  font-weight: 600;
+  border-bottom: 1px solid #f0efef;
+}
+
+.upload-details-header li {
+  padding-right: 10px;
+  color: #ff5500;
+}
+
+.song-photo {
+  height: 260px;
+  width: 260px;
+  position: relative;
+  margin: 0;
+  background: rgb(172,77,0);
+  background: linear-gradient(90deg, rgba(172,77,0,1) 27%, rgba(196,79,0,1) 50%, rgba(221,90,0,1) 73%, rgba(255,85,0,1) 90%);
+}
+
+.upload-photo-label {
+  position: absolute;
+  border: 1px solid black;
+  display: flex;
+  margin-left: 55px;
+  width: 120px;
+  cursor: pointer;
+  margin-top: 220px;
+  padding: 6px 11px 6px 11px;
+  background: #ff5500;
+  color: white;
+  border-radius: 5px;
+  justify-content: center;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.5); 
+  color: black;
+}
+
+.upload-photo-label:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.upload-photo-label input[type="file"] {
+  display: none;
+}
+
+.upload-photo-preview {
+  height: 260px;
+  width: 260px;
+  position: fixed;
+}
+
+.upload-details-form {
+  padding-top: 25px;
+}
+
+.song-details {
+  position: absolute;
+  top: 275px;
+  right: 350px;
+}

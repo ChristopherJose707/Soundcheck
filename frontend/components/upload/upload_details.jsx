@@ -28,16 +28,16 @@ class UploadDetails extends React.Component {
             <img className="upload-photo-preview" src={photoUrl} /> : null;
 
         const uploadPhotoButton = !this.props.photoUrl ? 
-        <button className="upload-photo">
+        <label className="upload-photo-label">
             <FontAwesomeIcon icon="camera" />
             Upload Image
             <input type="file" id="file" accept="image/*" onChange={handlePhotoFile}/>
-        </button> 
-        : <button className="upload-photo">
+        </label> 
+        : <label className="upload-photo-label">
             <FontAwesomeIcon icon="camera" />
             Update Image
             <input type="file" id="file" accept="image/*" onChange={handlePhotoFile}/>
-        </button>
+        </label>
 
         const newTitle = title.split(".")[0];
 
@@ -45,9 +45,11 @@ class UploadDetails extends React.Component {
 
             return (
                 <div className="upload-details-main">
-                    <div className="upload-details-header">
+                    <ul className="upload-details-header">
                         <li>Basic Info</li>
-                    </div>
+                        <li className="upload-strike">Meta Data</li>
+                        <li className="upload-strike">Permissions</li>
+                    </ul>
                     <div className="upload-details-form">
                         <div className="song-photo">
                             {photoPreview}
@@ -60,48 +62,48 @@ class UploadDetails extends React.Component {
                                 onChange={handleInput("title")}
                                 placeholder="Name your track"
                             />
-                        <p>Genre</p>
-                        <div>
-                            <select onChange={handleInput("genre")}>
-                                <option value="">None</option>
-                                <option value="Custom">Custom</option>
-                                <option value="Alternative Rock">Alternative Rock</option>
-                                <option value="Ambient">Ambient</option>
-                                <option value="Classical">Classical</option>
-                                <option value="Country">Country</option>
-                                <option value="Dance & EDM">Dance & EDM</option>
-                                <option value="Dancehall">Dancehall</option>
-                                <option value="Deephall">Deephall</option>
-                                <option value="Deep House">Deep House</option>
-                                <option value="Disco">Disco</option>
-                                <option value="Drum & Bass">Drum & Bass</option>
-                                <option value="Dubstep">Dubstep</option>
-                                <option value="Electronic">Electronic</option>
-                                <option value="Folk & Singer-Songwriter">Folk & Singer-Songwriter</option>
-                                <option value="Hip-hop & Rap">Hip-hop & Rap</option>
-                                <option value="House">House</option>
-                                <option value="Indie">Indie</option>
-                                <option value="Jazz & Blues">Jazz & Blues</option>
-                                <option value="Latin">Latin</option>
-                                <option value="Metal">Metal</option>
-                                <option value="Piano">Piano</option>
-                                <option value="Pop">Pop</option>
-                                <option value="R&B & Soul">R&B & Soul</option>
-                                <option value="Reggae">Reggae</option>
-                                <option value="Reggaeton">Reggaeton</option>
-                                <option value="Rock">Rock</option>
-                                <option value="Soundtrack">Soundtrack</option>
-                                <option value="Techno">Techno</option>
-                                <option value="Trance">Trance</option>
-                                <option value="Trap">Trap</option>
-                                <option value="Triphop">Triphop</option>
-                                <option value="World">World</option>
-                            </select>
+                            <p>Genre</p>
+                            <div>
+                                <select onChange={handleInput("genre")}>
+                                    <option value="">None</option>
+                                    <option value="Custom">Custom</option>
+                                    <option value="Alternative Rock">Alternative Rock</option>
+                                    <option value="Ambient">Ambient</option>
+                                    <option value="Classical">Classical</option>
+                                    <option value="Country">Country</option>
+                                    <option value="Dance & EDM">Dance & EDM</option>
+                                    <option value="Dancehall">Dancehall</option>
+                                    <option value="Deephall">Deephall</option>
+                                    <option value="Deep House">Deep House</option>
+                                    <option value="Disco">Disco</option>
+                                    <option value="Drum & Bass">Drum & Bass</option>
+                                    <option value="Dubstep">Dubstep</option>
+                                    <option value="Electronic">Electronic</option>
+                                    <option value="Folk & Singer-Songwriter">Folk & Singer-Songwriter</option>
+                                    <option value="Hip-hop & Rap">Hip-hop & Rap</option>
+                                    <option value="House">House</option>
+                                    <option value="Indie">Indie</option>
+                                    <option value="Jazz & Blues">Jazz & Blues</option>
+                                    <option value="Latin">Latin</option>
+                                    <option value="Metal">Metal</option>
+                                    <option value="Piano">Piano</option>
+                                    <option value="Pop">Pop</option>
+                                    <option value="R&B & Soul">R&B & Soul</option>
+                                    <option value="Reggae">Reggae</option>
+                                    <option value="Reggaeton">Reggaeton</option>
+                                    <option value="Rock">Rock</option>
+                                    <option value="Soundtrack">Soundtrack</option>
+                                    <option value="Techno">Techno</option>
+                                    <option value="Trance">Trance</option>
+                                    <option value="Trap">Trap</option>
+                                    <option value="Triphop">Triphop</option>
+                                    <option value="World">World</option>
+                                </select>
+                            </div>
+                            <p>Description</p>
+                            <textarea placeholder="Describe your track" 
+                                onChange={handleInput("description")}></textarea>
                         </div>
-                        </div>
-                        <p>Description</p>
-                        <textarea placeholder="Describe your track" 
-                            onChange={handleInput("description")}></textarea>
                     </div>
                     <div className="upload-details-footer">
                         <p>
