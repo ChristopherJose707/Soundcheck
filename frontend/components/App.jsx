@@ -25,7 +25,7 @@ class App extends React.Component {
                     <ProtectedRoute exact path="/discover" component={DiscoverContainer} />
                     <ProtectedRoute exact path="/upload" component={UploadContainer}/>
                     <ProtectedRoute exact path="/song/:songId" component={SongShowContainer} />
-                    <ProtectedRoute exact path="/user/:userId" component={UserShowContainer} />
+                    <ProtectedRoute exact path="/users/:userId" component={UserShowContainer} />
                 </Switch>
                 
                 <MusicPlayerContainer />

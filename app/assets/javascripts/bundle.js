@@ -13694,7 +13694,7 @@ var App = /*#__PURE__*/function (_React$Component) {
         component: _song_song_show_container__WEBPACK_IMPORTED_MODULE_6__.default
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__.ProtectedRoute, {
         exact: true,
-        path: "/user/:userId",
+        path: "/users/:userId",
         component: _user_show_user_show_container__WEBPACK_IMPORTED_MODULE_8__.default
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_music_player_music_player_container__WEBPACK_IMPORTED_MODULE_7__.default, null));
     }
@@ -15840,8 +15840,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       var artistPhoto = users[song.user_id].profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         className: "song-show-photo-artist",
         src: users[song.user_id].profilePicture
-      }) : null; // Conditional Buttons
-
+      }) : null;
       var uploadPhotoButton = song.artist !== currentUser.display_name ? null : !song.songPhoto && song.artist === currentUser.display_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "upload-photo",
         onClick: this.handleFileClick
@@ -16410,15 +16409,7 @@ var UploadDetails = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, UploadDetails);
 
     return _super.call(this, props);
-  } // handlePreview() {
-  //     const file = e.currentTarget.files[0];
-  //     const fileReader = new FileReader();
-  //     fileReader.onloadend = () => {
-  //         this.setState({fileReader.result})
-  //     };
-  //     fileReader.readAsDataURL();
-  // }
-
+  }
 
   _createClass(UploadDetails, [{
     key: "render",
@@ -16770,9 +16761,232 @@ var UploadSuccess = /*#__PURE__*/function (_React$Component) {
 /*!*****************************************************!*
   !*** ./frontend/components/user_show/user_show.jsx ***!
   \*****************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/cj/Documents/Soundcheck/frontend/components/user_show/user_show.jsx: Unexpected token (11:8)\n\n\u001b[0m \u001b[90m  9 | \u001b[39m        \u001b[36mreturn\u001b[39m(\u001b[0m\n\u001b[0m \u001b[90m 10 | \u001b[39m            \u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 | \u001b[39m        )\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m    }\u001b[0m\n\u001b[0m \u001b[90m 13 | \u001b[39m}\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 14 | \u001b[39m\u001b[0m\n    at Object._raise (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:748:17)\n    at Object.raiseWithData (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:741:17)\n    at Object.raise (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:735:17)\n    at Object.unexpected (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:9097:16)\n    at Object.parseParenAndDistinguishExpression (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10746:12)\n    at Object.parseExprAtom (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10443:21)\n    at Object.parseExprAtom (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:4759:20)\n    at Object.parseExprSubscripts (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10122:23)\n    at Object.parseUpdate (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10102:21)\n    at Object.parseMaybeUnary (/Users/cj/Documents/Soundcheck/node_modules/@babel/parser/lib/index.js:10091:17)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../navbar/navbar_container */ "./frontend/components/navbar/navbar_container.js");
+/* harmony import */ var _music_player_play_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../music_player/play_container */ "./frontend/components/music_player/play_container.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _util_upload_time_util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../util/upload_time_util */ "./frontend/util/upload_time_util.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+
+var UserShow = /*#__PURE__*/function (_React$Component) {
+  _inherits(UserShow, _React$Component);
+
+  var _super = _createSuper(UserShow);
+
+  function UserShow(props) {
+    var _this;
+
+    _classCallCheck(this, UserShow);
+
+    _this = _super.call(this, props);
+    _this.handlePhotoFileProfileBanner = _this.handlePhotoFileProfileBanner.bind(_assertThisInitialized(_this));
+    _this.handlePhotoFileProfilePic = _this.handlePhotoFileProfilePic.bind(_assertThisInitialized(_this));
+    _this.songList = _this.songList.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(UserShow, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      scrollTo(0, 0);
+      this.props.fetchUser(this.props.match.params.userId);
+      this.props.fetchUserSongs(this.props.match.params.userId);
+    }
+  }, {
+    key: "handlePhotoFileProfilePic",
+    value: function handlePhotoFileProfilePic(e) {
+      e.preventDefault();
+      var user = this.props.user;
+      var file = e.target.files[0];
+
+      if (file) {
+        var formData = new FormData();
+        formData.append('user[profile_picture]', file);
+        this.props.updateUser(formData, user.id);
+      }
+    }
+  }, {
+    key: "handlePhotoFileProfileBanner",
+    value: function handlePhotoFileProfileBanner(e) {
+      e.preventDefault();
+      var user = this.props.user;
+      var file = e.target.files[0];
+
+      if (file) {
+        var formData = new FormData();
+        formData.append('user[profile_banner]', file);
+        this.props.updateUser(formData, user.id);
+      }
+    }
+  }, {
+    key: "songList",
+    value: function songList() {
+      var _this$props = this.props,
+          user = _this$props.user,
+          userSongs = _this$props.userSongs;
+      var songList = Object.values(userSongs).map(function (song) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "profile-song-item"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "profile-song-art"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+          to: "/songs".concat(song.id)
+        }, song.songPhoto ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+          className: "profile-song-img",
+          src: song.songPhoto
+        }) : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "profile-song-main"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "profile-song-header"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_music_player_play_container__WEBPACK_IMPORTED_MODULE_2__.default, {
+          songId: song.id
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "profile-song-info-top"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+          to: "/users/".concat(user.id)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+          className: "profile-song-artist"
+        }, user.display_name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, (0,_util_upload_time_util__WEBPACK_IMPORTED_MODULE_4__.uploadTime)(song.created_at))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "profile-song-info-bottom"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+          to: "/songs".concat(song.id)
+        }, song.title), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "#", song.genre)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "waveform"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "profile-song-footer"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          className: "profile-song-like"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+          icon: "heart"
+        }))))));
+      });
+      return songList;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (!this.props.user || !this.props.userSongs) {
+        return null;
+      }
+
+      var _this$props2 = this.props,
+          user = _this$props2.user,
+          userSongs = _this$props2.userSongs,
+          currentUser = _this$props2.currentUser;
+      console.log(Object.values(userSongs));
+      var uploadProfilePicButton = user !== currentUser ? null : !user.songPhoto && user === currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        className: "profile-photo-label"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+        icon: "camera"
+      }), "Upload Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "file",
+        id: "file",
+        accept: "image/*",
+        onChange: this.handlePhotoFileProfilePic
+      })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        className: "profile-photo-label"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+        icon: "camera"
+      }), "Update Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "file",
+        id: "file",
+        accept: "image/*",
+        onChange: this.handlePhotoFileProfilePic
+      }));
+      var uploadProfileBannerButton = user !== currentUser ? null : !user.songPhoto && user === currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        className: "profile-banner-label"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+        icon: "camera"
+      }), "Upload Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "file",
+        id: "file",
+        accept: "image/*",
+        onChange: this.handlePhotoFileProfileBanner
+      })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        className: "profile-banner-label"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+        icon: "camera"
+      }), "Update Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "file",
+        id: "file",
+        accept: "image/*",
+        onChange: this.handlePhotoFileProfileBanner
+      }));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-main"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-top"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "user-info"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, user.display_name), user.profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "profile-pic-top",
+        src: user.profilePicture
+      }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        className: "profile-banner-button"
+      }, uploadProfileBannerButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+        className: "profile-pic-button"
+      }, uploadProfilePicButton)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-main"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "All"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Edit")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-recent-songs"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "recent"
+      }, "Recent"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "recent-songs-list"
+      }, this.songList())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-right-panel"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-right-panel-content"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-stats"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Followers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "100")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Following"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "64")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Tracks"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "6"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "profile-bio"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, user.description)))))));
+    }
+  }]);
+
+  return UserShow;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserShow);
 
 /***/ }),
 
@@ -16800,7 +17014,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var user = state.entities.users[ownProps.match.params.userId];
   return {
     user: user,
-    userSongs: state.entities.songs
+    userSongs: state.entities.songs,
+    currentUser: state.entities.users[state.session.currentUser]
   };
 };
 
@@ -16852,7 +17067,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_5__.library.add(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.fab, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faPlay, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faPause, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faStepForward, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faStepBackward, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faFacebook, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faCamera, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faVolumeUp, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faVolumeDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faVolumeMute, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faExternalLinkAlt, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faGoogle, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faSoundcloud, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faLinkedin, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faGithub, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faUser, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faCaretLeft, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faAngleDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faSearch, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faEllipsisH);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_5__.library.add(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.fab, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faPlay, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faPause, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faHeart, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faStepForward, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faStepBackward, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faFacebook, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faCamera, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faVolumeUp, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faVolumeDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faVolumeMute, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faExternalLinkAlt, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faGoogle, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faSoundcloud, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faLinkedin, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_8__.faGithub, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faUser, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faCaretLeft, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faAngleDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faSearch, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faEllipsisH);
 document.addEventListener("DOMContentLoaded", function () {
   var store;
 
