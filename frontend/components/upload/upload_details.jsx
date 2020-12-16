@@ -56,13 +56,13 @@ class UploadDetails extends React.Component {
                             {uploadPhotoButton}
                         </div>
                         <div className="song-details">
-                            <p>Title <span className="required">*</span></p>
+                            <p className="song-title">Title</p>
                             <input type="text"
                                 value={newTitle}
                                 onChange={handleInput("title")}
                                 placeholder="Name your track"
                             />
-                            <p>Genre</p>
+                            <p className="genre">Genre</p>
                             <div>
                                 <select onChange={handleInput("genre")}>
                                     <option value="">None</option>
@@ -100,7 +100,7 @@ class UploadDetails extends React.Component {
                                     <option value="World">World</option>
                                 </select>
                             </div>
-                            <p>Description</p>
+                            <p className="details-description">Description</p>
                             <textarea placeholder="Describe your track" 
                                 onChange={handleInput("description")}></textarea>
                         </div>
