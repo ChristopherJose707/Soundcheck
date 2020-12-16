@@ -2,7 +2,9 @@ import React from 'react';
 import NavbarContainer from '../navbar/navbar_container';
 import {Link} from 'react-router-dom';
 import {uploadTime} from '../../util/upload_time_util';
+import PlayContainer from '../music_player/play_container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Play from '../music_player/play';
 
 class SongShow extends React.Component {
     constructor(props) {
@@ -78,7 +80,7 @@ class SongShow extends React.Component {
             <div className="song-show-page">
                 <NavbarContainer />
                 <div className="song-banner">
-                    {/*  INSERT PLAY BUTTON HERE */}
+                    <PlayContainer songId={song.id} />
                     <h2 className="song-banner-artist"><Link to={`users/${song.user_id}`}>{song.artist}</Link></h2>
                     <h3 className="song-banner-created-at">{uploadTime(song.created_at)}</h3>
                     <h1 className="song-banner-title">{song.title}</h1>

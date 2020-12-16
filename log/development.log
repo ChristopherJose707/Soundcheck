@@ -37585,3 +37585,4 @@ Processing by StaticPagesController#root as HTML
 Completed 200 OK in 51ms (Views: 46.9ms | ActiveRecord: 1.6ms)
 
 
+  [1m[36mSong Load (0.9ms)[0m  [1m[34mSELECT "songs".* FROM "songs"[0m

@@ -15,7 +15,7 @@ class UploadFile extends React.Component {
                         <div className="upload-file-content">
                                 <h1>What song would you like to upload?</h1>
                             {/* <button className="file-upload-button" > */}
-                                <label class="custom-upload">
+                                <label className="custom-upload">
                                     <input type="file" 
                                         className="file-upload-input"
                                         onClick={e => e.stopPropagation()}

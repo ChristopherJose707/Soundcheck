@@ -99,7 +99,6 @@ class Navbar extends React.Component {
 
         const signOutButton = this.props.currentUser ?  
         <button onClick={() => this.props.logout()}>Sign Out</button> : null;
-        console.log(this.props)
         return (
             <nav className="navbar-parent">
                 <div className="navbar">
