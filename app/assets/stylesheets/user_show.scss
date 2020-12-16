@@ -1,14 +1,10 @@
 .profile-main {
-  min-width: 1240px;
-  width: 1240px;
-  height: 1141px;
-  margin-top: 45px;
-  margin-right: auto;
-  margin-left: auto;
-  
-  font-family: 'Open Sans', sans-serif;
-  min-width: 920px;
-  background: gray;
+    width: 1080px;
+    height: 1141px;
+    margin-right: auto;
+    margin-left: auto;
+    font-family: 'Open Sans', sans-serif;
+    background: rgb(255, 255, 255);
 }
 
 .profile-pic-top {
@@ -20,4 +16,9 @@
 .profile-song-img {
     width: 160px;
     height: 160px;
+}
+
+.profile-banner-top {
+    width: 1080px;
+    height: 270px;
 }

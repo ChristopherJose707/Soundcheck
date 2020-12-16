@@ -47,11 +47,11 @@ class UserShow extends React.Component {
 
    songList() {
        const {user, userSongs} = this.props;
-       const songList = Object.values(userSongs).map((song) => {
+       const songList = Object.values(userSongs).map((song, i) => {
            return(
-               <div className="profile-song-item">
+               <div key={i} className="profile-song-item">
                         <div className="profile-song-art">
-                            <Link to={`/songs${song.id}`}>
+                            <Link to={`/song/${song.id}`}>
                                 {song.songPhoto ? <img className="profile-song-img" src={song.songPhoto} /> : null}
                             </Link>
                         </div>
@@ -65,7 +65,7 @@ class UserShow extends React.Component {
                                     <li>{uploadTime(song.created_at)}</li>
                                 </div>
                                 <div className="profile-song-info-bottom">
-                                    <li><Link to={`/songs${song.id}`}>{song.title}</Link> </li>
+                                    <li><Link to={`/song/${song.id}`}>{song.title}</Link> </li>
                                     <li>#{song.genre}</li>
                                 </div>
                                 <div className="waveform"></div>
@@ -86,13 +86,14 @@ class UserShow extends React.Component {
         if (!this.props.user || !this.props.userSongs) {
             return null;
         }
-        const {user, userSongs, currentUser } = this.props;
-        console.log(Object.values(userSongs))
+
+        const {user, currentUser } = this.props;
+
         const uploadProfilePicButton = user !== currentUser ?
             null : !user.songPhoto && user === currentUser ? 
                 <label className="profile-photo-label">
                     <FontAwesomeIcon icon="camera" />
-                    Upload Image
+                    Upload Profile Image
                     <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFileProfilePic}/>
                 </label> 
                 : <label className="profile-photo-label">
@@ -105,7 +106,7 @@ class UserShow extends React.Component {
             null : !user.songPhoto && user === currentUser ? 
                 <label className="profile-banner-label">
                     <FontAwesomeIcon icon="camera" />
-                    Upload Image
+                    Upload Banner Image
                     <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFileProfileBanner}/>
                 </label> 
                 : <label className="profile-banner-label">
@@ -123,6 +124,8 @@ class UserShow extends React.Component {
                         <div className="user-info">
                             <li>{user.display_name}</li>
                             {user.profilePicture ? <img className="profile-pic-top" src={user.profilePicture} /> : null}
+                            {user.profileBanner ? <img className="profile-banner-top" src={user.profileBanner} /> : null}
+                            
                         </div>
                         <li className="profile-banner-button">{uploadProfileBannerButton}</li>
                         <li className="profile-pic-button">{uploadProfilePicButton}</li>

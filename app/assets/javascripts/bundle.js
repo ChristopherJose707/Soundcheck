@@ -14619,6 +14619,12 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
 
       e.preventDefault();
 
+      if (this.dropdownUserMenu === null) {
+        return null;
+      }
+
+      ;
+
       if (!this.dropdownUserMenu.contains(e.target)) {
         this.setState({
           showUserMenu: false
@@ -14733,7 +14739,9 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         className: "navbar-right-links"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         className: "upgrade"
-      }, "Upgrade"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        href: "google.com"
+      }, "Google")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "navbar-upload-div ".concat(this.props.match.path === "/upload" ? "black" : "")
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         className: "navbar-upload-link ".concat(this.props.match.path === "/upload" ? "black" : ""),
@@ -16859,13 +16867,14 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           user = _this$props.user,
           userSongs = _this$props.userSongs;
-      var songList = Object.values(userSongs).map(function (song) {
+      var songList = Object.values(userSongs).map(function (song, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          key: i,
           className: "profile-song-item"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "profile-song-art"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
-          to: "/songs".concat(song.id)
+          to: "/song/".concat(song.id)
         }, song.songPhoto ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
           className: "profile-song-img",
           src: song.songPhoto
@@ -16884,7 +16893,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         }, user.display_name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, (0,_util_upload_time_util__WEBPACK_IMPORTED_MODULE_4__.uploadTime)(song.created_at))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "profile-song-info-bottom"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
-          to: "/songs".concat(song.id)
+          to: "/song/".concat(song.id)
         }, song.title), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "#", song.genre)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "waveform"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -16906,14 +16915,12 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
 
       var _this$props2 = this.props,
           user = _this$props2.user,
-          userSongs = _this$props2.userSongs,
           currentUser = _this$props2.currentUser;
-      console.log(Object.values(userSongs));
       var uploadProfilePicButton = user !== currentUser ? null : !user.songPhoto && user === currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         className: "profile-photo-label"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
         icon: "camera"
-      }), "Upload Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }), "Upload Profile Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
         id: "file",
         accept: "image/*",
@@ -16932,7 +16939,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         className: "profile-banner-label"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
         icon: "camera"
-      }), "Upload Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }), "Upload Banner Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
         id: "file",
         accept: "image/*",
@@ -16956,6 +16963,9 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, user.display_name), user.profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         className: "profile-pic-top",
         src: user.profilePicture
+      }) : null, user.profileBanner ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "profile-banner-top",
+        src: user.profileBanner
       }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         className: "profile-banner-button"
       }, uploadProfileBannerButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
@@ -17797,9 +17807,9 @@ var updateUser = function updateUser(userData, userId) {
   return $.ajax({
     url: "/api/users/".concat(userId),
     method: "PATCH",
-    data: userData // contentType: false,
-    // processData: false
-
+    data: userData,
+    contentType: false,
+    processData: false
   });
 };
 
