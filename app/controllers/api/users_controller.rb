@@ -10,9 +10,23 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def update 
+    @user = User.find(params[:id])
+
+    if (@user)
+        if(@user.update(user_params))
+          render json: ["Update successful"], status: 200
+        else
+          render json: user.errors.full_messages, status: 422
+        end
+    else
+        render json: ["User was not found"], status: 404
+    end
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :display_name, :description, :profile_picture)
+    params.require(:user).permit(:username, :password, :display_name, :description, :profile_picture, :profile_banner)
   end
 end
