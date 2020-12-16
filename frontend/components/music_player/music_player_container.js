@@ -13,6 +13,7 @@ const mapStateToProps = state => {
         songs: state.entities.songs,
         currentSong: state.entities.songs[state.ui.musicPlayer.currentSongId],
         playing: state.ui.musicPlayer.playing,
+        played: state.ui.musicPlayer.previousPlayed,
         randomSongs: state.ui.musicPlayer.randomSongs
     })
 }

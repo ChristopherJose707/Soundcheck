@@ -10,8 +10,8 @@ class MusicPlayer extends React.Component {
         this.state = {
             elapsedTime: 0,
             songDuration: 0,
-            volume: 0.5,
-            mutedVolume: 0.0,
+            volume: 50,
+            savedVolume: 0.0,
             hoverVolume: false
         }
 
@@ -45,15 +45,18 @@ class MusicPlayer extends React.Component {
         this.setState({volume: e.target.value / 1000.0})
     }
 
-    handleNextSong() {
-
+    handleNextSong() { // auto play next song in queue after song end 
+        this.props.receivePreviousSong(this.props.currentSong);
+        this.props.receiveCurrentSong(this.props.randomSongs.shift());
+        this.handlePlay()
+        this.setState({elapsedTime: 0})
     }
 
     handleSkip() {
 
     }
 
-    handleMetaData() {
+    handleMetaData() { 
         const player = document.getElementById("audio");
         this.setState({songDuration: player.duration})
     }
@@ -61,9 +64,9 @@ class MusicPlayer extends React.Component {
     handleTimeElapsed() {
         const player = document.getElementById("audio");
         const scroll = document.getElementById("scrollbar")
-
+        
         if (!player.paused) {
-            setInterval(() => {
+            setInterval(() => { // update currentTime every 50ms
                 scroll.value = player.currentTime;
                 this.setState({elapsedTime: player.currentTime})
             }, 50)
@@ -71,11 +74,35 @@ class MusicPlayer extends React.Component {
     }
 
     handleMute() {
+        const player = document.getElementById("audio");
+        const volume = document.getElementById("volume")
 
+        if (player.volume > 0) { // save current volume to savedVolume, then mute
+            this.setState({volume: 0, savedVolume: player.volume});
+            player.volume = 0;
+            volume.value = 0;
+        } else { // unmute by re-applying volume.value using savedVolume
+            this.setState({volume: this.state.savedVolume});
+            player.volume = this.state.savedVolume;
+            volume.value = this.state.savedVolume * 1000.0;
+        }
     }
 
     handleBack(){
+        const player = document.getElementById("audio");
 
+        if(player.currentTime < 6 && this.props.played.length > 0) {
+            this.props.receiveNextSong(this.props.currentSong.id);
+            this.props.receiveCurrentSong(this.props.played.pop().id);
+            this.props.playSong();
+            setTimeout(() => {player.play(), 100})
+            this.setState({elapsedTime: 0})
+        } else {
+            player.currentTime = 0;
+            this.props.playSong();
+            player.play();
+            this.setState({elapsedTime: 0});
+        }
     }
 
     handlePlay(){
@@ -89,8 +116,14 @@ class MusicPlayer extends React.Component {
         }
     }
 
-    handleNext(){
-
+    handleNext(){ // Play next song on button click
+        const player = document.getElementById("audio");
+        this.props.receivePreviousSong(this.props.currentSong);
+        this.props.receiveCurrentSong(this.props.randomSongs.shift());
+        player.currentTime = 0;
+        this.props.playSong();
+        setTimeout(() => {player.play(), 100})
+        this.setState({elapsedTime: 0})
     }
 
     render() {
@@ -101,7 +134,7 @@ class MusicPlayer extends React.Component {
         const {currentSong, playing} = this.props;
         let songUrl;
         let volumeIcon;
-        
+
         if (currentSong) {
             const player = document.getElementById("audio");
             songUrl = currentSong.songUrl;
@@ -113,7 +146,7 @@ class MusicPlayer extends React.Component {
                 volumeIcon = <FontAwesomeIcon icon="volume-mute" onClick={this.handleMute} />
             }
         }
-
+       
         const musicPlayer =  currentSong ?
 
         <div className="music-player">
@@ -140,6 +173,7 @@ class MusicPlayer extends React.Component {
                     {this.state.hoverVolume ?
                         <div className="volume-slider" onMouseEnter={() => this.setState({hoverVolume: true})}>
                             <input type="range"
+                                id="volume"
                                 className="volume-slider-input"
                                 min="0.0"
                                 defaultValue={this.state.volume * 1000}
@@ -163,7 +197,6 @@ class MusicPlayer extends React.Component {
         </div>
 
         : null ;
-        
         return (
             <div>
                 <audio id="audio" 

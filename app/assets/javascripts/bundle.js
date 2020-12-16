@@ -13939,8 +13939,8 @@ var MusicPlayer = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       elapsedTime: 0,
       songDuration: 0,
-      volume: 0.5,
-      mutedVolume: 0.0,
+      volume: 50,
+      savedVolume: 0.0,
       hoverVolume: false
     };
     _this.handleMetaData = _this.handleMetaData.bind(_assertThisInitialized(_this));
@@ -13982,7 +13982,15 @@ var MusicPlayer = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleNextSong",
-    value: function handleNextSong() {}
+    value: function handleNextSong() {
+      // auto play next song in queue after song end 
+      this.props.receivePreviousSong(this.props.currentSong);
+      this.props.receiveCurrentSong(this.props.randomSongs.shift());
+      this.handlePlay();
+      this.setState({
+        elapsedTime: 0
+      });
+    }
   }, {
     key: "handleSkip",
     value: function handleSkip() {}
@@ -14004,6 +14012,7 @@ var MusicPlayer = /*#__PURE__*/function (_React$Component) {
 
       if (!player.paused) {
         setInterval(function () {
+          // update currentTime every 50ms
           scroll.value = player.currentTime;
 
           _this2.setState({
@@ -14014,10 +14023,51 @@ var MusicPlayer = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleMute",
-    value: function handleMute() {}
+    value: function handleMute() {
+      var player = document.getElementById("audio");
+      var volume = document.getElementById("volume");
+
+      if (player.volume > 0) {
+        // save current volume to savedVolume, then mute
+        this.setState({
+          volume: 0,
+          savedVolume: player.volume
+        });
+        player.volume = 0;
+        volume.value = 0;
+      } else {
+        // unmute by re-applying volume.value using savedVolume
+        this.setState({
+          volume: this.state.savedVolume
+        });
+        player.volume = this.state.savedVolume;
+        volume.value = this.state.savedVolume * 1000.0;
+      }
+    }
   }, {
     key: "handleBack",
-    value: function handleBack() {}
+    value: function handleBack() {
+      var player = document.getElementById("audio");
+
+      if (player.currentTime < 6 && this.props.played.length > 0) {
+        this.props.receiveNextSong(this.props.currentSong.id);
+        this.props.receiveCurrentSong(this.props.played.pop().id);
+        this.props.playSong();
+        setTimeout(function () {
+          player.play(), 100;
+        });
+        this.setState({
+          elapsedTime: 0
+        });
+      } else {
+        player.currentTime = 0;
+        this.props.playSong();
+        player.play();
+        this.setState({
+          elapsedTime: 0
+        });
+      }
+    }
   }, {
     key: "handlePlay",
     value: function handlePlay() {
@@ -14033,7 +14083,20 @@ var MusicPlayer = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleNext",
-    value: function handleNext() {}
+    value: function handleNext() {
+      // Play next song on button click
+      var player = document.getElementById("audio");
+      this.props.receivePreviousSong(this.props.currentSong);
+      this.props.receiveCurrentSong(this.props.randomSongs.shift());
+      player.currentTime = 0;
+      this.props.playSong();
+      setTimeout(function () {
+        player.play(), 100;
+      });
+      this.setState({
+        elapsedTime: 0
+      });
+    }
   }, {
     key: "render",
     value: function render() {
@@ -14126,6 +14189,7 @@ var MusicPlayer = /*#__PURE__*/function (_React$Component) {
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("input", {
         type: "range",
+        id: "volume",
         className: "volume-slider-input",
         min: "0.0",
         defaultValue: this.state.volume * 1000,
@@ -14190,6 +14254,7 @@ var mapStateToProps = function mapStateToProps(state) {
     songs: state.entities.songs,
     currentSong: state.entities.songs[state.ui.musicPlayer.currentSongId],
     playing: state.ui.musicPlayer.playing,
+    played: state.ui.musicPlayer.previousPlayed,
     randomSongs: state.ui.musicPlayer.randomSongs
   };
 };
