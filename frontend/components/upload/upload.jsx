@@ -28,6 +28,10 @@ class Upload extends React.Component {
         this.handleSubmit= this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        scrollTo(0,0)
+    }
+
     handleSongFile(e) {
         e.preventDefault();
         const file = e.target.files[0];

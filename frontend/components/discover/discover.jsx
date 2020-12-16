@@ -7,6 +7,10 @@ class Discover extends React.Component {
         
     }
 
+    componentDidMount() {
+        scrollTo(0, 0)
+    }
+
     render() {
         
         return (

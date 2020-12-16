@@ -13694,6 +13694,11 @@ var Discover = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Discover, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      scrollTo(0, 0);
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -15971,6 +15976,11 @@ var Upload = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Upload, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      scrollTo(0, 0);
+    }
+  }, {
     key: "handleSongFile",
     value: function handleSongFile(e) {
       e.preventDefault();
