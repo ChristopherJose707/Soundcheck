@@ -10,7 +10,7 @@ class UploadFile extends React.Component {
     }
 
    render() {
-       const {stepNumber, handleSongFile, handleFileClick} = this.props;
+       const {stepNumber, handleSongFile} = this.props;
 
        if (stepNumber === 1) {
            return (

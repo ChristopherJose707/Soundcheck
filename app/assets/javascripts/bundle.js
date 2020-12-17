@@ -16709,8 +16709,7 @@ var UploadFile = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           stepNumber = _this$props.stepNumber,
-          handleSongFile = _this$props.handleSongFile,
-          handleFileClick = _this$props.handleFileClick;
+          handleSongFile = _this$props.handleSongFile;
 
       if (stepNumber === 1) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
