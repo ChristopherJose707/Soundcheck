@@ -1,0 +1,28 @@
+.profile-main {
+    width: 1080px;
+    height: 1141px;
+    margin-right: auto;
+    margin-left: auto;
+    font-family: 'Open Sans', sans-serif;
+    background: rgb(255, 255, 255);
+}
+
+.profile-pic-top {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}
+
+.profile-song-img {
+    width: 160px;
+    height: 160px;
+}
+
+.profile-banner-top {
+    width: 1080px;
+    height: 270px;
+}
+
+.liked:focus {
+    color: #ff5500;
+}

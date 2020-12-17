@@ -62,13 +62,12 @@ ul {
     background: linear-gradient(45deg, rgba(167,75,0,1) 16%, rgba(196,79,0,1) 35%, rgba(221,90,0,1) 60%, rgba(255,85,0,1) 95%);
 }
 
-.upgrade {
+.upgrade a {
     color: #ff5500;
     cursor: pointer;
-    text-decoration: line-through;
 }
 
-.upgrade:hover{
+.upgrade a:hover{
     color:#ff8041
 }
 

@@ -62,8 +62,6 @@ class SongShow extends React.Component {
         const artistPhoto = users[song.user_id].profilePicture ?
             <img className="song-show-photo-artist" src={users[song.user_id].profilePicture} /> : null
 
-
-        // Conditional Buttons
         const uploadPhotoButton = (song.artist !== currentUser.display_name) ? 
             null : !song.songPhoto && song.artist === currentUser.display_name ? 
             <button className="upload-photo" onClick={this.handleFileClick}>
