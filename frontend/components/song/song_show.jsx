@@ -13,7 +13,6 @@ class SongShow extends React.Component {
             liked: "Like",
             followed: "Follow"
         }
-        this.handleFileClick = this.handleFileClick.bind(this);
         this.handlePhotoFile = this.handlePhotoFile.bind(this);
         this.handleDropdown = this.handleDropdown.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
@@ -21,12 +20,11 @@ class SongShow extends React.Component {
 
     componentDidMount() {
         this.props.fetchSong(this.props.match.params.songId);
+        this.props.fetchComments();
         scrollTo(0, 0)
     }
 
-    handleFileClick() {
-        document.getElementById("file").click();
-    }
+   
 
     handlePhotoFile(e) {
         e.preventDefault();
@@ -64,12 +62,12 @@ class SongShow extends React.Component {
 
         const uploadPhotoButton = (song.artist !== currentUser.display_name) ? 
             null : !song.songPhoto && song.artist === currentUser.display_name ? 
-            <button className="upload-photo" onClick={this.handleFileClick}>
+            <button className="upload-photo" >
                 <FontAwesomeIcon icon="camera"/>Upload Image
                 <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFile}></input>
             </button> 
             : 
-             <button className="upload-photo" onClick={this.handleFileClick}>
+             <button className="upload-photo" >
                 <FontAwesomeIcon icon="camera"/>Update Image
                 <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFile}></input>
             </button> ;

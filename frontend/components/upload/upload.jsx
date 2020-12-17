@@ -12,7 +12,7 @@ class Upload extends React.Component {
 
         const { currentUser } = this.props;
         this.state = {
-            stepNumber: 1,
+            stepNumber: 1, 
             userId: currentUser.id,
             title: "",
             description: "",
@@ -131,6 +131,7 @@ class Upload extends React.Component {
                             handleSubmit={this.handleSubmit}
                             handlePhotoFile={this.handlePhotoFile}
                             photoUrl={this.state.photoUrl}
+                            cancel={this.cancel}
                         />
 
                         <UploadSuccess 

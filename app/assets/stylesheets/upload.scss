@@ -4,7 +4,7 @@
   margin-right: auto;
   margin-left: auto;
   font-family: 'Open Sans', sans-serif;
-  background: rgb(255, 255, 255);
+  background: rgb(255, 255, 255)
 }
 
 .upload-top-div {
@@ -37,11 +37,12 @@
   float: right;
   padding-top: 15px;
   padding-right: 25px;
+  display:none;
 }
 
 .upload-header-logo {
   padding-right: 6px;
-
+  display: none;
 }
 
 .upload-main {
@@ -61,6 +62,7 @@
 }
 
 #strike {
+  display:none;
   text-decoration: line-through;
 }
 
@@ -72,7 +74,7 @@
 
 .upload-file-form {
   width: 800px;
-  height: 800px;
+  height: 400px;
    -webkit-box-shadow: 0px 0px 5px 1px rgba(235,235,235,1);
   -moz-box-shadow: 0px 0px 5px 1px rgba(235,235,235,1);
   box-shadow: 0px 0px 5px 1px rgba(235,235,235,1);
@@ -116,10 +118,11 @@
 
 .upload-strike {
   text-decoration: line-through;
+  display: none;
 }
 
 .upload-details-main {
-  height: 800px;
+  height: 550px;
   width: 800px;
   
   padding-left: 20px;
@@ -153,11 +156,11 @@
 }
 
 .upload-photo-label {
-  // position: absolute;
+  position: absolute;
   border: 1px solid black;
-  // display: flex;
   margin-left: 55px;
   width: 120px;
+  top: 225px;
   cursor: pointer;
   padding: 6px 11px 6px 11px;
   background: #ff5500;
@@ -167,6 +170,7 @@
   font-size: 14px;
   background-color: rgba(255, 255, 255, 0.5); 
   color: black;
+  display: flex;
 }
 
 .upload-photo-label:hover {
@@ -180,7 +184,7 @@
 .upload-photo-preview {
   height: 260px;
   width: 260px;
-  z-index: -1;
+  position: absolute;
 }
 
 .upload-details-form {
@@ -193,7 +197,7 @@
   padding-top: 10px;
   font-size: 14px;
   width: 500px;
-  height: 550px;
+  height: 375px;
 }
 
 .song-details * {
@@ -227,6 +231,11 @@
   color: #ff5500;
 }
 
+.genre::after {
+  content: "*";
+  color: #ff5500;
+}
+
 .details-description {
   padding-top: 5px;
   padding-bottom: 5px;
@@ -249,4 +258,36 @@
   color:white;
   border-radius: 5px;
   background-color: #ff5500;
+}
+
+.upload-success {
+  width: 300px;
+  height: 150px; 
+  display: flex;
+  justify-content: center;
+ align-items: center;;
+  -webkit-box-shadow: 0px 0px 5px 1px rgba(235,235,235,1);
+  -moz-box-shadow: 0px 0px 5px 1px rgba(235,235,235,1);
+  box-shadow: 0px 0px 5px 1px rgba(235,235,235,1);
+}
+
+
+
+.success-song-complete {
+  padding-top: 10px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.success-song-link {
+  color: #ff5500;
+  font-size: 18px;
+    display: flex;
+  justify-content: center;
+}
+
+.success-song-artist, .success-song-title {
+  display: flex;
+  justify-content: center;
 }

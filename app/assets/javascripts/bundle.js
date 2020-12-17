@@ -15850,7 +15850,6 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       liked: "Like",
       followed: "Follow"
     };
-    _this.handleFileClick = _this.handleFileClick.bind(_assertThisInitialized(_this));
     _this.handlePhotoFile = _this.handlePhotoFile.bind(_assertThisInitialized(_this));
     _this.handleDropdown = _this.handleDropdown.bind(_assertThisInitialized(_this));
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
@@ -15861,12 +15860,8 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchSong(this.props.match.params.songId);
+      this.props.fetchComments();
       scrollTo(0, 0);
-    }
-  }, {
-    key: "handleFileClick",
-    value: function handleFileClick() {
-      document.getElementById("file").click();
     }
   }, {
     key: "handlePhotoFile",
@@ -15916,8 +15911,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
         src: users[song.user_id].profilePicture
       }) : null;
       var uploadPhotoButton = song.artist !== currentUser.display_name ? null : !song.songPhoto && song.artist === currentUser.display_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "upload-photo",
-        onClick: this.handleFileClick
+        className: "upload-photo"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__.FontAwesomeIcon, {
         icon: "camera"
       }), "Upload Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
@@ -15926,8 +15920,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
         accept: "image/*",
         onChange: this.handlePhotoFile
       })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "upload-photo",
-        onClick: this.handleFileClick
+        className: "upload-photo"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__.FontAwesomeIcon, {
         icon: "camera"
       }), "Update Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
@@ -16001,6 +15994,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _song_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./song_show */ "./frontend/components/song/song_show.jsx");
 /* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
+/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/comment_actions */ "./frontend/actions/comment_actions.js");
+
 
 
 
@@ -16016,6 +16011,15 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchComments: function fetchComments() {
+      return dispatch((0,_actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__.fetchComments)());
+    },
+    createComment: function createComment(comment) {
+      return dispatch((0,_actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__.createComment)(comment));
+    },
+    deleteComment: function deleteComment() {
+      return dispatch((0,_actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__.deleteComment)(commentId));
+    },
     fetchSongs: function fetchSongs() {
       return dispatch((0,_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__.fetchSongs)());
     },
@@ -16380,7 +16384,8 @@ var Upload = /*#__PURE__*/function (_React$Component) {
         handleInput: this.handleInput,
         handleSubmit: this.handleSubmit,
         handlePhotoFile: this.handlePhotoFile,
-        photoUrl: this.state.photoUrl
+        photoUrl: this.state.photoUrl,
+        cancel: this.cancel
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_upload_success__WEBPACK_IMPORTED_MODULE_5__.default, {
         stepNumber: this.state.stepNumber,
         songId: this.state.songId,
@@ -16486,6 +16491,11 @@ var UploadDetails = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(UploadDetails, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      scrollTo(0, 0);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -16494,7 +16504,6 @@ var UploadDetails = /*#__PURE__*/function (_React$Component) {
           handleInput = _this$props.handleInput,
           cancel = _this$props.cancel,
           handleSubmit = _this$props.handleSubmit,
-          handleFileClick = _this$props.handleFileClick,
           handlePhotoFile = _this$props.handlePhotoFile,
           photoUrl = _this$props.photoUrl;
       var photoPreview = this.props.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
@@ -16549,8 +16558,6 @@ var UploadDetails = /*#__PURE__*/function (_React$Component) {
         }, "Genre"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
           onChange: handleInput("genre")
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
-          value: ""
-        }, "None"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
           value: "Custom"
         }, "Custom"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
           value: "Alternative Rock"
@@ -16693,6 +16700,11 @@ var UploadFile = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(UploadFile, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      scrollTo(0, 0);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -16716,7 +16728,7 @@ var UploadFile = /*#__PURE__*/function (_React$Component) {
             return e.stopPropagation();
           },
           onChange: handleSongFile,
-          accept: "audio/mpeg",
+          accept: "audio/*",
           title: ""
         }), "Choose a file"))));
       } else {
@@ -16796,17 +16808,13 @@ var UploadSuccess = /*#__PURE__*/function (_React$Component) {
           title = _this$props.title,
           description = _this$props.description,
           photoUrl = _this$props.photoUrl;
-      var photoPreview = this.props.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        className: "upload-photo-preview",
-        src: photoUrl
-      }) : null;
 
       if (stepNumber === 3) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "upload-success"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "success-song-detais"
-        }, photoPreview, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+          className: "success-song-details"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
           className: "success-song-artist"
         }, artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
           className: "success-song-title"
@@ -16814,7 +16822,7 @@ var UploadSuccess = /*#__PURE__*/function (_React$Component) {
           className: "success-song-description"
         }, description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
           className: "success-song-complete"
-        }, "Upload Complete."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+        }, "Upload Complete!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
           className: "success-song-link",
           to: "/song/".concat(songId)
         }, "Go to your track.")));
