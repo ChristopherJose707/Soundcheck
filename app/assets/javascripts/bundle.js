@@ -13742,8 +13742,7 @@ var App = /*#__PURE__*/function (_React$Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
-        exact: true,
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_modal_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__.ProtectedRoute, {
         path: "/users/:userId",
         component: _user_show_user_show_container__WEBPACK_IMPORTED_MODULE_8__.default
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__.ProtectedRoute, {
@@ -16054,7 +16053,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
           song = _this$props.song,
           currentUser = _this$props.currentUser;
 
-      if (!this.props.song) {
+      if (!this.props.song || !this.props.users) {
         return null;
       }
 
@@ -17101,6 +17100,15 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(UserShow, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.location.pathname !== prevProps.location.pathname) {
+        scrollTo(0, 0);
+        this.props.fetchUser(this.props.match.params.userId);
+        this.props.fetchUserSongs(this.props.match.params.userId);
+      }
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       scrollTo(0, 0);
@@ -17126,6 +17134,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var user = this.props.user;
       var file = e.target.files[0];
+      debugger;
 
       if (file) {
         var formData = new FormData();

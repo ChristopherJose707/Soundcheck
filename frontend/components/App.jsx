@@ -13,6 +13,7 @@ import UserShowContainer from './user_show/user_show_container';
 class App extends React.Component {
     constructor(props) {
         super(props)
+        
     }
 
     render() {
@@ -21,7 +22,7 @@ class App extends React.Component {
                 <ModalContainer />
     
                 <Switch>
-                    <Route exact path="/users/:userId" component={UserShowContainer} />
+                    <ProtectedRoute path="/users/:userId" component={UserShowContainer} />
                     <ProtectedRoute exact path="/song/:songId" component={SongShowContainer} />
                     <ProtectedRoute exact path="/discover" component={DiscoverContainer} />
                     <ProtectedRoute exact path="/upload" component={UploadContainer}/>

@@ -50,7 +50,7 @@ class SongShow extends React.Component {
     render () {
         const {users, song, currentUser} = this.props;
         
-        if (!this.props.song) {
+        if (!this.props.song || !this.props.users) {
             return null
         };
 

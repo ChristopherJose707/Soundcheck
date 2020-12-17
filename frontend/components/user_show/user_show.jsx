@@ -20,6 +20,14 @@ class UserShow extends React.Component {
         this.handleLike = this.handleLike.bind(this);
     }
 
+    componentDidUpdate(prevProps) {
+        if(this.props.location.pathname !== prevProps.location.pathname) {
+            scrollTo(0,0);
+            this.props.fetchUser(this.props.match.params.userId);
+            this.props.fetchUserSongs(this.props.match.params.userId);
+        }
+    }
+
     componentDidMount(){
         scrollTo(0,0);
         this.props.fetchUser(this.props.match.params.userId);
@@ -38,7 +46,7 @@ class UserShow extends React.Component {
         e.preventDefault();
         const {user} = this.props;
         const file = e.target.files[0];
-
+        debugger;
         if (file) {
             const formData = new FormData();
             formData.append('user[profile_picture]', file);
@@ -95,12 +103,12 @@ class UserShow extends React.Component {
        });
        return songList;
    }
-
+   
     render(){
         if (!this.props.user || !this.props.userSongs) {
             return null;
         }
-
+        
         const {user, currentUser } = this.props;
 
         const uploadProfilePicButton = user !== currentUser ?
@@ -130,7 +138,7 @@ class UserShow extends React.Component {
                 </label> ;
 
         return(
-
+            
             <div>
                 <NavbarContainer/>
                 <div className="profile-main">
