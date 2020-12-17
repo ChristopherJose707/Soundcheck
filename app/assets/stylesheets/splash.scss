@@ -214,7 +214,7 @@ html {
 
 .splash-bottom {
   width: 1240px; 
-  height: 375px;
+  height: 310px;
   display: flex;
   flex-direction:column;
   align-items: center;
@@ -228,7 +228,7 @@ html {
 
 .splash-bottom h2 {
   font-size: 24px;
-
+  margin-top: 15px;
 }
 
 .splash-bottom-wrapper {
@@ -280,4 +280,24 @@ html {
   padding: 10px 15px;
   white-space: nowrap;
   margin-right: 10px;
+}
+
+.splash-footer {
+  width: 1180px;
+  height: 78px;
+  font-size: 14px;
+  padding-left: 40px;
+  border-top: 1px solid rgb(240, 240, 240);
+  display: flex;
+  justify-content: flex-start;
+  
+}
+
+.splash-footer a {
+  padding-top: 10px;
+  color: rgb(204, 204, 204)
+}
+
+.splash-footer a:last-child {
+  padding-left: 5px;
 }

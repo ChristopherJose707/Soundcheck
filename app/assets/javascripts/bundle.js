@@ -16173,7 +16173,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
         href: "https://www.linkedin.com/in/christopher-jose-6361aa120/"
       }, "LinkedIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
         href: "https://github.com/ChristopherJose707"
-      }, "Github")));
+      }, "\u2043    Github")));
     }
   }]);
 
