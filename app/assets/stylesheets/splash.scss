@@ -1,3 +1,7 @@
+html {
+   background-color: rgb(240, 240, 240);
+}
+
 .splash {
   background: white;
   width: 1240px;
@@ -6,18 +10,14 @@
   font-family: 'Open Sans', sans-serif;
   min-width: 1240px;
   position: relative;
+  -webkit-font-smoothing: antialiased;
 }
-
 
 .splash-banner {
     background-image: image-url('banner2.jpg');
     height: 400px;
     background-size: 100% 100%;
     
-}
-
-.cloud {
- 
 }
 
 .splash-banner-left svg {
@@ -33,7 +33,6 @@
     overflow: hidden;
     border-top: 4px solid #f50;
     background-color: #666;
-    height: 400px;
     -webkit-font-smoothing: antialiased;
 
 }
@@ -42,12 +41,12 @@
   text-align: center;
   margin: 0 auto;
   width: 70%;
-  margin-top: 80px;
+  margin-top: 44px;
 }
 
 .splash-banner-header {
   font-size: 36px;
-  
+  color: white;
 }
 
 .splash-banner-header-p {
@@ -55,6 +54,7 @@
   width: 530px;
   margin-left: 170px;
   margin-top: 15px;
+  color: white;
 }
 
 .creator {
@@ -86,38 +86,198 @@
 }
 
 .splash-navbar {
-  padding: 15px;
+  padding: 0px 20px;
 }
 
 .splash-banner-right {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 15px;
+  height: 50px;
+}
+
+.splash-banner-right button {
+  float: right;
+}
+
+.splash-banner-right img {
+  float: left;
+  height: 30px;
 }
 
 .splash-login {
-    width: 74px;
-    height: 30px;
-    background: transparent;
-    border: 1px solid white;
-    border-radius: 3px;
-    font-size: 14px;
-    font-weight: inherit;
-    color: white;
-    cursor: pointer;
-    margin-left: 20px;
+  width: 74px;
+  margin-top: 16px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: inherit;
+  color: white;
+  cursor: pointer;
+  margin-left: 20px;
 }
 
+
 .splash-signup {
-    width: 135px;
-    height: 30px;
+  width: 135px;
+  height: 30px;
+  background: #ff5500;
+  border: 1px solid #ff5500;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: inherit;
+  color: white;
+  cursor: pointer;
+  margin-left: 20px;
+  white-space: nowrap;
+}
+
+.splash-middle-mobile {
+  width: 1240px;
+  height: 390px;
+  padding: 0px 70px;
+  display: flex;
+   background-color: rgb(240, 240, 240);
+  padding-top: 10px;
+}
+
+.mobile-pic {
+  background-image: image-url('splash_image3.jpg');
+  width: 724px;
+  height: 390px;
+  
+}
+
+.mobile-right h1 {
+  font-size: 35px;
+}
+
+.mobile-right {
+  padding-left: 40px;
+  width: 406px;
+  padding-top: 30px;
+  height: 361px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: rgb(240, 240, 240);
+}
+
+.mobile-right span {
+  font-size: 24px;
+  margin-bottom: 70px;
+  line-height: 1cm;
+}
+
+.mobile-right-border {
+  height: 4px;
+  width: 70px;
+  background: linear-gradient(90deg,#7d01a1,#f30 50%,#f50);
+}
+
+
+.calling-creators {
+  background-image: image-url('splash_image2.jpg');
+  width: 1240px;
+  height: 350px;
+  position: relative;
+}
+
+.creators-wrapper {
+  max-width: 520px;
+  height: 350px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-left: 60px;
+  line-height: 1cm;
+}
+
+.creators-wrapper h1 {
+  font-size: 36px;
+}
+
+.creators-wrapper p {
+  font-size: 24px;
+}
+
+.find-out-wrapper button {
+  font-size: 18px;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 3px;
+  font-weight: inherit;
+  color: white;
+  cursor: pointer;
+  padding: 13px 24px;
+}
+
+.splash-bottom {
+  width: 1240px; 
+  height: 375px;
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-bottom h1 {
+  font-size: 36px;
+  
+}
+
+.splash-bottom h2 {
+  font-size: 24px;
+
+}
+
+.splash-bottom-wrapper {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.splash-signup-bottom {
+    margin-top: 20px;
+    width: 200px;
+    height: 46px;
     background: #ff5500;
     border: 1px solid #ff5500;
     border-radius: 3px;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: inherit;
     color: white;
     cursor: pointer;
-    margin-left: 20px;
     white-space: nowrap;
+    padding: 13px 23px;
+    margin-bottom: 10px;
+}
+
+.splash-bottom-login-wrapper {
+    width: 240px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.splash-bottom-login-wrapper p {
+  font-size: 12px;
+}
+
+.splash-bottom-login-wrapper button {
+  width: 80px;
+  margin-top: 16px;
+  height: 40px;
+  border: 1px solid rgb(225, 225, 225);
+  border-radius: 3px;
+  font-size: 16px;
+  font-weight: inherit;
+  color: black;
+  cursor: pointer;
+  background-color: white;
+  margin-left: 10px;
+  padding: 10px 15px;
+  white-space: nowrap;
+  margin-right: 10px;
 }

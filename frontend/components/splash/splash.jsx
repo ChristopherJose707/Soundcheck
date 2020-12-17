@@ -5,11 +5,11 @@ class Splash extends React.Component {
     constructor(props) {
         super(props);
     }
-
+    
     render() {
         return (
             <div className="splash">
-                <div className="splash-upper-orange">
+                <div className="splash-upper-orange"></div>
                 <div className="splash-banner">
                     <nav className="splash-navbar">
                         <div className="splash-banner-right">
@@ -22,11 +22,11 @@ class Splash extends React.Component {
                                 onClick={() => this.props.openModal("signup")}>
                                 Create account
                             </button>
-                        </div>
-                        <div className="splash-banner-left">
                             <img className="cloud" src={window.logo}/>
-                            {/* <FontAwesomeIcon className="cloud" icon={['fab', 'soundcloud']} /> */}
                         </div>
+                        {/* <div className="splash-banner-left">
+                            <img className="cloud" src={window.logo}/>
+                        </div> */}
                     </nav>
                     <div className="splash-banner-center">
                         <h2 className="splash-banner-header">Discover more with SoundCheck Go+</h2>
@@ -43,7 +43,48 @@ class Splash extends React.Component {
                         </div>
                     </div>
                 </div>
-
+                <div className="splash-middle-mobile">
+                    <div className="mobile-pic"></div>
+                    <div className="mobile-right">
+                        <h1>Never Stop Listening</h1>
+                        <div className="mobile-right-border"></div>
+                        <span>SoundCheck is not available on iOS, Android, Sonos, Chromecast, and Xbox One. Only on Web.</span>
+                    </div>
+                </div>
+                <div className="calling-creators">
+                    <div className="creators-wrapper">
+                        <h1>Calling all creators</h1>
+                        <p>Get on SoundCheck to connect with fans, share your sounds, 
+                            and grow your audience. What are you waiting for?</p>
+                        <div className="find-out-wrapper">
+                            <button className="creators-signup" 
+                                        onClick={() => this.props.openModal("signup")}>
+                                        Find Out More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div className="splash-bottom">
+                    <h1>Thanks for listening. Now join in.</h1>
+                    <h2>Save tracks, follow artists, and build playlists. All for free.</h2>
+                    <div className="splash-bottom-wrapper">
+                        <button className="splash-signup-bottom" 
+                                    onClick={() => this.props.openModal("signup")}>
+                                    Create account
+                        </button>
+                        <div className="splash-bottom-login-wrapper">
+                            <p>Already have an account?
+                            <button className="splash-login-bottom" 
+                                        onClick={() => this.props.openModal("login")}>
+                                        Sign In
+                            </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div className="splash-footer">
+                    <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/">LinkedIn</a>
+                    <a href="https://github.com/ChristopherJose707">Github</a>
                 </div>
             </div>
         );
