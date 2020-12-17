@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Discover from './discover'
+import {fetchUsers} from '../../actions/user_actions';
 
 const mapStateToProps = (state) => {
     return ({
@@ -9,5 +10,11 @@ const mapStateToProps = (state) => {
     })
 };
 
+const mapDispatchToProps = dispatch => {
+    return ({
+        fetchUsers: () => dispatch(fetchUsers())
+    })
+};
 
-export default connect(mapStateToProps, null)(Discover);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Discover);
