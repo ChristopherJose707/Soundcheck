@@ -21,6 +21,11 @@ class User < ApplicationRecord
 
     after_initialize :ensure_session_token
 
+    has_many :comments,
+        foreign_key: :author_id,
+        class_name: :Comment,
+        dependent: :destroy
+
     has_many :songs,
         foreign_key: :user_id,
         class_name: :Song,
