@@ -5,8 +5,12 @@ class UploadFile extends React.Component {
         super(props)
     }
 
+    componentDidMount() {
+        scrollTo(0,0)
+    }
+
    render() {
-       const {stepNumber, handleSongFile, handleFileClick} = this.props;
+       const {stepNumber, handleSongFile} = this.props;
 
        if (stepNumber === 1) {
            return (
@@ -14,18 +18,17 @@ class UploadFile extends React.Component {
                     <div className="upload-file-main">
                         <div className="upload-file-content">
                                 <h1>What song would you like to upload?</h1>
-                            {/* <button className="file-upload-button" > */}
+                           
                                 <label className="custom-upload">
                                     <input type="file" 
                                         className="file-upload-input"
                                         onClick={e => e.stopPropagation()}
                                         onChange={handleSongFile}
-                                        accept="audio/mpeg"
+                                        accept="audio/*"
                                         title=""
                                     />
                                     Choose a file
                                 </label>
-                            {/* </button> */}
                         </div>
 
                     </div>

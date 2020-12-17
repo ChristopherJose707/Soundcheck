@@ -12,18 +12,16 @@ class UploadSuccess extends React.Component {
 
     render() {
         const { stepNumber, songId, artist, title, description, photoUrl } = this.props;
-        const photoPreview = this.props.photoUrl ? 
-            <img className="upload-photo-preview" src={photoUrl} /> : null;
+       
 
         if(stepNumber === 3) {
             return (
                 <div className="upload-success">
-                    <div className="success-song-detais">
-                        {photoPreview}
+                    <div className="success-song-details">
                         <p className="success-song-artist">{artist}</p>
                         <h3 className="success-song-title">{title}</h3>
                         <p className="success-song-description">{description}</p>
-                        <p className="success-song-complete">Upload Complete.</p>
+                        <p className="success-song-complete">Upload Complete!</p>
                         <Link className="success-song-link" 
                             to={`/song/${songId}`}>Go to your track.</Link>
                     </div>

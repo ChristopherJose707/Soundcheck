@@ -8,10 +8,14 @@ class UploadDetails extends React.Component {
 
     }
 
+    componentDidMount() {
+        scrollTo(0,0)
+    }
+
     render() {
        
         const { stepNumber, title, handleInput, cancel, handleSubmit,
-                 handleFileClick, handlePhotoFile, photoUrl } = this.props;
+                handlePhotoFile, photoUrl } = this.props;
 
         const photoPreview = this.props.photoUrl ? 
             <img className="upload-photo-preview" src={photoUrl} /> : null;
@@ -54,7 +58,6 @@ class UploadDetails extends React.Component {
                             <p className="genre">Genre</p>
                             <div>
                                 <select onChange={handleInput("genre")}>
-                                    <option value="">None</option>
                                     <option value="Custom">Custom</option>
                                     <option value="Alternative Rock">Alternative Rock</option>
                                     <option value="Ambient">Ambient</option>
