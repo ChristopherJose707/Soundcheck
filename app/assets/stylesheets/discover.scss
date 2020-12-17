@@ -2,13 +2,170 @@
   min-width: 1080px;
   width: 1080px;
   height: 1141px;
+  margin-top: 48px;
   margin-right: auto;
   margin-left: auto;
   font-family: 'Open Sans', sans-serif;
-  background: rgb(255, 255, 255)
+  background: rgb(255, 255, 255);
+  display: flex;
+  -webkit-font-smoothing: antialiased;
 }
 
 .discover-top {
   display:block;
   padding-top: 50px;
 }
+
+.song-art-div{
+  width: 180px;
+  height: 180px;
+  background: rgb(167,75,0);
+  background: linear-gradient(45deg, rgba(167,75,0,1) 16%, rgba(196,79,0,1) 35%, rgba(221,90,0,1) 60%, rgba(255,85,0,1) 95%);
+}
+
+.song-art-img {
+  width: 180px;
+  height: 180px;
+  border: 1px solid rgb(205, 205, 205);
+}
+
+.must-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+}
+
+.must-img-wrapper {
+  padding-right: 10px;
+}
+
+.discover-main {
+  width: 820px;
+  height: 1141px;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-left: 30px;
+}
+
+.discover-list {
+  height: 322px;
+  width: 820px;
+  border-top: 1px solid #f0efef;
+}
+
+.discover-list h1 {
+  font-size: 23px;
+  padding-top: 10px;
+}
+
+.discover-list p {
+  font-size: 14px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color:rgb(162, 162, 162);
+}
+
+.discover-new {
+  overflow: auto;
+  overflow-y: hidden;
+  height: 236px;
+  width: 820px;
+}
+.discover-new ul {
+  display: flex;
+  list-style: none;
+}
+
+.song-item {
+  width: 2000px;
+  height: 190px;
+  white-space: nowrap;
+}
+
+.discover-trending {
+  overflow: auto;
+  overflow-y: hidden;
+  height: 236px;
+  width: 820px;
+}
+.discover-trending ul {
+  display: flex;
+  list-style: none;
+}
+
+.song-item-title {
+  font-size: 14px;
+  padding-top: 5px;
+}
+
+.song-item-artist {
+  font-size: 12px;
+  color:rgb(162, 162, 162)
+}
+
+.song-item li {
+  padding-right: 20px;
+}
+
+.discover-side {
+  width: 100%;
+  height: 1141px;
+  margin-top: 26px;
+  border-left: 1px solid #f0efef;
+}
+
+.discover-side-header {
+  display: flex;
+  color: rgb(162, 162, 162);
+  font-size: 14px;
+  padding-left: 14px;
+}
+
+.discover-side-ul {
+    display: flex;
+    height: 204px;
+    padding-left: 15px;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.discover-must a {
+    color: black;
+    display: flex;
+    align-items: center;
+}
+
+.discover-must {
+  display: flex;
+  font-size: 14px;
+}
+
+.discover-play {
+  position: relative;
+}
+
+.discover-play .play-button{
+  width: 60px;
+  height: 60px;
+  color: white;
+  border: none;
+  bottom: 80px;
+  left: 60px;
+  text-align: center;
+  display: border-box;
+  font-size: 25px;
+  border-radius: 100px;
+  position: absolute;
+  background: rgb(167,75,0);
+  background: linear-gradient(45deg, rgba(167,75,0,1) 16%, rgba(196,79,0,1) 35%, rgba(221,90,0,1) 60%, rgba(255,85,0,1) 95%); 
+}
+
+.discover-play .play-button:focus {
+  outline: 0;
+}
+
+.discover-side-header p {
+  padding-left: 10px;
+}
+
+

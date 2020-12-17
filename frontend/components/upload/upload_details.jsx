@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 class UploadDetails extends React.Component {
     constructor(props) {
         super(props)
-
+        this.state = {
+            uploading: false
+        }
     }
 
     componentDidMount() {
@@ -105,7 +107,8 @@ class UploadDetails extends React.Component {
                         <div className="upload-detail-buttons">
                             <a onClick={cancel}>Cancel</a>
                             <a className="save-button" onClick={handleSubmit}>
-                                Save
+                                {/* Save */}
+                                {this.props.uploading ? 'Uploading..' : 'Save'}
                             </a>
                         </div>
                     </div>

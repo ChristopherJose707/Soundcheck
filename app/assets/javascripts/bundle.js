@@ -13830,7 +13830,8 @@ var Discover = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       mouseOnNew: null,
-      mouseOnTrending: null
+      mouseOnTrending: null,
+      artists: null
     };
     _this.trendingSongs = _this.trendingSongs.bind(_assertThisInitialized(_this));
     _this.newestSongs = _this.newestSongs.bind(_assertThisInitialized(_this));
@@ -13839,6 +13840,13 @@ var Discover = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Discover, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      if (this.state.artists === null) {
+        this.mustListen();
+      }
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       scrollTo(0, 0);
@@ -13864,11 +13872,16 @@ var Discover = /*#__PURE__*/function (_React$Component) {
           className: "discover-must"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
           to: "/users/".concat(artist.id)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "must-img-wrapper"
         }, artist.profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+          className: "must-img",
           src: artist.profilePicture
-        }) : null, artist.display_name));
+        }) : null), artist.display_name));
       });
-      return bestArtists;
+      this.setState({
+        artists: bestArtists
+      });
     }
   }, {
     key: "newestSongs",
@@ -13878,13 +13891,14 @@ var Discover = /*#__PURE__*/function (_React$Component) {
       var songs = this.props.songs;
       var newestSongs = Object.values(songs).reverse().map(function (song, i) {
         var songArt = song.songPhoto ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+          className: "song-art-img",
           src: song.songPhoto
         }) : null;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: i,
           className: "song-item"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "song-art",
+          className: "song-art-div",
           onMouseEnter: function onMouseEnter() {
             return _this2.setState({
               mouseOnNew: song.id
@@ -13898,7 +13912,7 @@ var Discover = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
           to: "/song/".concat(song.id)
         }, songArt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "song-title"
+          className: "song-item-title"
         }, song.title), _this2.state.mouseOnNew === song.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "discover-play",
           onMouseEnter: function onMouseEnter() {
@@ -13928,13 +13942,14 @@ var Discover = /*#__PURE__*/function (_React$Component) {
       var songs = this.props.songs;
       var trendingSongs = Object.values(songs).map(function (song, i) {
         var songArt = song.songPhoto ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+          className: "song-art-img",
           src: song.songPhoto
         }) : null;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: i,
           className: "song-item"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "song-art",
+          className: "song-art-div",
           onMouseEnter: function onMouseEnter() {
             return _this3.setState({
               mouseOnTrending: song.id
@@ -13948,7 +13963,7 @@ var Discover = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
           to: "/song/".concat(song.id)
         }, songArt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "song-title"
+          className: "song-item-title"
         }, song.title), _this3.state.mouseOnTrending === song.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "discover-play",
           onMouseEnter: function onMouseEnter() {
@@ -13986,14 +14001,16 @@ var Discover = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, this.newestSongs()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "discover-list"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Trending Now"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Top tracks on Soundcheck"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "discover-new"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "discover-trending"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, this.trendingSongs())))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "discover-side"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "discover-side-header"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
         icon: "users"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Must Listen Artists")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null)));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Must Listen Artists")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+        className: "discover-side-ul"
+      }, this.state.artists)));
     }
   }]);
 
@@ -16448,7 +16465,8 @@ var Upload = /*#__PURE__*/function (_React$Component) {
       description: "",
       photoFile: null,
       songFile: null,
-      photoUrl: ""
+      photoUrl: "",
+      uploading: false
     };
     _this.handleSongFile = _this.handleSongFile.bind(_assertThisInitialized(_this));
     _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
@@ -16504,6 +16522,9 @@ var Upload = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       e.preventDefault();
+      this.setState({
+        uploading: true
+      });
       var formData = new FormData();
       formData.append('song[user_id]', this.state.userId);
       formData.append('song[title]', this.state.title);
@@ -16573,6 +16594,7 @@ var Upload = /*#__PURE__*/function (_React$Component) {
         stepNumber: this.state.stepNumber,
         handleSongFile: this.handleSongFile
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_upload_details__WEBPACK_IMPORTED_MODULE_4__.default, {
+        uploading: this.state.uploading,
         stepNumber: this.state.stepNumber,
         title: this.state.title,
         handleInput: this.handleInput,
@@ -16679,9 +16701,15 @@ var UploadDetails = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(UploadDetails);
 
   function UploadDetails(props) {
+    var _this;
+
     _classCallCheck(this, UploadDetails);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      uploading: false
+    };
+    return _this;
   }
 
   _createClass(UploadDetails, [{
@@ -16831,7 +16859,7 @@ var UploadDetails = /*#__PURE__*/function (_React$Component) {
         }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
           className: "save-button",
           onClick: handleSubmit
-        }, "Save"))));
+        }, this.props.uploading ? 'Uploading..' : 'Save'))));
       } else {
         return null;
       }
