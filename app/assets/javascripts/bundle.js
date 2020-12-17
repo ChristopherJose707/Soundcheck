@@ -16822,9 +16822,13 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, UserShow);
 
     _this = _super.call(this, props);
+    _this.state = {
+      liked: false
+    };
     _this.handlePhotoFileProfileBanner = _this.handlePhotoFileProfileBanner.bind(_assertThisInitialized(_this));
     _this.handlePhotoFileProfilePic = _this.handlePhotoFileProfilePic.bind(_assertThisInitialized(_this));
     _this.songList = _this.songList.bind(_assertThisInitialized(_this));
+    _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -16834,6 +16838,19 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       scrollTo(0, 0);
       this.props.fetchUser(this.props.match.params.userId);
       this.props.fetchUserSongs(this.props.match.params.userId);
+    }
+  }, {
+    key: "handleLike",
+    value: function handleLike() {
+      if (this.state.liked) {
+        this.setState({
+          liked: false
+        });
+      } else {
+        this.setState({
+          liked: true
+        });
+      }
     }
   }, {
     key: "handlePhotoFileProfilePic",
@@ -16864,6 +16881,8 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "songList",
     value: function songList() {
+      var _this2 = this;
+
       var _this$props = this.props,
           user = _this$props.user,
           userSongs = _this$props.userSongs;
@@ -16899,7 +16918,8 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "profile-song-footer"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          className: "profile-song-like"
+          className: "profile-song-like ".concat(_this2.state.liked ? "liked" : ""),
+          onClick: _this2.handleLike
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
           icon: "heart"
         }))))));

@@ -10,15 +10,28 @@ class UserShow extends React.Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+            liked: false
+        }
+
         this.handlePhotoFileProfileBanner = this.handlePhotoFileProfileBanner.bind(this);
         this.handlePhotoFileProfilePic = this.handlePhotoFileProfilePic.bind(this);
         this.songList = this.songList.bind(this);
+        this.handleLike = this.handleLike.bind(this);
     }
 
     componentDidMount(){
         scrollTo(0,0);
         this.props.fetchUser(this.props.match.params.userId);
         this.props.fetchUserSongs(this.props.match.params.userId);
+    }
+
+    handleLike() {
+        if (this.state.liked) {
+            this.setState({liked: false})
+        } else {
+            this.setState({liked: true})
+        }
     }
 
     handlePhotoFileProfilePic(e) {
@@ -70,7 +83,8 @@ class UserShow extends React.Component {
                                 </div>
                                 <div className="waveform"></div>
                                 <div className="profile-song-footer">
-                                    <button className="profile-song-like">
+                                    <button className={`profile-song-like ${this.state.liked ? "liked" : ""}`}
+                                            onClick={this.handleLike}>
                                         <FontAwesomeIcon icon="heart"/>
                                     </button>
                                 </div>
