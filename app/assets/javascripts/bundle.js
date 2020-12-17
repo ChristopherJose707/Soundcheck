@@ -14953,7 +14953,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         className: "navbar-search-input",
         type: "text",
-        placeholder: "Search"
+        placeholder: "Search feature coming soon!!!"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "navbar-search-button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {

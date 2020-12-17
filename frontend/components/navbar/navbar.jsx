@@ -117,7 +117,7 @@ class Navbar extends React.Component {
                         <li><a href="https://developer.mozilla.org/en-US/"className="navbar-mdn">MDN Docs</a></li>
                     </ul>
                     <div className="navbar-search">
-                        <input className="navbar-search-input" type="text" placeholder="Search"></input>
+                        <input className="navbar-search-input" type="text" placeholder="Search feature coming soon!!!"></input>
                         <button className="navbar-search-button"><FontAwesomeIcon icon="search" /></button>
                     </div>
                     <ul className="navbar-right-links">
