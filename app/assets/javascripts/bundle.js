@@ -16020,8 +16020,10 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
+      author: null,
       liked: "Like",
-      followed: "Follow"
+      followed: "Follow",
+      commentBody: ""
     };
     _this.handlePhotoFile = _this.handlePhotoFile.bind(_assertThisInitialized(_this));
     _this.handleDropdown = _this.handleDropdown.bind(_assertThisInitialized(_this));
@@ -16033,6 +16035,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchSong(this.props.match.params.songId);
+      this.props.fetchUsers();
       this.props.fetchComments();
       scrollTo(0, 0);
     }
@@ -16061,6 +16064,29 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       this.props.history.push("/discover");
     }
   }, {
+    key: "handleComment",
+    value: function handleComment(e) {
+      e.preventDefault();
+      var comment = {
+        song_id: this.props.song.id,
+        author_id: this.props.currentUser.id,
+        body: this.state.commentBody
+      };
+      this.setState({
+        comment: ""
+      });
+      this.props.createComment(comment);
+    } // renderComments() {
+    //     const comments = Object.values(this.props.comments).reverse();
+    //     comments.map((comment, i) => {
+    //         <div key={i} className="comment-main"
+    //             onMouseOver={()=> this.setState({author: })}
+    //         >
+    //         </div>
+    //     })
+    // }
+
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -16069,6 +16095,12 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
           users = _this$props.users,
           song = _this$props.song,
           currentUser = _this$props.currentUser;
+
+      if (Object.keys(this.props.users).length === 1) {
+        return null;
+      }
+
+      ;
 
       if (!this.props.song || !this.props.users) {
         return null;
@@ -16167,6 +16199,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _song_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./song_show */ "./frontend/components/song/song_show.jsx");
 /* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
 /* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/comment_actions */ "./frontend/actions/comment_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+
 
 
 
@@ -16177,12 +16211,16 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     users: state.entities.users,
     song: song,
-    currentUser: state.entities.users[state.session.currentUser]
+    currentUser: state.entities.users[state.session.currentUser],
+    comments: state.entities.songComments
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchUsers: function fetchUsers() {
+      return dispatch((0,_actions_user_actions__WEBPACK_IMPORTED_MODULE_4__.fetchUsers)());
+    },
     fetchComments: function fetchComments() {
       return dispatch((0,_actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__.fetchComments)());
     },

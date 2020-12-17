@@ -10,9 +10,12 @@ class SongShow extends React.Component {
         super(props);
 
         this.state = {
+            author: null,
             liked: "Like",
-            followed: "Follow"
+            followed: "Follow",
+            commentBody: ""
         }
+
         this.handlePhotoFile = this.handlePhotoFile.bind(this);
         this.handleDropdown = this.handleDropdown.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
@@ -20,6 +23,7 @@ class SongShow extends React.Component {
 
     componentDidMount() {
         this.props.fetchSong(this.props.match.params.songId);
+        this.props.fetchUsers();
         this.props.fetchComments();
         scrollTo(0, 0)
     }
@@ -47,9 +51,35 @@ class SongShow extends React.Component {
         this.props.history.push("/discover");
     }
 
+    handleComment(e) {
+        e.preventDefault();
+
+        const comment = {
+            song_id: this.props.song.id,
+            author_id: this.props.currentUser.id,
+            body: this.state.commentBody
+        };
+        this.setState({comment: ""});
+        this.props.createComment(comment);
+    }
+
+    // renderComments() {
+    //     const comments = Object.values(this.props.comments).reverse();
+    //     comments.map((comment, i) => {
+    //         <div key={i} className="comment-main"
+    //             onMouseOver={()=> this.setState({author: })}
+    //         >
+                
+    //         </div>
+    //     })
+    // }
+
     render () {
         const {users, song, currentUser} = this.props;
-        
+        if (Object.keys(this.props.users).length === 1) {
+            return null
+        };
+
         if (!this.props.song || !this.props.users) {
             return null
         };
