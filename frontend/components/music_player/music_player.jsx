@@ -31,7 +31,7 @@ class MusicPlayer extends React.Component {
             return null
         } else {
             this.props.receiveRandomSongs(this.props.songs)
-            this.props.receiveCurrentSong(this.props.songs[7].id)
+            // this.props.receiveCurrentSong(this.props.songs[7].id)
         }
     }
 

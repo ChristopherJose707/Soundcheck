@@ -2,6 +2,7 @@ import React from 'react';
 import NavbarContainer from '../navbar/navbar_container';
 import {Link} from 'react-router-dom';
 import {uploadTime} from '../../util/upload_time_util';
+import PlayContainer from '../music_player/play_container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class SongShow extends React.Component {
@@ -20,7 +21,7 @@ class SongShow extends React.Component {
 
     componentDidMount() {
         this.props.fetchSong(this.props.match.params.songId);
-            
+        scrollTo(0, 0)
     }
 
     handleFileClick() {
@@ -58,7 +59,9 @@ class SongShow extends React.Component {
         const songPhoto = song.songPhoto ? 
             <img className="song-show-photo" src={song.songPhoto} /> : null
 
-        // Conditional Buttons
+        const artistPhoto = users[song.user_id].profilePicture ?
+            <img className="song-show-photo-artist" src={users[song.user_id].profilePicture} /> : null
+
         const uploadPhotoButton = (song.artist !== currentUser.display_name) ? 
             null : !song.songPhoto && song.artist === currentUser.display_name ? 
             <button className="upload-photo" onClick={this.handleFileClick}>
@@ -73,12 +76,12 @@ class SongShow extends React.Component {
 
         const deleteButton = (song.artist !== currentUser.display_name) ? null 
             : <button className="song-delete" onClick={() => this.handleDelete()}>Delete Track</button>
-
+        console.log(this.props)
         return (
             <div className="song-show-page">
                 <NavbarContainer />
                 <div className="song-banner">
-                    {/*  INSERT PLAY BUTTON HERE */}
+                    <PlayContainer songId={song.id} />
                     <h2 className="song-banner-artist"><Link to={`users/${song.user_id}`}>{song.artist}</Link></h2>
                     <h3 className="song-banner-created-at">{uploadTime(song.created_at)}</h3>
                     <h1 className="song-banner-title">{song.title}</h1>
@@ -96,6 +99,7 @@ class SongShow extends React.Component {
                         </ul>
                     </span>
                 </div>
+                {artistPhoto}
             </div>
             
         )

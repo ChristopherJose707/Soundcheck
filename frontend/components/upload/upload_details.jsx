@@ -8,17 +8,6 @@ class UploadDetails extends React.Component {
 
     }
 
-    // handlePreview() {
-    //     const file = e.currentTarget.files[0];
-    //     const fileReader = new FileReader();
-
-    //     fileReader.onloadend = () => {
-    //         this.setState({fileReader.result})
-    //     };
-
-    //     fileReader.readAsDataURL();
-    // }
-
     render() {
        
         const { stepNumber, title, handleInput, cancel, handleSubmit,

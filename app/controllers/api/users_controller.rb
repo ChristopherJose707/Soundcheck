@@ -1,4 +1,14 @@
 class Api::UsersController < ApplicationController
+  def index 
+    @users = User.all
+    render :index
+  end
+
+  def show 
+    @user = User.find(params[:id])
+    render :show
+  end
+
   def create
     @user = User.new(user_params)
 
@@ -13,14 +23,10 @@ class Api::UsersController < ApplicationController
   def update 
     @user = User.find(params[:id])
 
-    if (@user)
-        if(@user.update(user_params))
-          render json: ["Update successful"], status: 200
-        else
-          render json: user.errors.full_messages, status: 422
-        end
+    if @user.update(user_params)
+      render :show
     else
-        render json: ["User was not found"], status: 404
+      render json: ["Unable to update user"], status: 422
     end
   end
 

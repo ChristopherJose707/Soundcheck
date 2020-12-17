@@ -11,13 +11,13 @@ User.destroy_all
 Song.destroy_all
 
 # DEMO
-demo = User.create!(id: 1, username: "demoUser", password: "password", display_name: "DemoUser", description: "I'm the demo user!")
-demo_profile_picture = open(https://soundcheck-seeds.s3-us-west-1.amazonaws.com/demo_profile.jpg)
+demo = User.create!(username: "demoUser", password: "password", display_name: "DemoUser", description: "I'm the demo user!")
+demo_profile_picture = open("https://soundcheck-seeds.s3-us-west-1.amazonaws.com/demo_profile.jpg")
 demo.profile_picture.attach(io: demo_profile_picture, filename: "demo_profile.jpg")
-demo_profile_banner = open(https://soundcheck-seeds.s3-us-west-1.amazonaws.com/demo_banner.jpg)
+demo_profile_banner = open("https://soundcheck-seeds.s3-us-west-1.amazonaws.com/demo_banner.jpg")
 demo.profile_banner.attach(io: demo_profile_banner, filname: "demo_banner.jpg")
 
-songdemo1 = Song.create!(title: "High Your Are (Branchez Remix)", description: "Much Vibes", user_id: 1, genre: "EDM")
+songdemo1 = Song.create!(title: "High Your Are (Branchez Remix)", description: "Much Vibes", user_id: demo.id, genre: "EDM")
 songdemo1_song = open("https://soundcheck-seeds.s3-us-west-1.amazonaws.com/27+High+You+Are+(Branchez+Remix).mp3")
 songdemo1.song.attach(io: songdemo1_song, filename: "high_you_are.mpg")
 songdemo1_photo = open("https://soundcheck-seeds.s3-us-west-1.amazonaws.com/high_you_are_art.jpg")

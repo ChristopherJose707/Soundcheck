@@ -46,6 +46,10 @@ class Navbar extends React.Component {
 
     closeUserMenu(e) {
         e.preventDefault();
+        if (this.dropdownUserMenu === null) {
+            return null;
+        };
+        
         if (!this.dropdownUserMenu.contains(e.target)) {
             this.setState({showUserMenu: false}, () => {
                 document.removeEventListener('click', this.closeUserMenu)
@@ -99,7 +103,6 @@ class Navbar extends React.Component {
 
         const signOutButton = this.props.currentUser ?  
         <button onClick={() => this.props.logout()}>Sign Out</button> : null;
-        console.log(this.props)
         return (
             <nav className="navbar-parent">
                 <div className="navbar">
@@ -118,7 +121,7 @@ class Navbar extends React.Component {
                         <button className="navbar-search-button"><FontAwesomeIcon icon="search" /></button>
                     </div>
                     <ul className="navbar-right-links">
-                        <li className="upgrade">Upgrade</li>
+                        <li className="upgrade"><a href="google.com">Google</a></li>
                         <div className={`navbar-upload-div ${this.props.match.path === "/upload" ? "black" : ""}`}>
                             <li><Link className={`navbar-upload-link ${this.props.match.path === "/upload" ? "black" : ""}`} to="/upload">Upload</Link></li>
 
@@ -136,16 +139,10 @@ class Navbar extends React.Component {
                             </button>
                             <ul id="navbar-ellipsis-id" className="navbar-ellipsis-content">
                                 {signOutButton}
-                                {/* <a href="soundcloud.com">SoundCloud</a>
-                                <a href="soundcloud.com">Google</a>
-                                <a href="soundcloud.com">Facebook</a> */}
 
                             </ul>
                         </div>
-                        {/* <li className="navbar-ellipsis"><button className="navbar-options" onClick={this.showOptionMenu}>
-                            <FontAwesomeIcon className="navbar-ellipsis" icon="ellipsis-h" />
-                        </button></li> */}
-                        {/* <li>{ this.state.showOptionMenu ? (signoutOrLinks) : (null) }</li> */}
+                        
                     </ul>
                 </div>
             </nav>
