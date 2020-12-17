@@ -59,7 +59,7 @@ class UserShow extends React.Component {
     }
 
    songList() {
-       const {user, userSongs} = this.props;
+       const {userSongs} = this.props;
        const songList = Object.values(userSongs).map((song, i) => {
            return(
                <div key={i} className="profile-song-item">
@@ -73,7 +73,7 @@ class UserShow extends React.Component {
                                 <PlayContainer songId={song.id} />
                                 <div className="profile-song-info-top">
                                     <li>
-                                        <Link to={`/users/${user.id}`}><p className="profile-song-artist">{user.display_name}</p></Link>
+                                        <Link to={`/users/${song.user_id}`}><p className="profile-song-artist">{song.artist}</p></Link>
                                     </li>
                                     <li>{uploadTime(song.created_at)}</li>
                                 </div>

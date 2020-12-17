@@ -21,12 +21,13 @@ const musicPlayerReducer = (oldState = defaultState, action) => {
         case RECEIVE_RANDOM_SONGS: 
             const songs = Object.values(action.songs);
             for(let i = 0; i < songs.length - 1; i++) {
-                let ranNum = Math.floor(Math.random() * (i + 1));
+                let ranNum = Math.floor(Math.random() * (songs.length));
                 [songs[i], songs[ranNum]] = [songs[ranNum], songs[i]]
             };
             songs.forEach(song => {
                 nextState.randomSongs.push(song.id)
             })
+            console.log(nextState);
             return nextState;
         case PLAY_SONG:
             nextState.playing = true;

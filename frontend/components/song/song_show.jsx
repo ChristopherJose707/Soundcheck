@@ -74,13 +74,12 @@ class SongShow extends React.Component {
 
         const deleteButton = (song.artist !== currentUser.display_name) ? null 
             : <button className="song-delete" onClick={() => this.handleDelete()}>Delete Track</button>
-        console.log(this.props)
         return (
             <div className="song-show-page">
                 <NavbarContainer />
                 <div className="song-banner">
                     <PlayContainer songId={song.id} />
-                    <h2 className="song-banner-artist"><Link to={`users/${song.user_id}`}>{song.artist}</Link></h2>
+                    <h2 className="song-banner-artist"><Link to={`/users/${song.user_id}`}>{song.artist}</Link></h2>
                     <h3 className="song-banner-created-at">{uploadTime(song.created_at)}</h3>
                     <h1 className="song-banner-title">{song.title}</h1>
                     <h3 className="song-banner-genre">#{song.genre}</h3>
