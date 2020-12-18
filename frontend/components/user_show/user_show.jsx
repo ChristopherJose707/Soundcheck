@@ -69,7 +69,8 @@ class UserShow extends React.Component {
 
    songList() {
        const {userSongs} = this.props;
-       const songList = Object.values(userSongs).map((song, i) => {
+       const songArrFiltered = Object.values(userSongs).filter( song => song.user_id === this.props.user.id)
+       const songList = songArrFiltered.map((song, i) => {
            return(
                <div key={i} className="profile-song-item">
                         <div className="profile-song-art">

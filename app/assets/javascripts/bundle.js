@@ -16110,7 +16110,10 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       var comments = Object.values(this.props.comments).reverse();
-      var allComments = comments.map(function (comment, i) {
+      var filtered = comments.filter(function (comment) {
+        return comment.song_id === _this3.props.song.id;
+      });
+      var allComments = filtered.map(function (comment, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: i,
           className: "comment-main",
@@ -17351,7 +17354,10 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var userSongs = this.props.userSongs;
-      var songList = Object.values(userSongs).map(function (song, i) {
+      var songArrFiltered = Object.values(userSongs).filter(function (song) {
+        return song.user_id === _this2.props.user.id;
+      });
+      var songList = songArrFiltered.map(function (song, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: i,
           className: "profile-song-item"

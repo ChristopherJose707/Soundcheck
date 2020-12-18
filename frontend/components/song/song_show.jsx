@@ -79,7 +79,8 @@ class SongShow extends React.Component {
 
     allComments() {
         let comments = Object.values(this.props.comments).reverse();
-        let allComments = comments.map((comment, i) => {
+        let filtered = comments.filter(comment => comment.song_id === this.props.song.id )
+        let allComments = filtered.map((comment, i) => {
             return (
                 <div key={i} className="comment-main" 
                     onMouseOver={()=> this.setState({authorID: comment.author_id, commentID: comment.id })}
