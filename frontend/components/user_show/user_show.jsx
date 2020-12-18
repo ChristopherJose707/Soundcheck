@@ -79,24 +79,27 @@ class UserShow extends React.Component {
                         <div className="profile-song-main">
                             <div className="profile-song-header">
                                 <PlayContainer songId={song.id} />
-                                <div className="profile-song-info-top">
-                                    <li>
-                                        <Link to={`/users/${song.user_id}`}><p className="profile-song-artist">{song.artist}</p></Link>
-                                    </li>
-                                    <li>{uploadTime(song.created_at)}</li>
-                                </div>
-                                <div className="profile-song-info-bottom">
-                                    <li><Link to={`/song/${song.id}`}>{song.title}</Link> </li>
-                                    <li>#{song.genre}</li>
-                                </div>
-                                <div className="waveform"></div>
-                                <div className="profile-song-footer">
-                                    <button className={`profile-song-like ${this.state.liked ? "liked" : ""}`}
-                                            onClick={this.handleLike}>
-                                        <FontAwesomeIcon icon="heart"/>
-                                    </button>
-                                </div>
+                                <div className="profile-song-info">
+                                    <div className="profile-song-info-top">
+                                        <li>
+                                            <Link to={`/users/${song.user_id}`}><p className="profile-song-artist">{song.artist}</p></Link>
+                                        </li>
+                                        <li>{uploadTime(song.created_at)}</li>
+                                    </div>
+                                    <div className="profile-song-info-bottom">
+                                        <li><Link to={`/song/${song.id}`}>{song.title}</Link> </li>
+                                        <li>#{song.genre}</li>
+                                    </div>
+                                </div> 
                             </div>
+                            <div className="waveform"></div>
+                            <div className="profile-song-footer">
+                                <button className={`profile-song-like ${this.state.liked ? "liked" : ""}`}
+                                        onClick={this.handleLike}>
+                                    <FontAwesomeIcon className="like-icon" icon="heart"/>
+                                    Like
+                                </button>
+                             </div>
                         </div>
                     </div>
            )
@@ -144,18 +147,18 @@ class UserShow extends React.Component {
                 <div className="profile-main">
                     <div className="profile-top">
                         <div className="user-info">
-                            <li>{user.display_name}</li>
-                            {user.profilePicture ? <img className="profile-pic-top" src={user.profilePicture} /> : null}
                             {user.profileBanner ? <img className="profile-banner-top" src={user.profileBanner} /> : null}
-                            
+                            <div className="profile-pic-top-div">
+                                {user.profilePicture ? <img className="profile-pic-top" src={user.profilePicture} /> : null}
+                                <li className="profile-pic-button">{uploadProfilePicButton}</li>
+                            </div>
+                            <li className="user-display-name">{user.display_name}</li>
+                            <li className="profile-banner-button">{uploadProfileBannerButton}</li>
                         </div>
-                        <li className="profile-banner-button">{uploadProfileBannerButton}</li>
-                        <li className="profile-pic-button">{uploadProfilePicButton}</li>
                     </div>
-                    <div className="profile-main">
+                    <div className="profile-song-content">
                         <div className="profile-header">
                             <li>All</li>
-                            <button>Edit</button>
                         </div>
                         <div className="profile-recent-songs">
                             <div className="recent">Recent</div>

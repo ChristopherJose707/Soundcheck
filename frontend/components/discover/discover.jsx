@@ -10,12 +10,19 @@ class Discover extends React.Component {
 
         this.state = {
             mouseOnNew: null,
-            mouseOnTrending: null
+            mouseOnTrending: null,
+            artists: null
         }
         
         this.trendingSongs = this.trendingSongs.bind(this);
         this.newestSongs = this.newestSongs.bind(this);
         this.mustListen = this.mustListen.bind(this);
+    }
+
+    componentDidUpdate() {
+        if (this.state.artists === null) {
+            this.mustListen()
+        }
     }
 
     componentDidMount() {
@@ -24,6 +31,7 @@ class Discover extends React.Component {
     }
 
     mustListen() {
+
         const {users} = this.props;
         const artists = Object.values(users)
         for(let i = 0; i < artists.length - 1; i++) {
@@ -34,28 +42,31 @@ class Discover extends React.Component {
             return (
                 <div key={i} className="discover-must">
                     <Link to={`/users/${artist.id}`}>
-                        {artist.profilePicture ? <img src={artist.profilePicture}></img> : null}
+                        <div className="must-img-wrapper">
+                            {artist.profilePicture ? <img className="must-img" src={artist.profilePicture}></img> : null}
+
+                        </div>
                         {artist.display_name}
                     </Link>
                 </div>
             )
         })
-        return bestArtists; 
+        this.setState({artists: bestArtists})
     }
 
     newestSongs() {
         const { songs } = this.props;
         const newestSongs = Object.values(songs).reverse().map((song, i) => {
-            let songArt = song.songPhoto ? <img src={song.songPhoto} /> : null;
+            let songArt = song.songPhoto ? <img className="song-art-img" src={song.songPhoto} /> : null;
 
             return (
                 <div key={i} className="song-item">
                     <li>
-                        <div className="song-art" onMouseEnter={() => this.setState({mouseOnNew: song.id})}
+                        <div className="song-art-div" onMouseEnter={() => this.setState({mouseOnNew: song.id})}
                            onMouseLeave={() => this.setState({mouseOnNew: null})}>
                             <Link to={`/song/${song.id}`}>{songArt}</Link>
                         </div>
-                        <div className="song-title">
+                        <div className="song-item-title">
                             {song.title}
                         </div>
                         {this.state.mouseOnNew === song.id ?
@@ -78,16 +89,16 @@ class Discover extends React.Component {
      trendingSongs() {
         const { songs } = this.props;
         const trendingSongs = Object.values(songs).map((song, i) => {
-            let songArt = song.songPhoto ? <img src={song.songPhoto} /> : null;
+            let songArt = song.songPhoto ? <img className="song-art-img" src={song.songPhoto} /> : null;
 
             return (
                 <div key={i} className="song-item">
                     <li>
-                        <div className="song-art" onMouseEnter={() => this.setState({mouseOnTrending: song.id})}
+                        <div className="song-art-div" onMouseEnter={() => this.setState({mouseOnTrending: song.id})}
                            onMouseLeave={() => this.setState({mouseOnTrending: null})}>
                             <Link to={`/song/${song.id}`}>{songArt}</Link>
                         </div>
-                        <div className="song-title">
+                        <div className="song-item-title">
                             {song.title}
                         </div>
                         {this.state.mouseOnTrending === song.id ?
@@ -106,9 +117,8 @@ class Discover extends React.Component {
         })
         return trendingSongs
     }
-
+    
     render() {
-        
         
         return (
             <div className="discover-parent">
@@ -126,9 +136,9 @@ class Discover extends React.Component {
                     <div className="discover-list">
                         <h1>Trending Now</h1>
                         <p>Top tracks on Soundcheck</p>
-                        <div className="discover-new">
+                        <div className="discover-trending">
                             <ul>
-                                {/* {this.trendingSongs()} */}
+                                {this.trendingSongs()}
                             </ul>
                         </div>
                     </div>
@@ -138,8 +148,8 @@ class Discover extends React.Component {
                         <FontAwesomeIcon icon="users" />
                         <p>Must Listen Artists</p>
                     </div>
-                    <ul>
-                        {/* {this.mustListen()} */}
+                    <ul className="discover-side-ul">
+                        {this.state.artists}
                     </ul>
                </div>
         

@@ -18,7 +18,8 @@ class Upload extends React.Component {
             description: "",
             photoFile: null,
             songFile: null,
-            photoUrl: "" 
+            photoUrl: "" ,
+            uploading: false
         }
 
         this.handleSongFile = this.handleSongFile.bind(this);
@@ -61,6 +62,7 @@ class Upload extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        this.setState({uploading: true})
         const formData = new FormData();
 
         formData.append('song[user_id]', this.state.userId);
@@ -125,6 +127,7 @@ class Upload extends React.Component {
                         />
 
                         <UploadDetails 
+                            uploading={this.state.uploading}
                             stepNumber={this.state.stepNumber}
                             title={this.state.title}
                             handleInput={this.handleInput}
