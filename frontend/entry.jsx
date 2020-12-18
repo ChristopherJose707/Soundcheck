@@ -29,9 +29,6 @@ import {faCaretLeft,
         faAngleDown, 
         faSearch} from '@fortawesome/free-solid-svg-icons';
 
-import {fetchSongs, fetchSong, fetchUserSongs, removeSong} from './actions/song_actions';
-import {fetchUsers, fetchUser, updateUser} from './actions/user_actions';
-import {fetchComments, createComment, deleteComment} from './actions/comment_actions';
 library.add(
     fab,
     faPlay,
@@ -77,19 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     //test start
-        window.fetchComments = fetchComments;
-        window.createComment = createComment;
-        window.deleteComment = deleteComment;
-    // window.fetchUsers = fetchUsers;
-    // window.fetchUser = fetchUser;
-    // window.updateUser = updateUser;
-    // window.removeSong = removeSong;
-    // window.fetchUserSongs = fetchUserSongs;
-    window.fetchSong = fetchSong;
-    // window.fetchSongs = fetchSongs;
-    window.getState = store.getState;
-    window.dispatch = store.dispatch;
-    window.logout = logout;
+     
     //test end
     
     const root = document.getElementById("root");

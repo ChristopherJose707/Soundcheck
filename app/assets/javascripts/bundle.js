@@ -17553,11 +17553,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
-/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./actions/song_actions */ "./frontend/actions/song_actions.js");
-/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./actions/user_actions */ "./frontend/actions/user_actions.js");
-/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./actions/comment_actions */ "./frontend/actions/comment_actions.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -17568,10 +17565,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
-
-
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_5__.library.add(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.fab, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faPlay, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faDumpsterFire, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faPause, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faHeart, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faComment, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faUsers, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faStepForward, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faStepBackward, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faFacebook, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faCamera, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faVolumeUp, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faVolumeDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faVolumeMute, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faExternalLinkAlt, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faGoogle, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faSoundcloud, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faLinkedin, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faGithub, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faUser, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faCaretLeft, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faAngleDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faSearch, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faEllipsisH);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_5__.library.add(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__.fab, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faPlay, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faDumpsterFire, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faPause, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faHeart, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faComment, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faUsers, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faStepForward, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faStepBackward, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faFacebook, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faCamera, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faVolumeUp, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faVolumeDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faVolumeMute, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faExternalLinkAlt, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faGoogle, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faSoundcloud, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faLinkedin, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faGithub, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faUser, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faCaretLeft, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faAngleDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faSearch, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faEllipsisH);
 document.addEventListener("DOMContentLoaded", function () {
   var store;
 
@@ -17589,21 +17583,8 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     store = (0,_store_store__WEBPACK_IMPORTED_MODULE_3__.default)();
   } //test start
+  //test end
 
-
-  window.fetchComments = _actions_comment_actions__WEBPACK_IMPORTED_MODULE_8__.fetchComments;
-  window.createComment = _actions_comment_actions__WEBPACK_IMPORTED_MODULE_8__.createComment;
-  window.deleteComment = _actions_comment_actions__WEBPACK_IMPORTED_MODULE_8__.deleteComment; // window.fetchUsers = fetchUsers;
-  // window.fetchUser = fetchUser;
-  // window.updateUser = updateUser;
-  // window.removeSong = removeSong;
-  // window.fetchUserSongs = fetchUserSongs;
-
-  window.fetchSong = _actions_song_actions__WEBPACK_IMPORTED_MODULE_6__.fetchSong; // window.fetchSongs = fetchSongs;
-
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
-  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__.logout; //test end
 
   var root = document.getElementById("root");
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_root__WEBPACK_IMPORTED_MODULE_2__.default, {
