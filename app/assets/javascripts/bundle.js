@@ -14268,7 +14268,6 @@ var MusicPlayer = /*#__PURE__*/function (_React$Component) {
   _createClass(MusicPlayer, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      /// remove receiveCurrentSong once testing is done
       if (this.props.randomSongs.length > 0) {
         return null;
       } else {
@@ -15981,6 +15980,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -16020,14 +16021,16 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      author: null,
-      liked: "Like",
-      followed: "Follow",
+      authorID: "",
+      commentID: "",
       commentBody: ""
     };
+    _this.handleComment = _this.handleComment.bind(_assertThisInitialized(_this));
     _this.handlePhotoFile = _this.handlePhotoFile.bind(_assertThisInitialized(_this));
     _this.handleDropdown = _this.handleDropdown.bind(_assertThisInitialized(_this));
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
+    _this.commentIndex = _this.commentIndex.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -16038,6 +16041,15 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       this.props.fetchUsers();
       this.props.fetchComments();
       scrollTo(0, 0);
+    }
+  }, {
+    key: "handleInput",
+    value: function handleInput(field) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, field, e.target.value));
+      };
     }
   }, {
     key: "handlePhotoFile",
@@ -16076,20 +16088,77 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
         comment: ""
       });
       this.props.createComment(comment);
-    } // renderComments() {
-    //     const comments = Object.values(this.props.comments).reverse();
-    //     comments.map((comment, i) => {
-    //         <div key={i} className="comment-main"
-    //             onMouseOver={()=> this.setState({author: })}
-    //         >
-    //         </div>
-    //     })
-    // }
+    }
+  }, {
+    key: "allComments",
+    value: function allComments() {
+      var _this3 = this;
 
+      var comments = Object.values(this.props.comments).reverse();
+      var allComments = comments.map(function (comment, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          key: i,
+          className: "comment-main",
+          onMouseOver: function onMouseOver() {
+            return _this3.setState({
+              authorID: comment.author_id,
+              commentID: comment.id
+            });
+          },
+          onMouseLeave: function onMouseLeave() {
+            return _this3.setState({
+              authorID: null,
+              commentID: null
+            });
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "comment-photo-div"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+          to: "/users/".concat(comment.author_id)
+        }, _this3.props.users[comment.author_id].profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+          className: "comment-photo",
+          src: _this3.props.users[comment.author_id].profilePicture
+        }) : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "comment-content"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "comment-header"
+        }, _this3.props.currentUser.id === comment.author_id ? "You" : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+          to: "/users/".concat(comment.author_id)
+        }, _this3.props.users[comment.author_id]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+          className: "comment-time"
+        }, (0,_util_upload_time_util__WEBPACK_IMPORTED_MODULE_2__.uploadTime)(comment.created_at))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "comment-body"
+        }, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "comment-delete"
+        }, _this3.props.currentUser.id === _this3.state.authorID && comment.id === _this3.state.commentID ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          onClick: function onClick() {
+            return _this3.props.deleteComment(comment.id);
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__.FontAwesomeIcon, {
+          icon: "dumpster-fire"
+        })) : null)));
+      });
+      return allComments;
+    }
+  }, {
+    key: "commentIndex",
+    value: function commentIndex() {
+      var allComments = this.allComments();
+      var index = Object.values(this.props.comments).length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "comment-index-wrapper"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "comment-index-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__.FontAwesomeIcon, {
+        icon: "comment"
+      }), allComments.length, " ", allComments.length === 1 ? "comment" : "comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "comment-list"
+      }, allComments)) : null;
+      return index;
+    }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
       var _this$props = this.props,
           users = _this$props.users,
@@ -16137,7 +16206,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       var deleteButton = song.artist !== currentUser.display_name ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "song-delete",
         onClick: function onClick() {
-          return _this2.handleDelete();
+          return _this4.handleDelete();
         }
       }, "Delete Track");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -16159,12 +16228,28 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       }, "#", song.genre), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "song-banner-photo"
       }, songPhoto, uploadPhotoButton)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "comments-form-parent"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "comments-form-wrapper"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "current-user-photo-form"
+      }, currentUser.profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: currentUser.profilePicture
+      }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+        className: "comment-form",
+        onSubmit: this.handleComment
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "text",
+        value: this.state.commentBody,
+        onChange: this.handleInput('commentBody'),
+        placeholder: "Write a comment"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "song-show-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Like"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, "Repost"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "show-dropdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: function onClick() {
-          return _this2.handleDropdown();
+          return _this4.handleDropdown();
         },
         className: "dropbtn"
       }, "More", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__.FontAwesomeIcon, {
@@ -16173,7 +16258,15 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         id: "show-dropdown-id",
         className: "show-dropdown-content"
-      }, deleteButton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Nothing here yet!")))), artistPhoto);
+      }, deleteButton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Nothing here yet!")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "comments-index-main"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "artist-left-comments"
+      }, artistPhoto, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, song.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "comment-index-song-desc"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "comments-desc"
+      }, song.description, this.commentIndex()))));
     }
   }]);
 
@@ -16227,8 +16320,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     createComment: function createComment(comment) {
       return dispatch((0,_actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__.createComment)(comment));
     },
-    deleteComment: function deleteComment() {
-      return dispatch((0,_actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__.deleteComment)(commentId));
+    deleteComment: function deleteComment(id) {
+      return dispatch((0,_actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__.deleteComment)(id));
     },
     fetchSongs: function fetchSongs() {
       return dispatch((0,_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__.fetchSongs)());
@@ -17440,7 +17533,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_5__.library.add(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.fab, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faPlay, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faPause, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faHeart, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faUsers, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faStepForward, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faStepBackward, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faFacebook, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faCamera, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faVolumeUp, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faVolumeDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faVolumeMute, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faExternalLinkAlt, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faGoogle, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faSoundcloud, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faLinkedin, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faGithub, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faUser, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faCaretLeft, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faAngleDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faSearch, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faEllipsisH);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_5__.library.add(_fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.fab, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faPlay, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faDumpsterFire, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faPause, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faHeart, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faComment, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faUsers, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faStepForward, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faStepBackward, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faFacebook, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faCamera, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faVolumeUp, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faVolumeDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faVolumeMute, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faExternalLinkAlt, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faGoogle, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faSoundcloud, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faLinkedin, _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faGithub, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faUser, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faCaretLeft, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faAngleDown, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faSearch, _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faEllipsisH);
 document.addEventListener("DOMContentLoaded", function () {
   var store;
 

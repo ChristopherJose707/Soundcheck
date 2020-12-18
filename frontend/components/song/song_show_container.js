@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
         fetchUsers: () => dispatch(fetchUsers()),
         fetchComments: () => dispatch(fetchComments()),
         createComment: (comment) => dispatch(createComment(comment)),
-        deleteComment: () => dispatch(deleteComment(commentId)),
+        deleteComment: (id) => dispatch(deleteComment(id)),
         fetchSongs: () => dispatch(fetchSongs()),
         removeSong: songId => dispatch(removeSong(songId)),
         fetchSong: songId => dispatch(fetchSong(songId)),

@@ -10,15 +10,17 @@ class SongShow extends React.Component {
         super(props);
 
         this.state = {
-            author: null,
-            liked: "Like",
-            followed: "Follow",
-            commentBody: ""
+            authorID: "",
+            commentID: "",
+            commentBody: "",
         }
 
+        this.handleComment = this.handleComment.bind(this);
         this.handlePhotoFile = this.handlePhotoFile.bind(this);
         this.handleDropdown = this.handleDropdown.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleInput = this.handleInput.bind(this);
+        this.commentIndex = this.commentIndex.bind(this);
     }
 
     componentDidMount() {
@@ -28,8 +30,10 @@ class SongShow extends React.Component {
         scrollTo(0, 0)
     }
 
+    handleInput(field) {
+        return e => this.setState({[field]: e.target.value})
+    }
    
-
     handlePhotoFile(e) {
         e.preventDefault();
         const { song } = this.props;
@@ -63,16 +67,56 @@ class SongShow extends React.Component {
         this.props.createComment(comment);
     }
 
-    // renderComments() {
-    //     const comments = Object.values(this.props.comments).reverse();
-    //     comments.map((comment, i) => {
-    //         <div key={i} className="comment-main"
-    //             onMouseOver={()=> this.setState({author: })}
-    //         >
-                
-    //         </div>
-    //     })
-    // }
+    allComments() {
+        let comments = Object.values(this.props.comments).reverse();
+        let allComments = comments.map((comment, i) => {
+            return (
+                <div key={i} className="comment-main" 
+                    onMouseOver={()=> this.setState({authorID: comment.author_id, commentID: comment.id })}
+                    onMouseLeave={()=> this.setState({authorID: null, commentID: null })}>
+
+                    <div className="comment-photo-div"><Link to={`/users/${comment.author_id}`}>
+                        {this.props.users[comment.author_id].profilePicture ? <img className="comment-photo" src={this.props.users[comment.author_id].profilePicture}/> : null}
+                    </Link></div>
+                    <div className="comment-content">
+                        <div className="comment-header">
+                            {this.props.currentUser.id === comment.author_id ? "You" 
+                            : <Link to={`/users/${comment.author_id}`}>{this.props.users[comment.author_id]}</Link>}
+                            <span className="comment-time">{uploadTime(comment.created_at)}</span>
+                        </div>
+                        <div className="comment-body">
+                            {comment.body}
+                        </div>
+                        <div className="comment-delete">
+                            {this.props.currentUser.id === this.state.authorID && comment.id === this.state.commentID ? 
+                                <button onClick={() => this.props.deleteComment(comment.id)}>
+                                    <FontAwesomeIcon icon="dumpster-fire" />
+                                </button> : null
+                            }
+                        </div>
+                    </div>
+                </div>
+            )
+        })
+        
+        return allComments;
+    }
+
+    commentIndex() {
+        const allComments = this.allComments();
+        const index = Object.values(this.props.comments).length > 0 ?
+            <div className="comment-index-wrapper">
+                <div className="comment-index-header">
+                    <FontAwesomeIcon icon="comment" />
+                    {allComments.length} {allComments.length === 1 ? "comment" : "comments"}
+                </div>
+                <div className="comment-list">
+                    {allComments}
+                </div>
+            </div> : null
+        
+        return index;
+    }
 
     render () {
         const {users, song, currentUser} = this.props;
@@ -115,6 +159,21 @@ class SongShow extends React.Component {
                     <h3 className="song-banner-genre">#{song.genre}</h3>
                     <div className="song-banner-photo">{songPhoto}{uploadPhotoButton}</div>
                 </div>
+
+                <div className="comments-form-parent">
+                    <div className="comments-form-wrapper">
+                        <div className="current-user-photo-form">
+                            {currentUser.profilePicture ? <img src={currentUser.profilePicture}/> : null}
+                        </div>
+                        <form className="comment-form" onSubmit={this.handleComment}>
+                            <input type="text"
+                                value={this.state.commentBody}
+                                onChange={this.handleInput('commentBody')}
+                                placeholder="Write a comment"
+                            />
+                        </form>
+                    </div>
+                </div>
                 <div className="song-show-buttons">
                     <button>Like</button>
                     <button>Repost</button>
@@ -126,7 +185,19 @@ class SongShow extends React.Component {
                         </ul>
                     </span>
                 </div>
-                {artistPhoto}
+                <div className="comments-index-main">
+                    <div className="artist-left-comments">
+                        {artistPhoto}
+                        <p>{song.artist}</p>
+                    </div>
+                    <div className="comment-index-song-desc">
+                        <div className="comments-desc">
+                            {song.description}
+                            {this.commentIndex()}
+                        </div>
+                    </div>
+
+                </div>
             </div>
             
         )

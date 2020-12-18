@@ -26,7 +26,7 @@ class MusicPlayer extends React.Component {
         this.handleNext = this.handleNext.bind(this);
     }
 
-    componentDidUpdate() { /// remove receiveCurrentSong once testing is done
+    componentDidUpdate() { 
         if (this.props.randomSongs.length > 0) {
             return null
         } else {
