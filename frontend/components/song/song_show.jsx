@@ -13,6 +13,7 @@ class SongShow extends React.Component {
             authorID: "",
             commentID: "",
             commentBody: "",
+            liked: false
         }
 
         this.handleComment = this.handleComment.bind(this);
@@ -21,6 +22,7 @@ class SongShow extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleInput = this.handleInput.bind(this);
         this.commentIndex = this.commentIndex.bind(this);
+        this.handleLike = this.handleLike.bind(this);
     }
 
     componentDidMount() {
@@ -28,6 +30,14 @@ class SongShow extends React.Component {
         this.props.fetchUsers();
         this.props.fetchComments();
         scrollTo(0, 0)
+    }
+
+    handleLike() {
+        if (this.state.liked) {
+            this.setState({liked: false})
+        } else {
+            this.setState({liked: true})
+        }
     }
 
     handleInput(field) {
@@ -136,15 +146,15 @@ class SongShow extends React.Component {
 
         const uploadPhotoButton = (song.artist !== currentUser.display_name) ? 
             null : !song.songPhoto && song.artist === currentUser.display_name ? 
-            <button className="upload-photo" >
+            <label className="upload-photo-label-show" >
                 <FontAwesomeIcon icon="camera"/>Upload Image
                 <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFile}></input>
-            </button> 
+            </label> 
             : 
-             <button className="upload-photo" >
+             <label className="upload-photo-label-show" >
                 <FontAwesomeIcon icon="camera"/>Update Image
                 <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFile}></input>
-            </button> ;
+            </label> ;
 
         const deleteButton = (song.artist !== currentUser.display_name) ? null 
             : <button className="song-delete" onClick={() => this.handleDelete()}>Delete Track</button>
@@ -152,11 +162,19 @@ class SongShow extends React.Component {
             <div className="song-show-page">
                 <NavbarContainer />
                 <div className="song-banner">
-                    <PlayContainer songId={song.id} />
-                    <h2 className="song-banner-artist"><Link to={`/users/${song.user_id}`}>{song.artist}</Link></h2>
-                    <h3 className="song-banner-created-at">{uploadTime(song.created_at)}</h3>
-                    <h1 className="song-banner-title">{song.title}</h1>
-                    <h3 className="song-banner-genre">#{song.genre}</h3>
+                    <div className="song-show-play">
+                        <PlayContainer songId={song.id} />
+                    </div>
+                    <div className="song-banner-info">
+                        <div className="song-banner-top">
+                            <h2 className="song-banner-artist"><Link to={`/users/${song.user_id}`}>{song.artist}</Link></h2>
+                            <h3 className="song-banner-created-at">{uploadTime(song.created_at)}</h3>
+                        </div>
+                        <div className="song-banner-bottom">
+                            <h1 className="song-banner-title">{song.title}</h1>
+                            <h3 className="song-banner-genre">#{song.genre}</h3>
+                        </div>
+                    </div>
                     <div className="song-banner-photo">{songPhoto}{uploadPhotoButton}</div>
                 </div>
 
@@ -175,8 +193,10 @@ class SongShow extends React.Component {
                     </div>
                 </div>
                 <div className="song-show-buttons">
-                    <button>Like</button>
-                    <button>Repost</button>
+                    <button className={`profile-song-like ${this.state.liked ? "liked" : ""}`}
+                        onClick={this.handleLike}><FontAwesomeIcon className="like-icon" icon="heart"/>
+                        Like
+                    </button>
                     <span className="show-dropdown">
                         <button onClick={() => this.handleDropdown()} className="dropbtn">More<FontAwesomeIcon className="song-show-ellipsis" icon="ellipsis-h" /></button>
                         <ul id="show-dropdown-id" className="show-dropdown-content">
@@ -192,7 +212,9 @@ class SongShow extends React.Component {
                     </div>
                     <div className="comment-index-song-desc">
                         <div className="comments-desc">
-                            {song.description}
+                            <div className="song-description">
+                                {song.description}
+                            </div>
                             {this.commentIndex()}
                         </div>
                     </div>

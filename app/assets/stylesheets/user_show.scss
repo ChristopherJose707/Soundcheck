@@ -253,3 +253,17 @@
 .like-icon {
     padding-right: 6px;
 }
+
+.profile-right-panel {
+    position: relative;
+}
+
+.profile-right-panel-content {
+position: absolute;
+    left: 800px;
+    bottom: 1500px;
+}
+
+.profile-stats {
+    display: flex;
+}
