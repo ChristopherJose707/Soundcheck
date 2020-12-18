@@ -1,28 +1,255 @@
 .profile-main {
     width: 1080px;
-    height: 1141px;
+    height: auto;
+    margin-top: 46px;
     margin-right: auto;
     margin-left: auto;
     font-family: 'Open Sans', sans-serif;
     background: rgb(255, 255, 255);
 }
 
+.profile-top {
+    width: 1050px;
+    height: 260px;
+    display: flex;
+}
+
+.profile-pic-top-div {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    position: absolute;
+    top: 21px;
+    left: 47px;
+}
+
 .profile-pic-top {
     width: 200px;
     height: 200px;
     border-radius: 100px;
+    top: 12px;
+    left: 24px;
 }
+
+.profile-banner-top {
+    width: 1080px;
+    height: 270px;
+    position: absolute;
+}
+
+
 
 .profile-song-img {
     width: 160px;
     height: 160px;
 }
 
-.profile-banner-top {
-    width: 1080px;
-    height: 270px;
-}
 
 .liked:focus {
     color: #ff5500;
+}
+
+.user-info {
+    width: 1080px;
+    height: 260px;
+    list-style: none;
+    position: relative
+}
+
+.profile-pic-button {
+    z-index: 1;
+}
+
+.user-display-name {
+    position: absolute;
+    z-index: 100;
+    color: white;
+    top: 41px;
+    left: 277px;
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.profile-pic-button {
+    position: absolute;
+    z-index: 100;
+    background: gray
+}
+
+.profile-song-content {
+    margin-top: 10px;
+    padding-left: 30px;
+}
+
+.profile-photo-label {
+    position: absolute;
+    width: 129px;
+    height: 27px;
+    cursor: pointer;
+    left: 29px;
+    bottom: 17px;
+    padding: 0px 6px 2px 6px;
+    color: black;
+    border-radius: 5px;
+    justify-content: center;
+    font-size: 12px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+
+.profile-banner-label {
+    position: absolute;
+    width: 129px;
+    height: 27px;
+    cursor: pointer;
+    left: 900px;
+    top: 47px;
+    bottom: 17px;
+    padding: 0px 6px 2px 6px;
+    color: black;
+    border-radius: 5px;
+    justify-content: center;
+    font-size: 12px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+
+.profile-banner-label input[type="file"] {
+    display: none;
+}
+
+.profile-photo-label input[type="file"] {
+    display:none;
+}
+
+.profile-header {
+    width: 1080px;
+    height: 49px;
+    border-bottom: 1px solid #f0efef;
+    list-style-type: none;
+    font-size: 18px;
+    color: #ff5500;
+    display: flex;
+    align-items: center;
+}
+
+.profile-header li {
+    padding: 10px;
+}
+
+.recent {
+    font-size: 23px;
+    margin: 12px 0px 20px;
+}
+
+.profile-song-item {
+    display: flex;
+    list-style: none;
+    padding-bottom: 30px;
+}
+
+.profile-recent-songs {
+    width: 800px;
+    border-right: 1px solid #f0efef
+}
+
+.profile-song-main {
+    width: 600px;
+    height: 165px;
+    padding-left: 20px;
+}
+
+.profile-song-header {
+    width: 600px;
+    height: 100px;
+    display: flex;
+}
+
+.profile-song-header {
+    display: flex;
+    height: 43px;
+}
+
+
+.profile-song-header .play-button {
+    width: 36px;
+  height: 36px;
+  color: white;
+  border: none;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 100px;
+  outline: none;
+  background: rgb(167,75,0);
+  background: linear-gradient(45deg, rgba(167,75,0,1) 16%, rgba(196,79,0,1) 35%, rgba(221,90,0,1) 60%, rgba(255,85,0,1) 95%); 
+}
+
+.profile-song-info {
+    width: 600px;
+}
+
+.profile-song-info-top {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 12px;
+    color: gray;
+}
+
+.profile-song-artist {
+    color: gray;
+    padding-left: 10px;
+}
+
+.profile-song-info-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+.profile-song-info-bottom a {
+    color: black;
+    padding-left: 10px;
+}
+
+.profile-song-info-bottom li:last-child {
+    color: white;
+    background: gray;
+    font-size: 12px;
+    padding: 0px 7px;
+    border-radius: 20px;
+    align-items: center;
+    height: 18px;
+    margin-top: 3px;
+    display: flex;
+}
+
+
+.waveform {
+    height: 60px;
+    width: 100%;
+    border: 1px solid rgb(199, 199, 199);
+}
+
+.profile-song-footer {
+    margin-top: 33px;
+}
+
+.profile-song-like {
+    background: white;
+    border-radius: 3px;
+    border: 1px solid gray;
+    display:flex;
+    height: 23px;
+    padding: 6px 9px;
+    font-size: 11px;
+    outline: none;
+}
+
+.like-icon {
+    padding-right: 6px;
 }
