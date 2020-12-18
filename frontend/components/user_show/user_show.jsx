@@ -69,7 +69,6 @@ class UserShow extends React.Component {
 
    songList() {
        const {userSongs} = this.props;
-       console.log(userSongs)
        const songList = Object.values(userSongs).map((song, i) => {
            return(
                <div key={i} className="profile-song-item">

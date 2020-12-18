@@ -17351,7 +17351,6 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var userSongs = this.props.userSongs;
-      console.log(userSongs);
       var songList = Object.values(userSongs).map(function (song, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: i,
@@ -18044,18 +18043,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // const configureStore = (preloadedState = {}) => {
-//     return createStore(rootReducer, preloadedState, applyMiddleware(thunk, logger))
-// }
-// export default configureStore;
-// no logger
+
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return (0,redux__WEBPACK_IMPORTED_MODULE_3__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_0__.default, preloadedState, (0,redux__WEBPACK_IMPORTED_MODULE_3__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_2__.default));
+  return (0,redux__WEBPACK_IMPORTED_MODULE_3__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_0__.default, preloadedState, (0,redux__WEBPACK_IMPORTED_MODULE_3__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_2__.default, (redux_logger__WEBPACK_IMPORTED_MODULE_1___default())));
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore); // no logger
+// const configureStore = (preloadedState = {}) => {
+//     return createStore(rootReducer, preloadedState, applyMiddleware(thunk))
+// }
+// export default configureStore;
 
 /***/ }),
 
