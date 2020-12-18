@@ -1,6 +1,6 @@
 # SoundCheck 
 
-SoundCheck is a [Soundcloud](https://soundcloud.com/) clone. It is a very popular music platform where artists from all parts of the music industry, either big or small have come to upload and share their music. Any user can upload a song and let it be heard by anyone around the world, free of charge. 
+[SoundCheck](https://cjsoundcheck.herokuapp.com/#/) is a [Soundcloud](https://soundcloud.com/) clone. It is a very popular music platform where artists from all parts of the music industry, either big or small have come to upload and share their music. Any user can upload a song and let it be heard by anyone around the world, free of charge. 
 
 <a href="https://imgur.com/fu0IVKU"><img src="https://i.imgur.com/fu0IVKU.png" title="source: imgur.com" /></a>
 
