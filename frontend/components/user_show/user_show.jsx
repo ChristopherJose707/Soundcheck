@@ -32,6 +32,7 @@ class UserShow extends React.Component {
         scrollTo(0,0);
         this.props.fetchUser(this.props.match.params.userId);
         this.props.fetchUserSongs(this.props.match.params.userId);
+        
     }
 
     handleLike() {
@@ -68,6 +69,7 @@ class UserShow extends React.Component {
 
    songList() {
        const {userSongs} = this.props;
+       console.log(userSongs)
        const songList = Object.values(userSongs).map((song, i) => {
            return(
                <div key={i} className="profile-song-item">
