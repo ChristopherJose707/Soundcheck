@@ -12,7 +12,7 @@ class Upload extends React.Component {
 
         const { currentUser } = this.props;
         this.state = {
-            stepNumber: 1, 
+            stepNumber: 3, // change back to 1 once done styling
             userId: currentUser.id,
             title: "",
             description: "",

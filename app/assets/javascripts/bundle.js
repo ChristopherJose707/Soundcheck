@@ -16624,7 +16624,8 @@ var Upload = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     var currentUser = _this.props.currentUser;
     _this.state = {
-      stepNumber: 1,
+      stepNumber: 3,
+      // change back to 1 once done styling
       userId: currentUser.id,
       title: "",
       description: "",
@@ -17200,18 +17201,20 @@ var UploadSuccess = /*#__PURE__*/function (_React$Component) {
           className: "upload-success"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "success-song-details"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "success-top-details"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
           className: "success-song-artist"
-        }, artist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+        }, "Test Artist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
           className: "success-song-title"
-        }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-          className: "success-song-description"
-        }, description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+        }, "Really Long long Title Song")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "success-bottom-details"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
           className: "success-song-complete"
         }, "Upload Complete!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
           className: "success-song-link",
           to: "/song/".concat(songId)
-        }, "Go to your track.")));
+        }, "Go to your track."))));
       } else {
         return null;
       }

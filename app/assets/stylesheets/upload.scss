@@ -261,33 +261,69 @@
 }
 
 .upload-success {
-  width: 300px;
-  height: 150px; 
+  width: 400px;
+  height: 250px; 
   display: flex;
   justify-content: center;
- align-items: center;;
+  align-items: center;;
   -webkit-box-shadow: 0px 0px 5px 1px rgba(235,235,235,1);
   -moz-box-shadow: 0px 0px 5px 1px rgba(235,235,235,1);
   box-shadow: 0px 0px 5px 1px rgba(235,235,235,1);
 }
 
-
+.success-song-details {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
 
 .success-song-complete {
-  padding-top: 10px;
-  font-size: 20px;
+  font-size: 30px;
   display: flex;
   justify-content: center;
 }
 
 .success-song-link {
   color: #ff5500;
-  font-size: 18px;
-    display: flex;
+  font-size: 20px;
+  display: flex;
+  padding-top: 5px;
   justify-content: center;
 }
 
-.success-song-artist, .success-song-title {
+.success-song-artist, .success-song-title, .success-song-description {
   display: flex;
+  justify-content: center;
+}
+
+.success-song-artist {
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+.success-song-title {
+  font-size: 18px;
+  font-style: italic;
+}
+
+.success-song-description {
+  font-size: 14px; 
+  color: gray;
+}
+
+.success-top-details {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0px 15px;
+}
+
+.success-bottom-details {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
 }
