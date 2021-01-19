@@ -18,13 +18,9 @@ class UploadSuccess extends React.Component {
             return (
               <div className="upload-success">
                 <div className="success-song-details">
-                  {/* <p className="success-song-artist">{artist}</p>
-                        <h3 className="success-song-title">{title}</h3>
-                        <p className="success-song-description">{description}</p> */}
                     <div className="success-top-details">
-                        <p className="success-song-artist">Test Artist</p>
-                        <h3 className="success-song-title">Really Long long Title Song</h3>
-                        {/* <p className="success-song-description">Test Description</p> */}
+                        <p className="success-song-artist">{artist}</p>
+                        <h3 className="success-song-title">{title}</h3>
                     </div>
                     <div className="success-bottom-details">
                         <p className="success-song-complete">Upload Complete!</p>
