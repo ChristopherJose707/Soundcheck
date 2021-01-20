@@ -47,7 +47,6 @@ class UserShow extends React.Component {
         e.preventDefault();
         const {user} = this.props;
         const file = e.target.files[0];
-        debugger;
         if (file) {
             const formData = new FormData();
             formData.append('user[profile_picture]', file);

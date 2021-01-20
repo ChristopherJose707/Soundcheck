@@ -17331,7 +17331,6 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var user = this.props.user;
       var file = e.target.files[0];
-      debugger;
 
       if (file) {
         var formData = new FormData();

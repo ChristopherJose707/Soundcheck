@@ -159,6 +159,7 @@
     width: 800px;
     border-right: 1px solid #f0efef;
     padding-right: 15px;
+    margin-top: 12px;
 }
 
 .profile-song-main {
@@ -234,13 +235,13 @@
 
 
 .waveform {
-    height: 60px;
+    height: 80px;
     width: 100%;
     border: 1px solid rgb(199, 199, 199);
 }
 
 .profile-song-footer {
-    margin-top: 33px;
+    margin-top: 10px;
 }
 
 .profile-song-like {
@@ -314,4 +315,8 @@
 
 .tracks-span {
     width: 83px;
+}
+
+.followers-span:hover, .following-span:hover, .tracks-span:hover {
+    color: black;
 }
