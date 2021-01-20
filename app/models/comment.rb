@@ -19,6 +19,6 @@ class Comment < ApplicationRecord
 
     belongs_to :song, 
         foreign_key: :song_id,
-        class_name: :Song,
-        dependent: :destroy
+        class_name: :Song
+        
 end

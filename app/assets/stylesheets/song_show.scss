@@ -11,6 +11,7 @@
 .song-show-photo {
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
 .comment-photo {
@@ -22,6 +23,7 @@
   width: 80px;
   height: 80px;
   border-radius: 100px;
+  object-fit: cover;
 }
 
 .current-user-photo-form img {
@@ -29,6 +31,7 @@
   height: 40px;
   padding-top: 4px;
   padding-left: 8px;
+  object-fit: cover;
 }
 
 .dropbtn {
@@ -230,6 +233,7 @@
 }
 .comment-main {
   display: flex;
+  padding-bottom: 10px;
 }
 
 .comments-desc {
@@ -250,15 +254,22 @@
   min-height: 23px;
   color: black;
   position: relative;
-  font-size: 14px;
+  font-size: 12px;
+
+}
+
+.comment-span{
+  width: 400px;
 }
 
 .comment-photo {
   border-radius: 100px;
+  object-fit: cover;
 }
 
 .comment-content {
   width: 500px;
+  
 }
 
 .comment-time {
@@ -269,10 +280,22 @@
   font-size: 12px;
 }
 
-.comment-photo {
+.song-description {
+  padding-bottom: 20px;
+}
+
+.comment-photo-div {
   padding-right: 5px;
 }
 
-.song-description {
-  padding-bottom: 20px;
+.delete-span {
+  padding-left: 80px;
+  
+}
+
+.comment-delete-btn {
+  background-color: white;
+  border: 1px solid #f0efef;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  border-radius: 5px;
 }

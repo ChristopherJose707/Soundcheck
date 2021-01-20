@@ -97,15 +97,20 @@ class SongShow extends React.Component {
                             <span className="comment-time">{uploadTime(comment.created_at)}</span>
                         </div>
                         <div className="comment-body">
-                            {comment.body}
+                            <span className="comment-span">{comment.body}</span>
+                            {this.props.currentUser.id === this.state.authorID && comment.id === this.state.commentID ? 
+                                <span className="delete-span"><button className="comment-delete-btn" onClick={() => this.props.deleteComment(comment.id)}>
+                                    <FontAwesomeIcon icon="dumpster-fire" />
+                                </button></span> : null
+                            }
                         </div>
-                        <div className="comment-delete">
+                        {/* <div className="comment-delete">
                             {this.props.currentUser.id === this.state.authorID && comment.id === this.state.commentID ? 
                                 <button onClick={() => this.props.deleteComment(comment.id)}>
                                     <FontAwesomeIcon icon="dumpster-fire" />
                                 </button> : null
                             }
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             )

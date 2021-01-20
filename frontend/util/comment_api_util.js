@@ -1,4 +1,3 @@
-import { $CombinedState } from "redux"
 
 export const fetchComments = () => {
     return $.ajax({

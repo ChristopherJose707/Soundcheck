@@ -16147,15 +16147,18 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
           className: "comment-time"
         }, (0,_util_upload_time_util__WEBPACK_IMPORTED_MODULE_2__.uploadTime)(comment.created_at))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "comment-body"
-        }, comment.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "comment-delete"
-        }, _this3.props.currentUser.id === _this3.state.authorID && comment.id === _this3.state.commentID ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+          className: "comment-span"
+        }, comment.body), _this3.props.currentUser.id === _this3.state.authorID && comment.id === _this3.state.commentID ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+          className: "delete-span"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          className: "comment-delete-btn",
           onClick: function onClick() {
             return _this3.props.deleteComment(comment.id);
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__.FontAwesomeIcon, {
           icon: "dumpster-fire"
-        })) : null)));
+        }))) : null)));
       });
       return allComments;
     }
@@ -16626,8 +16629,7 @@ var Upload = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     var currentUser = _this.props.currentUser;
     _this.state = {
-      stepNumber: 3,
-      // change back to 1 once done styling
+      stepNumber: 1,
       userId: currentUser.id,
       title: "",
       description: "",
@@ -18092,7 +18094,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createComment": () => /* binding */ createComment,
 /* harmony export */   "deleteComment": () => /* binding */ deleteComment
 /* harmony export */ });
-
 var fetchComments = function fetchComments() {
   return $.ajax({
     method: "GET",
