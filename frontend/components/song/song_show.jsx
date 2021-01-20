@@ -23,6 +23,7 @@ class SongShow extends React.Component {
         this.handleInput = this.handleInput.bind(this);
         this.commentIndex = this.commentIndex.bind(this);
         this.handleLike = this.handleLike.bind(this);
+        
     }
 
     componentDidMount() {
@@ -73,7 +74,7 @@ class SongShow extends React.Component {
             author_id: this.props.currentUser.id,
             body: this.state.commentBody
         };
-        this.setState({comment: ""});
+        this.setState({commentBody: ""});
         this.props.createComment(comment);
     }
 
@@ -138,7 +139,7 @@ class SongShow extends React.Component {
         if (!this.props.song || !this.props.users) {
             return null
         };
-
+        
         const songPhoto = song.songPhoto ? 
             <img className="song-show-photo" src={song.songPhoto} /> : null
 
@@ -159,6 +160,8 @@ class SongShow extends React.Component {
 
         const deleteButton = (song.artist !== currentUser.display_name) ? null 
             : <button className="song-delete" onClick={() => this.handleDelete()}>Delete Track</button>
+
+        
         return (
             <div className="song-show-page">
                 <NavbarContainer />
@@ -185,12 +188,13 @@ class SongShow extends React.Component {
                             {currentUser.profilePicture ? <img src={currentUser.profilePicture}/> : null}
                         </div>
                         <form className="comment-form" onSubmit={this.handleComment}>
-                            <input type="text"
+                            <input id="input-comment" type="text"
                                 value={this.state.commentBody}
                                 onChange={this.handleInput('commentBody')}
                                 placeholder="Write a comment"
                             />
                         </form>
+                        
                     </div>
                 </div>
                 <div className="song-show-buttons">

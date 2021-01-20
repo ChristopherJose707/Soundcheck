@@ -16101,7 +16101,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
         body: this.state.commentBody
       };
       this.setState({
-        comment: ""
+        commentBody: ""
       });
       this.props.createComment(comment);
     }
@@ -16266,6 +16266,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
         className: "comment-form",
         onSubmit: this.handleComment
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        id: "input-comment",
         type: "text",
         value: this.state.commentBody,
         onChange: this.handleInput('commentBody'),
