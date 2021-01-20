@@ -26,13 +26,15 @@ class Discover extends React.Component {
     }
 
     componentDidMount() {
-        scrollTo(0, 0)
         this.props.fetchUsers();
+        scrollTo(0, 0)
     }
 
     mustListen() {
-
+        
         const {users} = this.props;
+        if (Object.values(users).length === 1) return null;
+        
         const artists = Object.values(users)
         for(let i = 0; i < artists.length - 1; i++) {
             let ranNum = Math.floor(Math.random() * (artists.length));
@@ -51,6 +53,7 @@ class Discover extends React.Component {
                 </div>
             )
         })
+        
         this.setState({artists: bestArtists})
     }
 
@@ -119,44 +122,35 @@ class Discover extends React.Component {
     }
     
     render() {
-        
-        return (
+
+          return (
             <div className="discover-parent">
-                <NavbarContainer path={this.props.path} />
-               <div className="discover-main">
-                    <div className="discover-list">
-                        <h1>SoundCheck: New</h1>
-                        <p>Checkout the newest tracks on SoundCheck</p>
-                        <div className="discover-new">
-                            <ul>
-                                {this.newestSongs()}
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="discover-list">
-                        <h1>Trending Now</h1>
-                        <p>Top tracks on Soundcheck</p>
-                        <div className="discover-trending">
-                            <ul>
-                                {this.trendingSongs()}
-                            </ul>
-                        </div>
-                    </div>
-               </div>
-               <div className="discover-side">
-                    <div className="discover-side-header">
-                        <FontAwesomeIcon icon="users" />
-                        <p>Must Listen Artists</p>
-                    </div>
-                    <ul className="discover-side-ul">
-                        {this.state.artists}
-                    </ul>
-               </div>
-        
-               
+              <NavbarContainer path={this.props.path} />
+              <div className="discover-main">
+                <div className="discover-list">
+                  <h1>SoundCheck: New</h1>
+                  <p>Checkout the newest tracks on SoundCheck</p>
+                  <div className="discover-new">
+                    <ul>{this.newestSongs()}</ul>
+                  </div>
+                </div>
+                <div className="discover-list">
+                  <h1>Trending Now</h1>
+                  <p>Top tracks on Soundcheck</p>
+                  <div className="discover-trending">
+                    <ul>{this.trendingSongs()}</ul>
+                  </div>
+                </div>
+              </div>
+              <div className="discover-side">
+                <div className="discover-side-header">
+                  <FontAwesomeIcon icon="users" />
+                  <p>Must Listen Artists</p>
+                </div>
+                <ul className="discover-side-ul">{this.state.artists}</ul>
+              </div>
             </div>
-            
-        )
+          );
     }
 };
 

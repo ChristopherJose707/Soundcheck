@@ -13849,13 +13849,14 @@ var Discover = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      scrollTo(0, 0);
       this.props.fetchUsers();
+      scrollTo(0, 0);
     }
   }, {
     key: "mustListen",
     value: function mustListen() {
       var users = this.props.users;
+      if (Object.values(users).length === 1) return null;
       var artists = Object.values(users);
 
       for (var i = 0; i < artists.length - 1; i++) {
@@ -18052,18 +18053,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // const configureStore = (preloadedState = {}) => {
-//     return createStore(rootReducer, preloadedState, applyMiddleware(thunk, logger))
-// }
-// export default configureStore;
-// no logger
+
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return (0,redux__WEBPACK_IMPORTED_MODULE_3__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_0__.default, preloadedState, (0,redux__WEBPACK_IMPORTED_MODULE_3__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_2__.default));
+  return (0,redux__WEBPACK_IMPORTED_MODULE_3__.createStore)(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_0__.default, preloadedState, (0,redux__WEBPACK_IMPORTED_MODULE_3__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_2__.default, (redux_logger__WEBPACK_IMPORTED_MODULE_1___default())));
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore); // no logger
+// const configureStore = (preloadedState = {}) => {
+//     return createStore(rootReducer, preloadedState, applyMiddleware(thunk))
+// }
+// export default configureStore;
 
 /***/ }),
 
