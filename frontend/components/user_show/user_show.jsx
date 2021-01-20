@@ -115,6 +115,7 @@ class UserShow extends React.Component {
         }
         
         const {user, currentUser } = this.props;
+        console.log(user)
 
         const uploadProfilePicButton = user !== currentUser ?
             null : !user.songPhoto && user === currentUser ? 
@@ -142,57 +143,70 @@ class UserShow extends React.Component {
                     <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFileProfileBanner}/>
                 </label> ;
 
-        return(
-            
-            <div>
-                <NavbarContainer/>
-                <div className="profile-main">
-                    <div className="profile-top">
-                        <div className="user-info">
-                            {user.profileBanner ? <img className="profile-banner-top" src={user.profileBanner} /> : null}
-                            <div className="profile-pic-top-div">
-                                {user.profilePicture ? <img className="profile-pic-top" src={user.profilePicture} /> : null}
-                                <li className="profile-pic-button">{uploadProfilePicButton}</li>
-                            </div>
-                            <li className="user-display-name">{user.display_name}</li>
-                            <li className="profile-banner-button">{uploadProfileBannerButton}</li>
-                        </div>
-                    </div>
-                    <div className="profile-song-content">
-                        <div className="profile-header">
-                            <li>All</li>
-                        </div>
-                        <div className="profile-recent-songs">
-                            <div className="recent">Recent</div>
-                            <div className="recent-songs-list">
-                                {this.songList()}
-                            </div>
-                        </div>
-                        <div className="profile-right-panel">
-                            <div className="profile-right-panel-content">
-                                <div className="profile-stats">
-                                    <span>
-                                        <h2>Followers</h2>
-                                        <p>100</p>
-                                    </span>
-                                    <span>
-                                        <h2>Following</h2>
-                                        <p>64</p>
-                                    </span>
-                                    <span>
-                                        <h2>Tracks</h2>
-                                        <p>6</p>
-                                    </span>
-                                </div>
-                                <div className="profile-bio">
-                                    <span>{user.description}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        return (
+          <div>
+            <NavbarContainer />
+            <div className="profile-main">
+              <div className="profile-top">
+                <div className="user-info">
+                  {user.profileBanner ? (
+                    <img
+                      className="profile-banner-top"
+                      src={user.profileBanner}
+                    />
+                  ) : null}
+                  <div className="profile-pic-top-div">
+                    {user.profilePicture ? (
+                      <img
+                        className="profile-pic-top"
+                        src={user.profilePicture}
+                      />
+                    ) : null}
+                    <li className="profile-pic-button">
+                      {uploadProfilePicButton}
+                    </li>
+                  </div>
+                  <li className="user-display-name">{user.display_name}</li>
+                  <li className="profile-banner-button">
+                    {uploadProfileBannerButton}
+                  </li>
                 </div>
+              </div>
+              <div className="profile-song-content">
+                <div className="profile-header">
+                  <li>All</li>
+                </div>
+                <div className="profile-song-bottom">
+                  <div className="profile-recent-songs">
+                    <div className="recent">Recent</div>
+                    <div className="recent-songs-list">{this.songList()}</div>
+                  </div>
+                  <div className="profile-right-panel">
+                    <div className="profile-right-panel-content">
+                      <div className="profile-stats">
+                        <span className="followers-span">
+                          <h2>Followers</h2>
+                          <p>100</p>
+                        </span>
+                        <span className="following-span">
+                          <h2>Following</h2>
+                          <p>64</p>
+                        </span>
+                        <span className="tracks-span">
+                          <h2>Tracks</h2>
+                          <p>{user.trackIds.length}</p>
+                        </span>
+                      </div>
+                      <div className="profile-bio">
+                        <span className="bio-span">{user.description}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-        )
+          </div>
+        );
     }
 };
 

@@ -29,12 +29,14 @@
     border-radius: 100px;
     top: 12px;
     left: 24px;
+    object-fit: cover;
 }
 
 .profile-banner-top {
     width: 1080px;
     height: 270px;
     position: absolute;
+    object-fit: cover;
 }
 
 
@@ -68,6 +70,7 @@
     left: 277px;
     font-size: 30px;
     background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
 }
 
 .profile-pic-button {
@@ -154,7 +157,8 @@
 
 .profile-recent-songs {
     width: 800px;
-    border-right: 1px solid #f0efef
+    border-right: 1px solid #f0efef;
+    padding-right: 15px;
 }
 
 .profile-song-main {
@@ -255,15 +259,59 @@
 }
 
 .profile-right-panel {
-    position: relative;
+   width: 100%;
+   padding-top: 12px;
 }
 
 .profile-right-panel-content {
-    position: absolute;
-    left: 800px;
-    bottom: 1357px;
+    // position: absolute;
+    // left: 800px;
+    // bottom: 1357px;
+    color: rgb(145, 145, 145)
 }
 
 .profile-stats {
     display: flex;
+    justify-content: space-evenly;
+}
+
+.profile-stats h2 {
+    font-size: 12px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-stats p {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-bio {
+    padding-top: 10px;
+    margin: 0px 15px;
+    color: black;
+}
+
+.bio-span {
+    font-size: 12px;
+}
+
+.profile-song-bottom {
+    display: flex;
+}
+
+.followers-span {
+    width: 83px;
+    border-right: 1px solid #f0efef;
+}
+
+.following-span {
+    width: 83px;
+    border-right: 1px solid #f0efef;
+}
+
+.tracks-span {
+    width: 83px;
 }
