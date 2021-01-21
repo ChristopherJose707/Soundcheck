@@ -21,6 +21,7 @@
     position: absolute;
     top: 21px;
     left: 47px;
+    background: darkcyan;
 }
 
 .profile-pic-top {
@@ -52,10 +53,12 @@
 }
 
 .user-info {
-    width: 1080px;
+    min-width: 1080px;
     height: 260px;
     list-style: none;
-    position: relative
+    position: relative;
+    background: rgb(167,75,0);
+    background: linear-gradient(45deg, rgba(167,75,0,1) 16%, rgba(196,79,0,1) 35%, rgba(221,90,0,1) 60%, rgba(255,85,0,1) 95%);
 }
 
 .profile-pic-button {
@@ -86,17 +89,17 @@
 
 .profile-photo-label {
     position: absolute;
-    width: 129px;
+    width: 140px;
     height: 27px;
     cursor: pointer;
-    left: 29px;
+    left: 26px;
     bottom: 17px;
     padding: 0px 6px 2px 6px;
     color: black;
     border-radius: 5px;
     justify-content: center;
     font-size: 12px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.5);
     display: flex;
     align-items: center;
     z-index: 100;
@@ -104,7 +107,7 @@
 
 .profile-banner-label {
     position: absolute;
-    width: 129px;
+    width: 140px;
     height: 27px;
     cursor: pointer;
     left: 900px;
@@ -115,7 +118,7 @@
     border-radius: 5px;
     justify-content: center;
     font-size: 12px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.5);
     display: flex;
     align-items: center;
     z-index: 100;
@@ -156,9 +159,9 @@
 }
 
 .profile-recent-songs {
-    width: 800px;
+    min-width: 800px;
     border-right: 1px solid #f0efef;
-    padding-right: 15px;
+    // padding-right: 15px;
     margin-top: 12px;
 }
 
@@ -319,4 +322,13 @@
 
 .followers-span:hover, .following-span:hover, .tracks-span:hover {
     color: black;
+}
+
+.no-songs {
+    font-size: 32px;
+    margin: 40px 0px;
+}
+
+.no-songs-upload {
+    color: #ff5500;
 }

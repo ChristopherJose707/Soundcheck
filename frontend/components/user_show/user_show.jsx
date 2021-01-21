@@ -69,6 +69,11 @@ class UserShow extends React.Component {
    songList() {
        const {userSongs} = this.props;
        const songArrFiltered = Object.values(userSongs).filter( song => song.user_id === this.props.user.id)
+       if (songArrFiltered.length === 0) {
+         return (
+           <h1 className="no-songs">You have no songs. <Link className="no-songs-upload" to="/upload">Upload</Link> to add tracks to your page!</h1>
+         )
+       }
        const songList = songArrFiltered.map((song, i) => {
            return(
                <div key={i} className="profile-song-item">
@@ -114,18 +119,16 @@ class UserShow extends React.Component {
         }
         
         const {user, currentUser } = this.props;
-        console.log(user)
-
         const uploadProfilePicButton = user !== currentUser ?
             null : !user.songPhoto && user === currentUser ? 
                 <label className="profile-photo-label">
                     <FontAwesomeIcon icon="camera" />
-                    Upload Profile Image
+                    &nbsp;Upload Profile Image
                     <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFileProfilePic}/>
                 </label> 
                 : <label className="profile-photo-label">
                     <FontAwesomeIcon icon="camera" />
-                    Update Image
+                    &nbsp;Update Image
                     <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFileProfilePic}/>
                 </label> ;
 
@@ -133,12 +136,12 @@ class UserShow extends React.Component {
             null : !user.songPhoto && user === currentUser ? 
                 <label className="profile-banner-label">
                     <FontAwesomeIcon icon="camera" />
-                    Upload Banner Image
+                    &nbsp;Upload Banner Image
                     <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFileProfileBanner}/>
                 </label> 
                 : <label className="profile-banner-label">
                     <FontAwesomeIcon icon="camera" />
-                    Update Image
+                    &nbsp;Update Image
                     <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFileProfileBanner}/>
                 </label> ;
 

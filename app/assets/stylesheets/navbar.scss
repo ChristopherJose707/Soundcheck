@@ -20,6 +20,7 @@
     height: 100%;
     width: auto;
     padding-left: 5px;
+    padding-right: 5px;
 }
 
 .navbar {
@@ -211,7 +212,7 @@ ul {
     position: absolute;
     top: 23px;
     background: white;
-    right: 2px;
+    right: -5px;
     font-size: 14px;
     font-weight: 900;
     display: flex;
@@ -226,6 +227,7 @@ ul {
 
 .user-dropdown-content a {
     color: gray;
+    margin: 5px;
 }
 
 .user-dropdown-li {

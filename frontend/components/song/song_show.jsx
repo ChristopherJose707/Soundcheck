@@ -124,8 +124,8 @@ class SongShow extends React.Component {
         const index = Object.values(this.props.comments).length > 0 ?
             <div className="comment-index-wrapper">
                 <div className="comment-index-header">
-                    <FontAwesomeIcon icon="comment" />
-                    {allComments.length} {allComments.length === 1 ? "comment" : "comments"}
+                    <FontAwesomeIcon icon="comment" />&nbsp;
+                    {allComments.length}&nbsp;{allComments.length === 1 ? "comment" : "comments"}
                 </div>
                 <div className="comment-list">
                     {allComments}
@@ -207,13 +207,13 @@ class SongShow extends React.Component {
                         onClick={this.handleLike}><FontAwesomeIcon className="like-icon" icon="heart"/>
                         Like
                     </button>
-                    <span className="show-dropdown">
-                        <button onClick={() => this.handleDropdown()} className="dropbtn">More<FontAwesomeIcon className="song-show-ellipsis" icon="ellipsis-h" /></button>
+                    {song.artist !== currentUser.display_name ? null : <span className="show-dropdown">
+                        <button onClick={() => this.handleDropdown()} className="dropbtn">More&nbsp;<FontAwesomeIcon className="song-show-ellipsis" icon="ellipsis-h" /></button>
                         <ul id="show-dropdown-id" className="show-dropdown-content">
                             {deleteButton}
-                            <li>Nothing here yet!</li>
                         </ul>
-                    </span>
+                    </span>}
+                    
                 </div>
                 <div className="comments-index-main">
                     <div className="artist-left-comments">

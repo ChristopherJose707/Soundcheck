@@ -37,7 +37,12 @@
 }
 
 .must-img-wrapper {
-  padding-right: 10px;
+  width: 48px;
+  height: 48px;
+  border-radius: 100px;
+  margin-right: 10px;
+  background: rgb(167,75,0);
+  background: linear-gradient(45deg, rgba(167,75,0,1) 16%, rgba(196,79,0,1) 35%, rgba(221,90,0,1) 60%, rgba(255,85,0,1) 95%);
 }
 
 .discover-main {
@@ -97,6 +102,8 @@
 .song-item-title {
   font-size: 14px;
   padding-top: 5px;
+  overflow: hidden;
+  width: 182px;
 }
 
 .song-item-artist {

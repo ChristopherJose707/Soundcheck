@@ -113,15 +113,15 @@ class Navbar extends React.Component {
                         <li><Link className={`navbar-linkedin ${this.props.match.path === "/discover" ? "black" : ""}`} to="/discover">Home</Link></li>
 
                         {/* <li><a href="https://www.linkedin.com/in/christopher-jose-6361aa120/" className="navbar-linkedin">Home</a></li> */}
-                        <li><a href="https://github.com/ChristopherJose707"className="navbar-github">Github</a></li>
-                        <li><a href="https://developer.mozilla.org/en-US/"className="navbar-mdn">MDN Docs</a></li>
+                        <li><a href="https://github.com/ChristopherJose707" className="navbar-github" target="_blank">Github</a></li>
+                        <li><a href="https://developer.mozilla.org/en-US/" className="navbar-mdn" target="_blank">MDN Docs</a></li>
                     </ul>
                     <div className="navbar-search">
                         <input className="navbar-search-input" type="text" placeholder="Search feature coming soon!!!"></input>
                         <button className="navbar-search-button"><FontAwesomeIcon icon="search" /></button>
                     </div>
                     <ul className="navbar-right-links">
-                        <li className="upgrade"><a href="google.com">Google</a></li>
+                        <li className="upgrade"><a href="google.com" target="_blank">Google</a></li>
                         <div className={`navbar-upload-div ${this.props.match.path === "/upload" ? "black" : ""}`}>
                             <li><Link className={`navbar-upload-link ${this.props.match.path === "/upload" ? "black" : ""}`} to="/upload">Upload</Link></li>
 

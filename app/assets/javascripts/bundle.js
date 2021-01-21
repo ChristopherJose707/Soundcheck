@@ -14960,10 +14960,12 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         to: "/discover"
       }, "Home")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
         href: "https://github.com/ChristopherJose707",
-        className: "navbar-github"
+        className: "navbar-github",
+        target: "_blank"
       }, "Github")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
         href: "https://developer.mozilla.org/en-US/",
-        className: "navbar-mdn"
+        className: "navbar-mdn",
+        target: "_blank"
       }, "MDN Docs"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "navbar-search"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
@@ -14979,7 +14981,8 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         className: "upgrade"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "google.com"
+        href: "google.com",
+        target: "_blank"
       }, "Google")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "navbar-upload-div ".concat(this.props.match.path === "/upload" ? "black" : "")
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
@@ -16172,7 +16175,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
         className: "comment-index-header"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__.FontAwesomeIcon, {
         icon: "comment"
-      }), allComments.length, " ", allComments.length === 1 ? "comment" : "comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }), "\xA0", allComments.length, "\xA0", allComments.length === 1 ? "comment" : "comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comment-list"
       }, allComments)) : null;
       return index;
@@ -16282,20 +16285,20 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__.FontAwesomeIcon, {
         className: "like-icon",
         icon: "heart"
-      }), "Like"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+      }), "Like"), song.artist !== currentUser.display_name ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "show-dropdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: function onClick() {
           return _this4.handleDropdown();
         },
         className: "dropbtn"
-      }, "More", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__.FontAwesomeIcon, {
+      }, "More\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__.FontAwesomeIcon, {
         className: "song-show-ellipsis",
         icon: "ellipsis-h"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         id: "show-dropdown-id",
         className: "show-dropdown-content"
-      }, deleteButton, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "Nothing here yet!")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, deleteButton))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "comments-index-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "artist-left-comments"
@@ -17363,6 +17366,16 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       var songArrFiltered = Object.values(userSongs).filter(function (song) {
         return song.user_id === _this2.props.user.id;
       });
+
+      if (songArrFiltered.length === 0) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+          className: "no-songs"
+        }, "You have no songs. ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+          className: "no-songs-upload",
+          to: "/upload"
+        }, "Upload"), " to add tracks to your page!");
+      }
+
       var songList = songArrFiltered.map(function (song, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           key: i,
@@ -17416,12 +17429,11 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           user = _this$props.user,
           currentUser = _this$props.currentUser;
-      console.log(user);
       var uploadProfilePicButton = user !== currentUser ? null : !user.songPhoto && user === currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         className: "profile-photo-label"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
         icon: "camera"
-      }), "Upload Profile Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }), "\xA0Upload Profile Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
         id: "file",
         accept: "image/*",
@@ -17430,7 +17442,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         className: "profile-photo-label"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
         icon: "camera"
-      }), "Update Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }), "\xA0Update Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
         id: "file",
         accept: "image/*",
@@ -17440,7 +17452,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         className: "profile-banner-label"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
         icon: "camera"
-      }), "Upload Banner Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }), "\xA0Upload Banner Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
         id: "file",
         accept: "image/*",
@@ -17449,7 +17461,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         className: "profile-banner-label"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
         icon: "camera"
-      }), "Update Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }), "\xA0Update Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
         id: "file",
         accept: "image/*",
