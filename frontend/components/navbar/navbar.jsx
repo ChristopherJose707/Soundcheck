@@ -55,10 +55,17 @@ class Navbar extends React.Component {
                 document.removeEventListener('click', this.closeUserMenu)
             })
         }
+        
     };
 
     handleDropdown() {
         document.getElementById("navbar-ellipsis-id").classList.toggle("show")
+        
+    }
+
+    handleUserDropdown() {
+        document.getElementById("userdrop-id").classList.toggle("show")
+        document.getElementById("nav-right").classList.toggle("black")
     }
 
 
@@ -68,38 +75,14 @@ class Navbar extends React.Component {
                 <div className="user-dropdown" ref={(element) => {this.dropdownUserMenu = element}}>
                     <div className="user-dropdown-content">
                         <Link to={`/users/${this.props.currentUser.id}`}><FontAwesomeIcon icon="user" />Profile</Link>
-                        <a href="https://github.com/ChristopherJose707"><FontAwesomeIcon icon={['fab', 'github']} />Github</a>
-                        <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/"><FontAwesomeIcon icon={['fab', 'linkedin']} />LinkedIn</a>
+                        {/* <a href="https://github.com/ChristopherJose707"><FontAwesomeIcon icon={['fab', 'github']} />Github</a> */}
+                        <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/" target="_blank"><FontAwesomeIcon icon={['fab', 'linkedin']} />LinkedIn</a>
                     </div>
                 </div> 
 
         const userDisplayName = this.props.currentUser.display_name.length > 10 ?
                 this.props.currentUser.display_name.slice(0,10)
                 : this.props.currentUser.display_name
-        
-        const signoutOrLinks = this.props.currentUser ? 
-                <div className="option-dropdown" 
-                    ref={(element) => {this.dropdownMenu = element}}>
-                    <button onClick={() => this.props.logout()}>Sign Out</button> 
-                </div> 
-        :        <span className="option-dropdown" 
-                    ref={(element) => {this.dropdownMenu = element}}>
-                    <a href="google.com">
-                        <FontAwesomeIcon className="option-dropdown-links" 
-                            icon={['fab', 'google']} />
-                        Google
-                    </a>
-                    <a href="facebook.com">
-                        <FontAwesomeIcon className="option-dropdown-links" 
-                            icon={['fab', 'facebook']} />
-                        Facebook
-                    </a>
-                    <a href="soundcloud.com">
-                        <FontAwesomeIcon className="option-dropdown-links" 
-                        icon={['fab', 'soundcloud']} />
-                        SoundCloud
-                    </a>
-                </span>
 
         const signOutButton = this.props.currentUser ?  
         <button onClick={() => this.props.logout()}>Sign Out</button> : null;
@@ -126,12 +109,18 @@ class Navbar extends React.Component {
                             <li><Link className={`navbar-upload-link ${this.props.match.path === "/upload" ? "black" : ""}`} to="/upload">Upload</Link></li>
 
                         </div>
-                        <div className={`navbar-right-user navbar-user-dropdown ${this.state.showUserMenu ? "black" : "" }`}>
+                        <div id="nav-right" className={`navbar-right-user navbar-user-dropdown ${this.state.showUserMenu ? "black" : "" }`}>
                             <li>{this.props.currentUser.profilePicture ? 
                                 <img className="profile-pic" src={this.props.currentUser.profilePicture} /> : null}
                             </li>
-                            <li><p className={`navbar-display-name ${this.state.showUserMenu ? "black" : "" }`} onClick={this.showUserMenu}> {userDisplayName} <FontAwesomeIcon icon="angle-down" /></p></li>
-                            <li className="user-dropdown-li" >{this.state.showUserMenu ? dropdown : null}</li>
+                            {/* <li><p className={`navbar-display-name ${this.state.showUserMenu ? "black" : "" }`} onClick={this.showUserMenu}> {userDisplayName} <FontAwesomeIcon icon="angle-down" /></p></li>
+                            <li className="user-dropdown-li" >{this.state.showUserMenu ? dropdown : null}</li> */}
+                            <button className="user-dropdown-btn" onClick={() => this.handleUserDropdown()}>
+                                {userDisplayName} <FontAwesomeIcon icon="angle-down" />
+                            </button>
+                            <ul id="userdrop-id" className="userdrop-content">
+                                {dropdown}
+                            </ul>
                         </div>
                         <div className="navbar-ellipsis-dropdown">
                             <button className="navbar-options nav-dropbtn" onClick={() => this.handleDropdown()}>

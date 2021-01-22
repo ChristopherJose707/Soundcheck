@@ -14878,6 +14878,12 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       document.getElementById("navbar-ellipsis-id").classList.toggle("show");
     }
   }, {
+    key: "handleUserDropdown",
+    value: function handleUserDropdown() {
+      document.getElementById("userdrop-id").classList.toggle("show");
+      document.getElementById("nav-right").classList.toggle("black");
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this6 = this;
@@ -14894,45 +14900,12 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         icon: "user"
       }), "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "https://github.com/ChristopherJose707"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-        icon: ['fab', 'github']
-      }), "Github"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "https://www.linkedin.com/in/christopher-jose-6361aa120/"
+        href: "https://www.linkedin.com/in/christopher-jose-6361aa120/",
+        target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         icon: ['fab', 'linkedin']
       }), "LinkedIn")));
       var userDisplayName = this.props.currentUser.display_name.length > 10 ? this.props.currentUser.display_name.slice(0, 10) : this.props.currentUser.display_name;
-      var signoutOrLinks = this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "option-dropdown",
-        ref: function ref(element) {
-          _this6.dropdownMenu = element;
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        onClick: function onClick() {
-          return _this6.props.logout();
-        }
-      }, "Sign Out")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-        className: "option-dropdown",
-        ref: function ref(element) {
-          _this6.dropdownMenu = element;
-        }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "google.com"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-        className: "option-dropdown-links",
-        icon: ['fab', 'google']
-      }), "Google"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "facebook.com"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-        className: "option-dropdown-links",
-        icon: ['fab', 'facebook']
-      }), "Facebook"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "soundcloud.com"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-        className: "option-dropdown-links",
-        icon: ['fab', 'soundcloud']
-      }), "SoundCloud"));
       var signOutButton = this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: function onClick() {
           return _this6.props.logout();
@@ -14989,18 +14962,22 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         className: "navbar-upload-link ".concat(this.props.match.path === "/upload" ? "black" : ""),
         to: "/upload"
       }, "Upload"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "nav-right",
         className: "navbar-right-user navbar-user-dropdown ".concat(this.state.showUserMenu ? "black" : "")
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, this.props.currentUser.profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         className: "profile-pic",
         src: this.props.currentUser.profilePicture
-      }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-        className: "navbar-display-name ".concat(this.state.showUserMenu ? "black" : ""),
-        onClick: this.showUserMenu
-      }, " ", userDisplayName, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+      }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "user-dropdown-btn",
+        onClick: function onClick() {
+          return _this6.handleUserDropdown();
+        }
+      }, userDisplayName, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         icon: "angle-down"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
-        className: "user-dropdown-li"
-      }, this.state.showUserMenu ? dropdown : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+        id: "userdrop-id",
+        className: "userdrop-content"
+      }, dropdown)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "navbar-ellipsis-dropdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "navbar-options nav-dropbtn",
@@ -17299,6 +17276,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
     _this.handlePhotoFileProfilePic = _this.handlePhotoFileProfilePic.bind(_assertThisInitialized(_this));
     _this.songList = _this.songList.bind(_assertThisInitialized(_this));
     _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -17356,6 +17334,11 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         formData.append('user[profile_banner]', file);
         this.props.updateUser(formData, user.id);
       }
+    }
+  }, {
+    key: "handleClick",
+    value: function handleClick() {
+      console.log("clicked");
     }
   }, {
     key: "songList",
@@ -17435,8 +17418,9 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         icon: "camera"
       }), "Upload Profile Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
-        id: "file",
+        id: "fileProfile",
         accept: "image/*",
+        onClick: this.handleClick,
         onChange: this.handlePhotoFileProfilePic
       })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         className: "profile-photo-label"
@@ -17444,7 +17428,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         icon: "camera"
       }), "Update Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
-        id: "file",
+        id: "fileProfile",
         accept: "image/*",
         onChange: this.handlePhotoFileProfilePic
       }));
@@ -17454,7 +17438,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         icon: "camera"
       }), "Upload Banner Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
-        id: "file",
+        id: "fileBanner",
         accept: "image/*",
         onChange: this.handlePhotoFileProfileBanner
       })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
@@ -17463,7 +17447,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         icon: "camera"
       }), "Update Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
-        id: "file",
+        id: "fileBanner",
         accept: "image/*",
         onChange: this.handlePhotoFileProfileBanner
       }));

@@ -23,6 +23,8 @@
     padding-right: 5px;
 }
 
+
+
 .navbar {
     display: flex;
     justify-content: center;
@@ -285,3 +287,16 @@ navbar-ellipsis-content button {
     width: 65px;
 }
 
+.userdrop-content {
+    display: none;
+}
+
+.user-dropdown-btn {
+    color: rgb(201, 201, 201);
+    background: transparent;
+    border: none;
+}
+
+.user-dropdown-btn:hover {
+    color: rgb(247, 243, 243);
+}
