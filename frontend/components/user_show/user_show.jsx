@@ -4,6 +4,7 @@ import PlayContainer from '../music_player/play_container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {uploadTime} from '../../util/upload_time_util';
 import {Link} from 'react-router-dom';
+import Waveform from './waveform';
 
 
 class UserShow extends React.Component {
@@ -104,7 +105,8 @@ class UserShow extends React.Component {
                                     </div>
                                 </div> 
                             </div>
-                            <div className="waveform"></div>
+                            
+                            <Waveform index={i} song={song}/>
                             <div className="profile-song-footer">
                                 <button className={`profile-song-like ${this.state.liked ? "liked" : ""}`}
                                         onClick={this.handleLike}>

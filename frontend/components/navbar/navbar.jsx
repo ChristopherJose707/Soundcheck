@@ -49,7 +49,7 @@ class Navbar extends React.Component {
 
                         {/* <li><a href="https://www.linkedin.com/in/christopher-jose-6361aa120/" className="navbar-linkedin">Home</a></li> */}
                         <li><a href="https://github.com/ChristopherJose707" className="navbar-github" target="_blank">Github</a></li>
-                        <li><a href="https://developer.mozilla.org/en-US/" className="navbar-mdn" target="_blank">MDN Docs</a></li>
+                        <li><a href="https://www.linkedin.com/in/christopher-jose-6361aa120/" className="navbar-mdn" target="_blank">LinkedIn</a></li>
                     </ul>
                     <div className="navbar-search">
                         <input className="navbar-search-input" type="text" disabled></input>

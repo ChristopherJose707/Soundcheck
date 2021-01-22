@@ -84,7 +84,7 @@ class LoginForm extends React.Component {
 
     render() {
         const previousButton = this.state.stepNumber === 2 ?
-        <button className="auth-prev-button-2" 
+        <button type="button" className="auth-prev-button-2" 
             onClick={this.previousStep}>
             <FontAwesomeIcon icon="caret-left" />
             {this.state.username}
@@ -96,7 +96,7 @@ class LoginForm extends React.Component {
         </button> : "" ;
 
         const signinButton = this.state.stepNumber === 2 ?
-        <button className="auth-form-button" 
+        <button type="submit" className="auth-form-button" 
             onClick={this.handleSubmit}>Sign In
         </button> : "" ;
 
@@ -104,6 +104,7 @@ class LoginForm extends React.Component {
              <form className="auth-form">
 
                 <UsernameForm // render on step 1
+                    
                     continueButton={continueButton}
                     stepNumber={this.state.stepNumber}
                     handleInput={this.handleInput}

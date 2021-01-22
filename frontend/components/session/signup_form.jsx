@@ -96,7 +96,7 @@ class SignupForm extends React.Component {
     render(){
         // continue button, accept & continue button, get started button
         const previousButton = this.state.stepNumber === 2 ?
-        <button className="auth-prev-button" 
+        <button type="button" className="auth-prev-button" 
             onClick={this.previousStep}>
             <FontAwesomeIcon icon="caret-left" />
             {this.state.username}
