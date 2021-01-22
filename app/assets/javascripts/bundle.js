@@ -17555,7 +17555,7 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
         progressColor: "#2D5BFF",
         scrollParent: true
       });
-      this.waveform.load(this.props.song.songUrl); // console.log(this.props.song.songUrl)
+      this.waveform.load(this.props.song.songUrl);
     }
   }, {
     key: "render",

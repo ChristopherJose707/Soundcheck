@@ -17,7 +17,7 @@ class Waveform extends React.Component {
       scrollParent: true
     });
     this.waveform.load(this.props.song.songUrl)
-    // console.log(this.props.song.songUrl)
+    
   }
 
   render() {
