@@ -117,11 +117,11 @@ class Navbar extends React.Component {
                         <li><a href="https://developer.mozilla.org/en-US/" className="navbar-mdn" target="_blank">MDN Docs</a></li>
                     </ul>
                     <div className="navbar-search">
-                        <input className="navbar-search-input" type="text" placeholder="Search feature coming soon!!!"></input>
+                        <input className="navbar-search-input" type="text" disabled></input>
                         <button className="navbar-search-button"><FontAwesomeIcon icon="search" /></button>
                     </div>
                     <ul className="navbar-right-links">
-                        <li className="upgrade"><a href="google.com" target="_blank">Google</a></li>
+                        <li className="upgrade"><a href="https://google.com" target="_blank">Google</a></li>
                         <div className={`navbar-upload-div ${this.props.match.path === "/upload" ? "black" : ""}`}>
                             <li><Link className={`navbar-upload-link ${this.props.match.path === "/upload" ? "black" : ""}`} to="/upload">Upload</Link></li>
 

@@ -123,12 +123,12 @@ class UserShow extends React.Component {
             null : !user.songPhoto && user === currentUser ? 
                 <label className="profile-photo-label">
                     <FontAwesomeIcon icon="camera" />
-                    &nbsp;Upload Profile Image
+                    Upload Profile Image
                     <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFileProfilePic}/>
                 </label> 
                 : <label className="profile-photo-label">
                     <FontAwesomeIcon icon="camera" />
-                    &nbsp;Update Image
+                    Update Image
                     <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFileProfilePic}/>
                 </label> ;
 
@@ -136,12 +136,12 @@ class UserShow extends React.Component {
             null : !user.songPhoto && user === currentUser ? 
                 <label className="profile-banner-label">
                     <FontAwesomeIcon icon="camera" />
-                    &nbsp;Upload Banner Image
+                    Upload Banner Image
                     <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFileProfileBanner}/>
                 </label> 
                 : <label className="profile-banner-label">
                     <FontAwesomeIcon icon="camera" />
-                    &nbsp;Update Image
+                    Update Image
                     <input type="file" id="file" accept="image/*" onChange={this.handlePhotoFileProfileBanner}/>
                 </label> ;
 
@@ -188,11 +188,11 @@ class UserShow extends React.Component {
                       <div className="profile-stats">
                         <span className="followers-span">
                           <h2>Followers</h2>
-                          <p>100</p>
+                          <p>0</p>
                         </span>
                         <span className="following-span">
                           <h2>Following</h2>
-                          <p>64</p>
+                          <p>0</p>
                         </span>
                         <span className="tracks-span">
                           <h2>Tracks</h2>

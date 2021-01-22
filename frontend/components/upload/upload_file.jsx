@@ -14,26 +14,26 @@ class UploadFile extends React.Component {
 
        if (stepNumber === 1) {
            return (
-               <div className="upload-file-form">
-                    <div className="upload-file-main">
-                        <div className="upload-file-content">
-                                <h1>What song would you like to upload?</h1>
-                           
-                                <label className="custom-upload">
-                                    <input type="file" 
-                                        className="file-upload-input"
-                                        onClick={e => e.stopPropagation()}
-                                        onChange={handleSongFile}
-                                        accept="audio/*"
-                                        title=""
-                                    />
-                                    Choose a file
-                                </label>
-                        </div>
+             <div className="upload-file-form">
+               <div className="upload-file-main">
+                 <div className="upload-file-content">
+                   <h1>What song would you like to upload?</h1>
 
-                    </div>
+                   <label className="custom-upload">
+                     <input
+                       type="file"
+                       className="file-upload-input"
+                       onClick={(e) => e.stopPropagation()}
+                       onChange={handleSongFile}
+                       accept="audio/*, .m4a, .mp3, .wav, .flac .ogg, .aac"
+                       title=""
+                     />
+                     Choose a file
+                   </label>
+                 </div>
                </div>
-           )
+             </div>
+           );
        } else {
            return null;
        }
