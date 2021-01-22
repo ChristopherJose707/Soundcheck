@@ -60,6 +60,7 @@ class Navbar extends React.Component {
 
     handleDropdown() {
         document.getElementById("navbar-ellipsis-id").classList.toggle("show")
+        document.getElementById("ellip-drop").classList.toggle("black");
         
     }
 
@@ -122,7 +123,7 @@ class Navbar extends React.Component {
                                 {dropdown}
                             </ul>
                         </div>
-                        <div className="navbar-ellipsis-dropdown">
+                        <div id="ellip-drop" className="navbar-ellipsis-dropdown">
                             <button className="navbar-options nav-dropbtn" onClick={() => this.handleDropdown()}>
                                 <FontAwesomeIcon className="navbar-ellipsis" icon="ellipsis-h" />
                             </button>

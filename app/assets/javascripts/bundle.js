@@ -14876,6 +14876,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
     key: "handleDropdown",
     value: function handleDropdown() {
       document.getElementById("navbar-ellipsis-id").classList.toggle("show");
+      document.getElementById("ellip-drop").classList.toggle("black");
     }
   }, {
     key: "handleUserDropdown",
@@ -14978,6 +14979,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         id: "userdrop-id",
         className: "userdrop-content"
       }, dropdown)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        id: "ellip-drop",
         className: "navbar-ellipsis-dropdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "navbar-options nav-dropbtn",
