@@ -129,7 +129,7 @@ class UserShow extends React.Component {
             null : !user.songPhoto && user === currentUser ? 
                 <label className="profile-photo-label" >
                     <FontAwesomeIcon icon="camera" />
-                    Upload Profile Image
+                    &nbsp;Upload Profile Image
                     <input type="file" id="fileProfile" accept="image/*" onClick={this.handleClick} onChange={this.handlePhotoFileProfilePic}/>
                 </label> 
                 : <label className="profile-photo-label" >
@@ -142,7 +142,7 @@ class UserShow extends React.Component {
             null : !user.songPhoto && user === currentUser ? 
                 <label className="profile-banner-label" >
                     <FontAwesomeIcon icon="camera" />
-                    Upload Banner Image
+                    &nbsp;Upload Banner Image
                     <input type="file" id="fileBanner" accept="image/*" onChange={this.handlePhotoFileProfileBanner}/>
                 </label> 
                 : <label className="profile-banner-label" >

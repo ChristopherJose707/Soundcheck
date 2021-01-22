@@ -6,57 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 class Navbar extends React.Component {
     constructor(props) {
         super(props)
-        
-        this.state = {
-            showOptionMenu: false,
-            showUserMenu: false
-        }
-
-        this.showOptionMenu = this.showOptionMenu.bind(this);
-        this.closeOptionMenu = this.closeOptionMenu.bind(this);
-        this.showUserMenu = this.showUserMenu.bind(this);
-        this.closeUserMenu = this.closeUserMenu.bind(this);
-        
     };
     
-    showOptionMenu(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        this.setState({showOptionMenu: true}, () => {
-            document.addEventListener('click', this.closeOptionMenu)
-        })
-    };
-    
-    closeOptionMenu(e) {
-        e.preventDefault();
-        if (!this.dropdownMenu.contains(e.target)) {
-            this.setState({showOptionMenu: false}, () => {
-                document.removeEventListener('click', this.closeOptionMenu)
-            })
-        }
-    };
-
-    showUserMenu(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        this.setState({showUserMenu: true}, () => {
-            document.addEventListener('click', this.closeUserMenu)
-        })
-    };
-
-    closeUserMenu(e) {
-        e.preventDefault();
-        if (this.dropdownUserMenu === null) {
-            return null;
-        };
-        
-        if (!this.dropdownUserMenu.contains(e.target)) {
-            this.setState({showUserMenu: false}, () => {
-                document.removeEventListener('click', this.closeUserMenu)
-            })
-        }
-        
-    };
 
     handleDropdown() {
         document.getElementById("navbar-ellipsis-id").classList.toggle("show")
@@ -110,14 +61,12 @@ class Navbar extends React.Component {
                             <li><Link className={`navbar-upload-link ${this.props.match.path === "/upload" ? "black" : ""}`} to="/upload">Upload</Link></li>
 
                         </div>
-                        <div id="nav-right" className={`navbar-right-user navbar-user-dropdown ${this.state.showUserMenu ? "black" : "" }`}>
+                        <div id="nav-right" className="navbar-right-user navbar-user-dropdown">
                             <li>{this.props.currentUser.profilePicture ? 
                                 <img className="profile-pic" src={this.props.currentUser.profilePicture} /> : null}
                             </li>
-                            {/* <li><p className={`navbar-display-name ${this.state.showUserMenu ? "black" : "" }`} onClick={this.showUserMenu}> {userDisplayName} <FontAwesomeIcon icon="angle-down" /></p></li>
-                            <li className="user-dropdown-li" >{this.state.showUserMenu ? dropdown : null}</li> */}
                             <button className="user-dropdown-btn" onClick={() => this.handleUserDropdown()}>
-                                {userDisplayName} <FontAwesomeIcon icon="angle-down" />
+                                {userDisplayName}&nbsp; <FontAwesomeIcon icon="angle-down" />
                             </button>
                             <ul id="userdrop-id" className="userdrop-content">
                                 {dropdown}

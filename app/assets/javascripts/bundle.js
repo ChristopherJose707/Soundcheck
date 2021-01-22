@@ -14794,85 +14794,12 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Navbar);
 
   function Navbar(props) {
-    var _this;
-
     _classCallCheck(this, Navbar);
 
-    _this = _super.call(this, props);
-    _this.state = {
-      showOptionMenu: false,
-      showUserMenu: false
-    };
-    _this.showOptionMenu = _this.showOptionMenu.bind(_assertThisInitialized(_this));
-    _this.closeOptionMenu = _this.closeOptionMenu.bind(_assertThisInitialized(_this));
-    _this.showUserMenu = _this.showUserMenu.bind(_assertThisInitialized(_this));
-    _this.closeUserMenu = _this.closeUserMenu.bind(_assertThisInitialized(_this));
-    return _this;
+    return _super.call(this, props);
   }
 
   _createClass(Navbar, [{
-    key: "showOptionMenu",
-    value: function showOptionMenu(e) {
-      var _this2 = this;
-
-      e.preventDefault();
-      e.stopPropagation();
-      this.setState({
-        showOptionMenu: true
-      }, function () {
-        document.addEventListener('click', _this2.closeOptionMenu);
-      });
-    }
-  }, {
-    key: "closeOptionMenu",
-    value: function closeOptionMenu(e) {
-      var _this3 = this;
-
-      e.preventDefault();
-
-      if (!this.dropdownMenu.contains(e.target)) {
-        this.setState({
-          showOptionMenu: false
-        }, function () {
-          document.removeEventListener('click', _this3.closeOptionMenu);
-        });
-      }
-    }
-  }, {
-    key: "showUserMenu",
-    value: function showUserMenu(e) {
-      var _this4 = this;
-
-      e.preventDefault();
-      e.stopPropagation();
-      this.setState({
-        showUserMenu: true
-      }, function () {
-        document.addEventListener('click', _this4.closeUserMenu);
-      });
-    }
-  }, {
-    key: "closeUserMenu",
-    value: function closeUserMenu(e) {
-      var _this5 = this;
-
-      e.preventDefault();
-
-      if (this.dropdownUserMenu === null) {
-        return null;
-      }
-
-      ;
-
-      if (!this.dropdownUserMenu.contains(e.target)) {
-        this.setState({
-          showUserMenu: false
-        }, function () {
-          document.removeEventListener('click', _this5.closeUserMenu);
-        });
-      }
-    }
-  }, {
     key: "handleDropdown",
     value: function handleDropdown() {
       document.getElementById("navbar-ellipsis-id").classList.toggle("show");
@@ -14887,12 +14814,12 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this6 = this;
+      var _this = this;
 
       var dropdown = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-dropdown",
         ref: function ref(element) {
-          _this6.dropdownUserMenu = element;
+          _this.dropdownUserMenu = element;
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-dropdown-content"
@@ -14909,7 +14836,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       var userDisplayName = this.props.currentUser.display_name.length > 10 ? this.props.currentUser.display_name.slice(0, 10) : this.props.currentUser.display_name;
       var signOutButton = this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: function onClick() {
-          return _this6.props.logout();
+          return _this.props.logout();
         }
       }, "Sign Out") : null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
@@ -14964,16 +14891,16 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         to: "/upload"
       }, "Upload"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "nav-right",
-        className: "navbar-right-user navbar-user-dropdown ".concat(this.state.showUserMenu ? "black" : "")
+        className: "navbar-right-user navbar-user-dropdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, this.props.currentUser.profilePicture ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         className: "profile-pic",
         src: this.props.currentUser.profilePicture
       }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "user-dropdown-btn",
         onClick: function onClick() {
-          return _this6.handleUserDropdown();
+          return _this.handleUserDropdown();
         }
-      }, userDisplayName, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+      }, userDisplayName, "\xA0 ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         icon: "angle-down"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
         id: "userdrop-id",
@@ -14984,7 +14911,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "navbar-options nav-dropbtn",
         onClick: function onClick() {
-          return _this6.handleDropdown();
+          return _this.handleDropdown();
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         className: "navbar-ellipsis",
@@ -17418,7 +17345,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         className: "profile-photo-label"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
         icon: "camera"
-      }), "Upload Profile Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }), "\xA0Upload Profile Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
         id: "fileProfile",
         accept: "image/*",
@@ -17438,7 +17365,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         className: "profile-banner-label"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
         icon: "camera"
-      }), "Upload Banner Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }), "\xA0Upload Banner Image", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
         id: "fileBanner",
         accept: "image/*",
