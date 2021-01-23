@@ -17548,7 +17548,7 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      playing: false
+      timeElapsed: 0
     };
     _this.handlePlay = _this.handlePlay.bind(_assertThisInitialized(_this));
     return _this;
@@ -17557,14 +17557,23 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
   _createClass(Waveform, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      // console.log(prevProps);
+      var player = document.getElementById("audio");
+
       if (this.props.playing && this.props.currentSongId === this.props.song.id) {
-        this.waveform.play();
+        this.waveform.play(player.currentTime);
+      }
+
+      if (!this.props.playing && this.props.currentSongId === this.props.song.id || this.props.playing && this.props.currentSongId !== this.props.song.id) {
+        this.waveform.pause(); // this.setState({timeElapsed: })
+        // console.log(this.waveform.getCurrentTime());
       }
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
+      var player = document.getElementById("audio");
       this.waveform = wavesurfer_js__WEBPACK_IMPORTED_MODULE_1___default().create({
         barWidth: 3,
         cursorWidth: 1,
@@ -17577,6 +17586,11 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
       });
       this.waveform.load(this.props.song.songUrl);
       this.waveform.setVolume(0);
+      this.waveform.on("seek", function (prog) {
+        // console.log("Waveform currentTime: " + this.waveform.getCurrentTime())
+        // console.log(prog * this.waveform.getDuration())
+        player.currentTime = prog * _this2.waveform.getDuration();
+      });
     }
   }, {
     key: "handlePlay",

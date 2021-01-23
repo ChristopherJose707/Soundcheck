@@ -7,21 +7,33 @@ class Waveform extends React.Component {
     super(props)
 
     this.state = {
-      playing: false
+      timeElapsed: 0
     }
 
     this.handlePlay = this.handlePlay.bind(this);
   }
 
   componentDidUpdate(prevProps) {
-    // console.log(prevProps);
+    const player = document.getElementById("audio");
+    
     if(this.props.playing && this.props.currentSongId === this.props.song.id) {
-      this.waveform.play()
-    } 
+      this.waveform.play(player.currentTime);
+    }
+    
+    if (
+      (!this.props.playing &&
+        this.props.currentSongId === this.props.song.id) ||
+      (this.props.playing && this.props.currentSongId !== this.props.song.id)
+    ) {
+      this.waveform.pause();
+      // this.setState({timeElapsed: })
+      // console.log(this.waveform.getCurrentTime());
+    }
     
   }
 
   componentDidMount() {
+    const player = document.getElementById("audio");
     
     this.waveform = WaveSurfer.create({
       barWidth: 3,
@@ -35,6 +47,11 @@ class Waveform extends React.Component {
     });
     this.waveform.load(this.props.song.songUrl)
     this.waveform.setVolume(0);
+    this.waveform.on("seek", (prog) => {
+      // console.log("Waveform currentTime: " + this.waveform.getCurrentTime())
+      // console.log(prog * this.waveform.getDuration())
+      player.currentTime = prog * this.waveform.getDuration();
+    })
   }
 
   handlePlay() {
