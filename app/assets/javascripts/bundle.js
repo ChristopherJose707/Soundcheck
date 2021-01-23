@@ -17549,11 +17549,13 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
       this.waveform = wavesurfer_js__WEBPACK_IMPORTED_MODULE_1___default().create({
         barWidth: 3,
         cursorWidth: 1,
-        container: '#waveform' + this.props.index,
+        container: "#waveform" + this.props.index,
         backend: "WebAudio",
         height: 80,
-        progressColor: "#2D5BFF",
-        scrollParent: true
+        progressColor: "#ff5500",
+        scrollParent: true,
+        fillParent: true,
+        minPxPerSec: 1
       });
       this.waveform.load(this.props.song.songUrl);
     }
@@ -17561,7 +17563,8 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        id: "waveform".concat(this.props.index)
+        id: "waveform".concat(this.props.index),
+        className: "waveform"
       });
     }
   }]);

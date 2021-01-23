@@ -10,11 +10,13 @@ class Waveform extends React.Component {
     this.waveform = WaveSurfer.create({
       barWidth: 3,
       cursorWidth: 1,
-      container: '#waveform' + this.props.index,
+      container: "#waveform" + this.props.index,
       backend: "WebAudio",
       height: 80,
-      progressColor: "#2D5BFF",
-      scrollParent: true
+      progressColor: "#ff5500",
+      scrollParent: true,
+      fillParent: true,
+      minPxPerSec: 1,
     });
     this.waveform.load(this.props.song.songUrl)
     
@@ -23,7 +25,7 @@ class Waveform extends React.Component {
   render() {
     return (
 
-    <div id={`waveform${this.props.index}`}>
+    <div id={`waveform${this.props.index}`} className="waveform">
 
     </div>
     )
