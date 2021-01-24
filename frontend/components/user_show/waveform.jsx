@@ -6,10 +6,6 @@ class Waveform extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      playerTime: null
-    }
-
     this.handleScroll = this.handleScroll.bind(this)
   }
 
@@ -21,7 +17,7 @@ class Waveform extends React.Component {
     this.waveform.play();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     const player = document.getElementById("audio");
     const scroll = document.getElementById("scrollbar");
     if (scroll && this.props.currentSongId === this.props.song.id) {
@@ -32,8 +28,6 @@ class Waveform extends React.Component {
       scroll.removeEventListener("click", this.handleScroll)
     }
 
-    
-    
     if(this.props.playing && this.props.currentSongId === this.props.song.id) {
       this.waveform.play(player.currentTime);
     }
@@ -44,15 +38,11 @@ class Waveform extends React.Component {
       (this.props.playing && this.props.currentSongId !== this.props.song.id)
     ) {
       this.waveform.pause();
-      
     }
-
-    
   }
 
   componentDidMount() {
     const player = document.getElementById("audio");
-    
     
     this.waveform = WaveSurfer.create({
       barWidth: 3,
@@ -67,21 +57,11 @@ class Waveform extends React.Component {
     this.waveform.load(this.props.song.songUrl)
     this.waveform.setVolume(0);
     this.waveform.on("seek", (prog) => {
-      // console.log("Waveform currentTime: " + this.waveform.getCurrentTime())
-      // console.log(prog * this.waveform.getDuration())
-      
       player.currentTime = prog * this.waveform.getDuration();
-      
     })
-
-    
-  
   }
 
-  
-
   render() {
-    
     return (
       <div>
         <div id={`waveform${this.props.index}`} className="waveform"></div>

@@ -17545,9 +17545,6 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Waveform);
 
     _this = _super.call(this, props);
-    _this.state = {
-      playerTime: null
-    };
     _this.handleScroll = _this.handleScroll.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -17562,7 +17559,7 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
+    value: function componentDidUpdate() {
       var player = document.getElementById("audio");
       var scroll = document.getElementById("scrollbar");
 
@@ -17601,8 +17598,6 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
       this.waveform.load(this.props.song.songUrl);
       this.waveform.setVolume(0);
       this.waveform.on("seek", function (prog) {
-        // console.log("Waveform currentTime: " + this.waveform.getCurrentTime())
-        // console.log(prog * this.waveform.getDuration())
         player.currentTime = prog * _this2.waveform.getDuration();
       });
     }
