@@ -17509,7 +17509,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var wavesurfer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! wavesurfer.js */ "./node_modules/wavesurfer.js/dist/wavesurfer.js");
 /* harmony import */ var wavesurfer_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(wavesurfer_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _music_player_play_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../music_player/play_container */ "./frontend/components/music_player/play_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -17535,7 +17534,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var Waveform = /*#__PURE__*/function (_React$Component) {
   _inherits(Waveform, _React$Component);
 
@@ -17548,30 +17546,41 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      timeElapsed: 0
+      playerTime: null
     };
-    _this.handlePlay = _this.handlePlay.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Waveform, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
+      var _this2 = this;
+
       var player = document.getElementById("audio");
+      var scroll = document.getElementById("scrollbar");
+
+      if (scroll && this.props.currentSongId === this.props.song.id) {
+        scroll.addEventListener("click", function () {
+          // console.log(player.currentTime)
+          // console.log(`Scroll Value: ${scroll.value}`)
+          _this2.waveform.pause();
+
+          _this2.waveform.play(scroll.value);
+        });
+      }
 
       if (this.props.playing && this.props.currentSongId === this.props.song.id) {
         this.waveform.play(player.currentTime);
       }
 
       if (!this.props.playing && this.props.currentSongId === this.props.song.id || this.props.playing && this.props.currentSongId !== this.props.song.id) {
-        this.waveform.pause(); // this.setState({timeElapsed: })
-        // console.log(this.waveform.getCurrentTime());
+        this.waveform.pause();
       }
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
+      var _this3 = this;
 
       var player = document.getElementById("audio");
       this.waveform = wavesurfer_js__WEBPACK_IMPORTED_MODULE_1___default().create({
@@ -17589,21 +17598,13 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
       this.waveform.on("seek", function (prog) {
         // console.log("Waveform currentTime: " + this.waveform.getCurrentTime())
         // console.log(prog * this.waveform.getDuration())
-        player.currentTime = prog * _this2.waveform.getDuration();
+        player.currentTime = prog * _this3.waveform.getDuration();
       });
-    }
-  }, {
-    key: "handlePlay",
-    value: function handlePlay() {
-      this.waveform.playPause();
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_music_player_play_container__WEBPACK_IMPORTED_MODULE_2__.default, {
-        songId: this.props.song.id,
-        onClick: this.handlePlay
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "waveform".concat(this.props.index),
         className: "waveform"
       }));

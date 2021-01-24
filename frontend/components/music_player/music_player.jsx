@@ -55,7 +55,8 @@ class MusicPlayer extends React.Component {
     handleSkip(e) { // Song skimming on song scrollbar
         const player = document.getElementById("audio");
         player.currentTime = e.target.value;
-        this.setState({elapsedTime: e.target.value})
+        this.setState({elapsedTime: e.target.value});
+        
     }
 
     handleMetaData() { // Set duration once song loads
