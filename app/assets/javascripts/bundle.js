@@ -17548,25 +17548,30 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       playerTime: null
     };
+    _this.handleScroll = _this.handleScroll.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Waveform, [{
+    key: "handleScroll",
+    value: function handleScroll() {
+      var scroll = document.getElementById("scrollbar");
+      this.waveform.pause();
+      this.waveform.seekTo(scroll.value / this.waveform.getDuration());
+      this.waveform.play();
+    }
+  }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      var _this2 = this;
-
       var player = document.getElementById("audio");
       var scroll = document.getElementById("scrollbar");
 
       if (scroll && this.props.currentSongId === this.props.song.id) {
-        scroll.addEventListener("click", function () {
-          // console.log(player.currentTime)
-          // console.log(`Scroll Value: ${scroll.value}`)
-          _this2.waveform.pause();
+        scroll.addEventListener("click", this.handleScroll);
+      }
 
-          _this2.waveform.play(scroll.value);
-        });
+      if (scroll && this.props.currentSongId !== this.props.song.id) {
+        scroll.removeEventListener("click", this.handleScroll);
       }
 
       if (this.props.playing && this.props.currentSongId === this.props.song.id) {
@@ -17580,7 +17585,7 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this3 = this;
+      var _this2 = this;
 
       var player = document.getElementById("audio");
       this.waveform = wavesurfer_js__WEBPACK_IMPORTED_MODULE_1___default().create({
@@ -17598,7 +17603,7 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
       this.waveform.on("seek", function (prog) {
         // console.log("Waveform currentTime: " + this.waveform.getCurrentTime())
         // console.log(prog * this.waveform.getDuration())
-        player.currentTime = prog * _this3.waveform.getDuration();
+        player.currentTime = prog * _this2.waveform.getDuration();
       });
     }
   }, {

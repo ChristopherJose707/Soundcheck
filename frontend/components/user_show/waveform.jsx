@@ -10,21 +10,28 @@ class Waveform extends React.Component {
       playerTime: null
     }
 
-    
+    this.handleScroll = this.handleScroll.bind(this)
+  }
+
+  handleScroll() {
+    const scroll = document.getElementById("scrollbar");
+
+    this.waveform.pause();
+    this.waveform.seekTo(scroll.value / this.waveform.getDuration());
+    this.waveform.play();
   }
 
   componentDidUpdate(prevProps) {
     const player = document.getElementById("audio");
     const scroll = document.getElementById("scrollbar");
     if (scroll && this.props.currentSongId === this.props.song.id) {
-      scroll.addEventListener("click", () => {
-        // console.log(player.currentTime)
-        // console.log(`Scroll Value: ${scroll.value}`)
-        this.waveform.pause();
-        this.waveform.play(scroll.value);
-      });
+      scroll.addEventListener("click", this.handleScroll)
     }
-    
+
+    if (scroll && this.props.currentSongId !== this.props.song.id) {
+      scroll.removeEventListener("click", this.handleScroll)
+    }
+
     
     
     if(this.props.playing && this.props.currentSongId === this.props.song.id) {
