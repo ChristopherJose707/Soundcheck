@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Root from './components/root';
 import configureStore from './store/store';
+import {createLike, fetchUserLikes, deleteLike} from './actions/like_actions'
 import {logout} from './actions/session_actions';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab,
@@ -28,6 +29,7 @@ import {faCaretLeft,
         faExternalLinkAlt, 
         faAngleDown, 
         faSearch} from '@fortawesome/free-solid-svg-icons';
+import { create } from "wavesurfer.js";
 
 library.add(
     fab,
@@ -76,6 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
     //test start
     window.getState = store.getState;
     window.dispatch = store.dispatch;
+    window.createLike = createLike;
+    window.fetchUserLikes = fetchUserLikes;
+    window.deleteLike = deleteLike;
      
     //test end
     

@@ -1,9 +1,7 @@
-import { $CombinedState } from "redux"
-
-export const fetchLikes = () => {
+export const fetchUserLikes = (userId) => {
   return $.ajax({
     method: "GET",
-    url: "/api/likes"
+    url: `/api/users/${userId}/likes`
   })
 };
 
