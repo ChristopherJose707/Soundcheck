@@ -13980,7 +13980,10 @@ var Discover = /*#__PURE__*/function (_React$Component) {
           to: "/song/".concat(song.id)
         }, songArt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "song-item-title"
-        }, song.title), _this2.state.mouseOnNew === song.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+          className: "discover-title-link",
+          to: "/song/".concat(song.id)
+        }, song.title)), _this2.state.mouseOnNew === song.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "discover-play",
           onMouseEnter: function onMouseEnter() {
             return _this2.setState({
@@ -14031,7 +14034,10 @@ var Discover = /*#__PURE__*/function (_React$Component) {
           to: "/song/".concat(song.id)
         }, songArt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "song-item-title"
-        }, song.title), _this3.state.mouseOnTrending === song.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+          className: "discover-title-link",
+          to: "/song/".concat(song.id)
+        }, song.title)), _this3.state.mouseOnTrending === song.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "discover-play",
           onMouseEnter: function onMouseEnter() {
             return _this3.setState({

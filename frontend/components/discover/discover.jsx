@@ -70,7 +70,7 @@ class Discover extends React.Component {
                             <Link to={`/song/${song.id}`}>{songArt}</Link>
                         </div>
                         <div className="song-item-title">
-                            {song.title}
+                            <Link className="discover-title-link" to={`/song/${song.id}`}>{song.title}</Link>
                         </div>
                         {this.state.mouseOnNew === song.id ?
                              <div className="discover-play"
@@ -102,7 +102,7 @@ class Discover extends React.Component {
                             <Link to={`/song/${song.id}`}>{songArt}</Link>
                         </div>
                         <div className="song-item-title">
-                            {song.title}
+                            <Link className="discover-title-link" to={`/song/${song.id}`}>{song.title}</Link>
                         </div>
                         {this.state.mouseOnTrending === song.id ?
                              <div className="discover-play"
