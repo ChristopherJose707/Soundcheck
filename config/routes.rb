@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
     resources :songs, only: [:index, :create, :update, :destroy, :show]
     resources :comments, only: [:create, :destroy, :index]
+    resources :likes, only: [:index, :create, :destroy]
     
     resource :session, only: [:create, :destroy]
   end

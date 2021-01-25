@@ -17704,8 +17704,10 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     store = (0,_store_store__WEBPACK_IMPORTED_MODULE_3__.default)();
   } //test start
-  //test end
 
+
+  window.getState = store.getState;
+  window.dispatch = store.dispatch; //test end
 
   var root = document.getElementById("root");
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_root__WEBPACK_IMPORTED_MODULE_2__.default, {

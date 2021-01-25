@@ -74,6 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     //test start
+    window.getState = store.getState;
+    window.dispatch = store.dispatch;
      
     //test end
     
