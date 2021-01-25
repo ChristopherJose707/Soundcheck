@@ -22,6 +22,10 @@ class Song < ApplicationRecord
         class_name: :Comment,
         dependent: :destroy
 
+    has_many :likes,
+        foreign_key: :song_id,
+        class_name: :Like
+
     has_one_attached :photo
     has_one_attached :song
 end

@@ -31,6 +31,10 @@ class User < ApplicationRecord
         class_name: :Song,
         dependent: :destroy
 
+    has_many :likes,
+        foreign_key: :user_id,
+        class_name: :Like
+
     has_one_attached :profile_picture
     has_one_attached :profile_banner 
 

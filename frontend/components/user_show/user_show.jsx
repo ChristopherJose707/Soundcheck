@@ -20,7 +20,7 @@ class UserShow extends React.Component {
         this.handlePhotoFileProfilePic = this.handlePhotoFileProfilePic.bind(this);
         this.songList = this.songList.bind(this);
         this.handleLike = this.handleLike.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        this.userLikesSongs = this.userLikesSongs.bind(this);
         
     }
 
@@ -36,16 +36,33 @@ class UserShow extends React.Component {
         scrollTo(0,0);
         this.props.fetchUser(this.props.match.params.userId);
         this.props.fetchUserSongs(this.props.match.params.userId);
-        
+        this.props.fetchUserLikes(this.props.match.params.userId);
     }
 
-    handleLike() {
-        if (this.state.liked) {
-            this.setState({liked: false})
-        } else {
-            this.setState({liked: true})
-        }
+    userLikesSongs() {
+      let songIds = [];
+      Object.values(this.props.userLikes).forEach(like => {
+        songIds.push(like.song_id)
+      })
+      return songIds;
     }
+
+    handleLike(songId) {
+      const {currentUser, userLikes} = this.props;
+      if (!this.userLikesSongs().includes(songId)) {
+        let like = { user_id: currentUser.id, song_id: songId };
+        this.props.createLike(like);
+      } else {
+        let likeId = null;
+        Object.values(userLikes).forEach((like) => {
+          if (like.song_id === songId) {
+            likeId = like.id
+          }
+        })
+        this.props.deleteLike(likeId)
+      }
+    }
+
 
     handlePhotoFileProfilePic(e) {
         e.preventDefault();
@@ -70,18 +87,16 @@ class UserShow extends React.Component {
         }
     }
 
-    handleClick() {
-      console.log("clicked")
-    }
-
    songList() {
        const {userSongs} = this.props;
-       const songArrFiltered = Object.values(userSongs).filter( song => song.user_id === this.props.user.id)
+       
+       const songArrFiltered = Object.values(userSongs).filter( song => song.user_id === this.props.user.id);
        if (songArrFiltered.length === 0) {
          return (
            <h1 className="no-songs">You have no songs. <Link className="no-songs-upload" to="/upload">Upload</Link> to add tracks to your page!</h1>
          )
        }
+
        const songList = songArrFiltered.map((song, i) => {
            return(
                <div key={i} className="profile-song-item">
@@ -109,11 +124,23 @@ class UserShow extends React.Component {
                             
                             <WaveformContainer index={i} song={song}/>
                             <div className="profile-song-footer">
-                                <button className={`profile-song-like ${this.state.liked ? "liked" : ""}`}
+                              {this.userLikesSongs().includes(song.id) ? 
+                                <button className="profile-song-like liked" onClick={() => this.handleLike(song.id)}>
+                                <FontAwesomeIcon className="like-icon" icon="heart"/>
+                                  Unlike
+                                </button>
+                              : <button className="profile-song-like" onClick={() => this.handleLike(song.id)}>
+                                <FontAwesomeIcon className="like-icon" icon="heart"/>
+                                Like
+                              </button> 
+                              
+                              }
+
+                                {/* <button className={`profile-song-like ${this.state.liked ? "liked" : ""}`}
                                         onClick={this.handleLike}>
                                     <FontAwesomeIcon className="like-icon" icon="heart"/>
                                     Like
-                                </button>
+                                </button> */}
                              </div>
                         </div>
                     </div>
@@ -133,7 +160,7 @@ class UserShow extends React.Component {
                 <label className="profile-photo-label" >
                     <FontAwesomeIcon icon="camera" />
                     &nbsp;Upload Profile Image
-                    <input type="file" id="fileProfile" accept="image/*" onClick={this.handleClick} onChange={this.handlePhotoFileProfilePic}/>
+                    <input type="file" id="fileProfile" accept="image/*" onChange={this.handlePhotoFileProfilePic}/>
                 </label> 
                 : <label className="profile-photo-label" >
                     <FontAwesomeIcon icon="camera" />
@@ -154,6 +181,9 @@ class UserShow extends React.Component {
                     <input type="file" id="fileBanner" accept="image/*" onChange={this.handlePhotoFileProfileBanner}/>
                 </label> ;
 
+        // console.log(
+        //   Object.values(this.props.userLikes)
+        // )
         return (
           <div>
             <NavbarContainer />
