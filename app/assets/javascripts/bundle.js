@@ -16012,6 +16012,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
     _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
     _this.commentIndex = _this.commentIndex.bind(_assertThisInitialized(_this));
     _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
+    _this.userLikesSongs = _this.userLikesSongs.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -16021,19 +16022,39 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
       this.props.fetchSong(this.props.match.params.songId);
       this.props.fetchUsers();
       this.props.fetchComments();
+      this.props.fetchUserLikes();
       scrollTo(0, 0);
     }
   }, {
+    key: "userLikesSongs",
+    value: function userLikesSongs() {
+      var songIds = [];
+      Object.values(this.props.userLikes).forEach(function (like) {
+        songIds.push(like.song_id);
+      });
+      return songIds;
+    }
+  }, {
     key: "handleLike",
-    value: function handleLike() {
-      if (this.state.liked) {
-        this.setState({
-          liked: false
-        });
+    value: function handleLike(songId) {
+      var _this$props = this.props,
+          currentUser = _this$props.currentUser,
+          userLikes = _this$props.userLikes;
+
+      if (!this.userLikesSongs().includes(songId)) {
+        var like = {
+          user_id: currentUser.id,
+          song_id: songId
+        };
+        this.props.createLike(like);
       } else {
-        this.setState({
-          liked: true
+        var likeId = null;
+        Object.values(userLikes).forEach(function (like) {
+          if (like.song_id === songId) {
+            likeId = like.id;
+          }
         });
+        this.props.deleteLike(likeId);
       }
     }
   }, {
@@ -16054,7 +16075,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
 
       if (file) {
         var formData = new FormData();
-        formData.append('song[photo]', file);
+        formData.append("song[photo]", file);
         this.props.updateSong(formData, song.id);
       }
     }
@@ -16160,22 +16181,19 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      var _this$props = this.props,
-          users = _this$props.users,
-          song = _this$props.song,
-          currentUser = _this$props.currentUser;
+      var _this$props2 = this.props,
+          users = _this$props2.users,
+          song = _this$props2.song,
+          currentUser = _this$props2.currentUser;
 
       if (Object.keys(this.props.users).length === 1) {
         return null;
       }
 
-      ;
-
       if (!this.props.song || !this.props.users) {
         return null;
       }
 
-      ;
       var songPhoto = song.songPhoto ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         className: "song-show-photo",
         src: song.songPhoto
@@ -16250,13 +16268,23 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
         id: "input-comment",
         type: "text",
         value: this.state.commentBody,
-        onChange: this.handleInput('commentBody'),
+        onChange: this.handleInput("commentBody"),
         placeholder: "Write a comment"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "song-show-buttons"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "profile-song-like ".concat(this.state.liked ? "liked" : ""),
-        onClick: this.handleLike
+      }, this.userLikesSongs().includes(song.id) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "profile-song-like liked",
+        onClick: function onClick() {
+          return _this4.handleLike(song.id);
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__.FontAwesomeIcon, {
+        className: "like-icon",
+        icon: "heart"
+      }), "Unlike") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "profile-song-like",
+        onClick: function onClick() {
+          return _this4.handleLike(song.id);
+        }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_4__.FontAwesomeIcon, {
         className: "like-icon",
         icon: "heart"
@@ -16310,6 +16338,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_song_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/song_actions */ "./frontend/actions/song_actions.js");
 /* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/comment_actions */ "./frontend/actions/comment_actions.js");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_like_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/like_actions */ "./frontend/actions/like_actions.js");
+
 
 
 
@@ -16322,7 +16352,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     users: state.entities.users,
     song: song,
     currentUser: state.entities.users[state.session.currentUser],
-    comments: state.entities.songComments
+    comments: state.entities.songComments,
+    userLikes: state.entities.userLikes
   };
 };
 
@@ -16351,7 +16382,26 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     updateSong: function updateSong(songData, songId) {
       return dispatch((0,_actions_song_actions__WEBPACK_IMPORTED_MODULE_2__.updateSong)(songData, songId));
-    }
+    },
+    fetchUserLikes: function fetchUserLikes(userId) {
+      return dispatch((0,_actions_like_actions__WEBPACK_IMPORTED_MODULE_5__.fetchUserLikes)(userId));
+    },
+    deleteLike: function deleteLike(likeId) {
+      return dispatch((0,_actions_like_actions__WEBPACK_IMPORTED_MODULE_5__.deleteLike)(likeId));
+    },
+    createLike: function (_createLike) {
+      function createLike(_x) {
+        return _createLike.apply(this, arguments);
+      }
+
+      createLike.toString = function () {
+        return _createLike.toString();
+      };
+
+      return createLike;
+    }(function (like) {
+      return dispatch(createLike(like));
+    })
   };
 };
 
@@ -17322,7 +17372,6 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         };
         this.props.createLike(like);
       } else {
-        // console.log("unlike")
         var likeId = null;
         Object.values(userLikes).forEach(function (like) {
           if (like.song_id === songId) {

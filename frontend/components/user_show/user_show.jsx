@@ -53,7 +53,6 @@ class UserShow extends React.Component {
         let like = { user_id: currentUser.id, song_id: songId };
         this.props.createLike(like);
       } else {
-        // console.log("unlike")
         let likeId = null;
         Object.values(userLikes).forEach((like) => {
           if (like.song_id === songId) {
