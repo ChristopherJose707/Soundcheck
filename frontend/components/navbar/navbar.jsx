@@ -56,7 +56,7 @@ class Navbar extends React.Component {
                         <button className="navbar-search-button"><FontAwesomeIcon icon="search" /></button>
                     </div>
                     <ul className="navbar-right-links">
-                        <li className="upgrade"><a href="https://google.com" target="_blank">Google</a></li>
+                        <li className="upgrade"><a href="https://christopher-jose.com" target="_blank">Portfolio</a></li>
                         <div className={`navbar-upload-div ${this.props.match.path === "/upload" ? "black" : ""}`}>
                             <li><Link className={`navbar-upload-link ${this.props.match.path === "/upload" ? "black" : ""}`} to="/upload">Upload</Link></li>
 

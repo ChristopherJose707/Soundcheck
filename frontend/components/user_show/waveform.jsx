@@ -6,6 +6,10 @@ class Waveform extends React.Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      loading: 0
+    }
+
     this.handleScroll = this.handleScroll.bind(this)
   }
 
@@ -43,6 +47,7 @@ class Waveform extends React.Component {
 
   componentDidMount() {
     const player = document.getElementById("audio");
+
     
     this.waveform = WaveSurfer.create({
       barWidth: 3,
@@ -55,7 +60,18 @@ class Waveform extends React.Component {
       minPxPerSec: 1,
     });
     this.waveform.load(this.props.song.songUrl)
+    
     this.waveform.setVolume(0);
+
+    this.waveform.on("loading", (integer) => {
+      this.setState({loading: integer})
+    })
+
+    this.waveform.on("ready", () => {
+      if(this.props.playing && this.props.currentSongId === this.props.song.id) {
+        this.waveform.play(player.currentTime)
+      }
+    })
     this.waveform.on("seek", (prog) => {
       player.currentTime = prog * this.waveform.getDuration();
     })
@@ -64,6 +80,7 @@ class Waveform extends React.Component {
   render() {
     return (
       <div>
+        <h1 className={this.state.loading === 100 ? "hide" : ""}>Loading: {this.state.loading}</h1>
         <div id={`waveform${this.props.index}`} className="waveform"></div>
       </div>
     );

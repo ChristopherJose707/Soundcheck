@@ -14882,9 +14882,9 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         className: "upgrade"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "https://google.com",
+        href: "https://christopher-jose.com",
         target: "_blank"
-      }, "Google")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, "Portfolio")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "navbar-upload-div ".concat(this.props.match.path === "/upload" ? "black" : "")
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         className: "navbar-upload-link ".concat(this.props.match.path === "/upload" ? "black" : ""),
@@ -17545,6 +17545,9 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Waveform);
 
     _this = _super.call(this, props);
+    _this.state = {
+      loading: 0
+    };
     _this.handleScroll = _this.handleScroll.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -17597,6 +17600,16 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
       });
       this.waveform.load(this.props.song.songUrl);
       this.waveform.setVolume(0);
+      this.waveform.on("loading", function (integer) {
+        _this2.setState({
+          loading: integer
+        });
+      });
+      this.waveform.on("ready", function () {
+        if (_this2.props.playing && _this2.props.currentSongId === _this2.props.song.id) {
+          _this2.waveform.play(player.currentTime);
+        }
+      });
       this.waveform.on("seek", function (prog) {
         player.currentTime = prog * _this2.waveform.getDuration();
       });
@@ -17604,7 +17617,9 @@ var Waveform = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+        className: this.state.loading === 100 ? "hide" : ""
+      }, "Loading: ", this.state.loading), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         id: "waveform".concat(this.props.index),
         className: "waveform"
       }));
