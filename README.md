@@ -15,6 +15,7 @@
 * Javascript
 * React.js
 * Redux.js
+* Wavesurfer.js 
 
 ### Backend
 * Ruby on Rails
@@ -29,17 +30,17 @@
 ## Discover Home
 
 * All users who login/signup are greeted with a Discover page that lists all the tracks available on Soundcheck!
-<a href="https://imgur.com/4jnuz56"><img src="https://i.imgur.com/4jnuz56.png" title="source: imgur.com" /></a>
+![](docs/discover.png)
 
 ## Upload
 
 * Users are able to upload songs along with any photo they'd like.
-<a href="https://imgur.com/JrHjj4X"><img src="https://i.imgur.com/JrHjj4X.png" title="source: imgur.com" /></a>
+![](docs/upload.png)
 
 ## Song Page
 
-* Every song has their own page with working Play button and comment section.
-<a href="https://imgur.com/j7Bi7M7"><img src="https://i.imgur.com/j7Bi7M7.png" title="source: imgur.com" /></a>
+* Every song has their own page with working Play button, like button, and comment section.
+![](docs/song%20show.png)
 
 ## Music Player
 
@@ -48,6 +49,15 @@
 
 ## User Profile
 
-* Each user has their own profile page 
+* Each user has their own profile page that shows the number of tracks they've uploaded and an interactable waveform of each song. 
 
-<a href="https://imgur.com/U7fy52a"><img src="https://i.imgur.com/U7fy52a.png" title="source: imgur.com" /></a>
+![](docs/profile%20page.png)
+
+## WaveSurfer.js
+
+ * Wavesurfer.js API uses HTML5 and Canvas to analyze song files and draw a interact-able waveform.
+ * Users are able to scrub the song to the place they want and the time is sent to the custom audio player to play it. 
+ * A Waveform class was made and using React lifecycle components such as ComponentDidMount/ComponentDidUpdate and vanilla DOM JS, the connection between Wavesurfer.js and the custom audio player at the bottom of the page was able to be achieved. 
+
+![](docs/waveform%20top%20code.png)
+![](docs/waveform%20bottom%20code.png)
