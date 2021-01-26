@@ -26,9 +26,9 @@ class Navbar extends React.Component {
         const dropdown =   
                 <div className="user-dropdown" ref={(element) => {this.dropdownUserMenu = element}}>
                     <div className="user-dropdown-content">
-                        <Link to={`/users/${this.props.currentUser.id}`}><FontAwesomeIcon icon="user" />Profile</Link>
+                        <Link to={`/users/${this.props.currentUser.id}`}><FontAwesomeIcon icon="user" /> &nbsp;Profile</Link>
                         {/* <a href="https://github.com/ChristopherJose707"><FontAwesomeIcon icon={['fab', 'github']} />Github</a> */}
-                        <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/" target="_blank"><FontAwesomeIcon icon={['fab', 'linkedin']} />LinkedIn</a>
+                        <a href="https://www.linkedin.com/in/christopher-jose-6361aa120/" target="_blank"><FontAwesomeIcon icon={['fab', 'linkedin']} />&nbsp;LinkedIn</a>
                     </div>
                 </div> 
 

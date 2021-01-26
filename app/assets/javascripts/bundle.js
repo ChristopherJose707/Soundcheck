@@ -14899,12 +14899,12 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         to: "/users/".concat(this.props.currentUser.id)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         icon: "user"
-      }), "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+      }), " \xA0Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
         href: "https://www.linkedin.com/in/christopher-jose-6361aa120/",
         target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
         icon: ['fab', 'linkedin']
-      }), "LinkedIn")));
+      }), "\xA0LinkedIn")));
       var userDisplayName = this.props.currentUser.display_name.length > 10 ? this.props.currentUser.display_name.slice(0, 10) : this.props.currentUser.display_name;
       var signOutButton = this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: function onClick() {

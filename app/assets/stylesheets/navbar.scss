@@ -232,6 +232,7 @@ ul {
 .user-dropdown-content a {
     color: gray;
     margin: 5px;
+    font-size: 12px;
 }
 
 .user-dropdown-li {
@@ -254,12 +255,13 @@ ul {
     display:none;
     position: absolute;
     background-color: white;
-    height: 50px;
+    height: 46px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
 
 .navbar-ellipsis-content button {
     font-weight: 700;
+    font-size: 12px;
 }
 .navbar-ellipsis-content * {
     display: flex;
