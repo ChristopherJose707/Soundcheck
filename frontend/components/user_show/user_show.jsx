@@ -202,7 +202,7 @@ class UserShow extends React.Component {
                         className="profile-pic-top"
                         src={user.profilePicture}
                       />
-                    ) : null}
+                    ) : <div className="profile-pic-top">&nbsp;</div>}
                     <li className="profile-pic-button">
                       {uploadProfilePicButton}
                     </li>
@@ -225,14 +225,14 @@ class UserShow extends React.Component {
                   <div className="profile-right-panel">
                     <div className="profile-right-panel-content">
                       <div className="profile-stats">
-                        <span className="followers-span">
+                        {/* <span className="followers-span">
                           <h2>Followers</h2>
                           <p>0</p>
                         </span>
                         <span className="following-span">
                           <h2>Following</h2>
                           <p>0</p>
-                        </span>
+                        </span> */}
                         <span className="tracks-span">
                           <h2>Tracks</h2>
                           <p>{user.trackIds.length}</p>

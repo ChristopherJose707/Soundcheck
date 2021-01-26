@@ -101,6 +101,7 @@ class SongShow extends React.Component {
     let filtered = comments.filter(
       (comment) => comment.song_id === this.props.song.id
     );
+    
     let allComments = filtered.map((comment, i) => {
       return (
         <div
@@ -132,7 +133,7 @@ class SongShow extends React.Component {
                 "You"
               ) : (
                 <Link to={`/users/${comment.author_id}`}>
-                  {this.props.users[comment.author_id]}
+                  {this.props.users[comment.author_id].username}
                 </Link>
               )}
               <span className="comment-time">
@@ -163,6 +164,7 @@ class SongShow extends React.Component {
 
   commentIndex() {
     const allComments = this.allComments();
+    
     const index =
       Object.values(this.props.comments).length > 0 ? (
         <div className="comment-index-wrapper">
@@ -176,16 +178,17 @@ class SongShow extends React.Component {
         </div>
       ) : null;
 
+      
     return index;
   }
 
   render() {
     const { users, song, currentUser } = this.props;
-    if (Object.keys(this.props.users).length === 1) {
-      return null;
-    }
-
+    
     if (!this.props.song || !this.props.users) {
+        return null;
+    }
+    if (Object.keys(this.props.users).length === 1) {
       return null;
     }
 
