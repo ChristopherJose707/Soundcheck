@@ -102,7 +102,7 @@ class UserShow extends React.Component {
                <div key={i} className="profile-song-item">
                         <div className="profile-song-art">
                             <Link to={`/song/${song.id}`}>
-                                {song.songPhoto ? <img className="profile-song-img" src={song.songPhoto} /> : null}
+                                {song.songPhoto ? <img className="profile-song-img" src={song.songPhoto} /> : <div className="profile-song-img empty-profile">&nbsp;</div>}
                             </Link>
                         </div>
                         <div className="profile-song-main">

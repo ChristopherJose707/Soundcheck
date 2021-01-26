@@ -124,7 +124,7 @@ class SongShow extends React.Component {
                   className="comment-photo"
                   src={this.props.users[comment.author_id].profilePicture}
                 />
-              ) : null}
+              ) : <div className="comment-photo comment-photo-empty">&nbsp;</div>}
             </Link>
           </div>
           <div className="comment-content">
@@ -201,7 +201,9 @@ class SongShow extends React.Component {
         className="song-show-photo-artist"
         src={users[song.user_id].profilePicture}
       />
-    ) : null;
+    ) : (
+      <div className="song-show-photo-artist song-artist-empty">&nbsp;</div>
+    );
 
     const uploadPhotoButton =
       song.artist !== currentUser.display_name ? null : !song.songPhoto &&
