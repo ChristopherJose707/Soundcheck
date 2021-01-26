@@ -132,7 +132,7 @@ class SongShow extends React.Component {
               {this.props.currentUser.id === comment.author_id ? (
                 "You"
               ) : (
-                <Link to={`/users/${comment.author_id}`}>
+                <Link className="comment-other-author" to={`/users/${comment.author_id}`}>
                   {this.props.users[comment.author_id].username}
                 </Link>
               )}

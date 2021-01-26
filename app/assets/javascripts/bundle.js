@@ -16147,6 +16147,7 @@ var SongShow = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "comment-header"
         }, _this3.props.currentUser.id === comment.author_id ? "You" : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+          className: "comment-other-author",
           to: "/users/".concat(comment.author_id)
         }, _this3.props.users[comment.author_id].username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
           className: "comment-time"

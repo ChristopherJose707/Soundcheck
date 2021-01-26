@@ -253,11 +253,11 @@ ul {
     display:none;
     position: absolute;
     background-color: white;
-    height: auto;
+    height: 50px;
 }
 
-navbar-ellipsis-content button {
-    padding: 0;
+.navbar-ellipsis-content button {
+    font-weight: 700;
 }
 .navbar-ellipsis-content * {
     display: flex;
@@ -269,6 +269,7 @@ navbar-ellipsis-content button {
     border-right: 1px solid gray;
     border-left: 1px solid gray;
     border-bottom: 1px solid gray;
+    height: 100%;
 }
 
 .navbar button:focus {
