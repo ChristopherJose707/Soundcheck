@@ -14954,7 +14954,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
         className: "upgrade"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "https://christopher-jose.com",
+        href: "https://christopher-jose.net",
         target: "_blank"
       }, "Portfolio")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "navbar-upload-div ".concat(this.props.match.path === "/upload" ? "black" : "")
@@ -16551,9 +16551,11 @@ var Splash = /*#__PURE__*/function (_React$Component) {
       }, "Sign In"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "splash-footer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "https://www.linkedin.com/in/christopher-jose-6361aa120/"
+        href: "https://www.linkedin.com/in/christopher-jose-6361aa120/",
+        target: "_blank"
       }, "LinkedIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: "https://github.com/ChristopherJose707"
+        href: "https://github.com/ChristopherJose707",
+        target: "_blank"
       }, "\u2043    Github")));
     }
   }]);
